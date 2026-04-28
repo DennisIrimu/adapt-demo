@@ -24,8 +24,13 @@ export function NodeProvider({ children }) {
 
   useEffect(() => {
     if (!user) return;
-    const wsPort = window.location.port === '4001' ? 4011 : 4010;
-    const ws = new WebSocket(`ws://localhost:${wsPort}`);
+    // Derive WebSocket URL from the page origin so tunnels (ngrok, cloudflared etc.) work.
+    // Locally: ws://localhost:4000 or ws://localhost:4001
+    // Via tunnel: wss://abc.trycloudflare.com (same host, same port, upgraded to WS)
+    const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const wsHost = window.location.hostname;
+    const wsPort = window.location.port ? `:${window.location.port}` : '';
+    const ws = new WebSocket(`${wsProtocol}//${wsHost}${wsPort}`);
     wsRef.current = ws;
     ws.onmessage = (e) => {
       const msg = JSON.parse(e.data);

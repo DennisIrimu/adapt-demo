@@ -21,8 +21,11 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  // Detect node via port (direct) or ?node= param / cookie (via proxy)
   const port = window.location.port;
-  const isBeta = port === '4001';
+  const nodeParam = new URLSearchParams(window.location.search).get('node');
+  const cookieNode = document.cookie.match(/adapt-node=(\w+)/)?.[1];
+  const isBeta = port === '4001' || nodeParam === 'beta' || (nodeParam !== 'alpha' && cookieNode === 'beta');
 
   const handleSubmit = async (e) => {
     e.preventDefault();

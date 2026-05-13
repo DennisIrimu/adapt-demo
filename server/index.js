@@ -14,7 +14,7 @@ const args = process.argv.slice(2).reduce((a, c) => { const [k, v] = c.replace('
 const PORT     = parseInt(process.env.PORT     || args.port || '4000');
 const WS_PORT  = parseInt(process.env.WS_PORT  || args.ws   || '4010');
 const NODE_ID  = process.env.NODE_ID   || args.id   || 'alpha';
-const NODE_NAME= process.env.NODE_NAME || args.name || 'Node Alpha';
+const NODE_NAME= process.env.NODE_NAME || args.name || (NODE_ID === 'beta' ? 'Node Beta' : 'Node Alpha');
 const PEER_URL = process.env.PEER_URL  || args.peer || null;
 const NODE_IP  = `127.0.0.1:${PORT}`;
 
@@ -61,15 +61,31 @@ function validateCredential(regNumber) {
 // ── Store ──
 const store = {
   orgs: NODE_ID === 'alpha' ? [
-    { id: 'org1', name: 'AtlasPhosphate S.A.',     role: 'Exporter · Morocco',          username: 'atlas',      password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
+    { id: 'org1', name: 'Nortex Minerals S.A.',     role: 'Exporter · Morocco',          username: 'nortex',      password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
     { id: 'org2', name: 'Morocco Customs',          role: 'Customs Authority · Morocco', username: 'macustoms',  password: 'demo', orgType: 'public',  did: null, verified: false, regNumber: null },
     { id: 'org3', name: 'Nigeria Customs',          role: 'Customs Authority · Nigeria', username: 'ngcustoms',  password: 'demo', orgType: 'public',  did: null, verified: false, regNumber: null },
     { id: 'org4', name: 'Kenya Revenue Authority',  role: 'Customs Authority · Kenya',   username: 'kra',        password: 'demo', orgType: 'public',  did: null, verified: false, regNumber: null },
-    { id: 'org7', name: 'Financier 1',              role: 'Financier',                   username: 'financier1', password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
-    { id: 'org8', name: 'Financier 2',              role: 'Financier',                   username: 'financier2', password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
+    { id: 'org7',  name: 'Financier 1',                       role: 'Financier',                          username: 'financier1',  password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
+    { id: 'org8',  name: 'Financier 2',                       role: 'Financier',                          username: 'financier2',  password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
+    // Journey 1A — Urban Formal MSME Exporter
+    { id: 'org9',  name: 'Vestline Apparel Ltd',                  role: 'Exporter · Nigeria',                 username: 'vestline', password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
+    // Journey 1B — Smallholder Agriculture Exporter
+    { id: 'org10', name: 'Highland Growers Cooperative',     role: 'Exporter · Tanzania',                username: 'highland',   password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
+    // Journey 1C — Informal Cross-Border Trader
+    { id: 'org11', name: 'BorderLink Traders',               role: 'Trader · West Africa',               username: 'borderlink',  password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
+    // Journey 2 — Bank (Trade Finance)
+    { id: 'org12', name: 'Meridian Bank Trade Finance',          role: 'Financier · Nigeria',                username: 'meridian',      password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
+    // Journey 3 — Logistics Operator
+    { id: 'org13', name: 'TransRoute Logistics Ltd',              role: 'Logistics Operator',                 username: 'transroute',  password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
+    // Journey 4 — Destination Customs Officer
+    { id: 'org14', name: 'Egypt Customs Authority',            role: 'Customs Authority · Egypt',          username: 'egcustoms',    password: 'demo', orgType: 'public',  did: null, verified: false, regNumber: null },
+    // Journey 6 — Financial Regulator
+    { id: 'org15', name: 'Central Finance Regulator',             role: 'Financial Regulator · Nigeria',      username: 'cfregulator',       password: 'demo', orgType: 'public',  did: null, verified: false, regNumber: null },
   ] : [
-    { id: 'org5', name: 'PrimeFert Nigeria Ltd',        role: 'Importer · Nigeria', username: 'primefert', password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
-    { id: 'org6', name: 'TradeLink International Ltd',  role: 'Importer · Nigeria', username: 'tradelink', password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
+    { id: 'org5',  name: 'AgriInput Supplies Ltd',              role: 'Importer · Nigeria',                 username: 'agrinput',    password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
+    { id: 'org6',  name: 'HorizonTrade International',        role: 'Importer · Nigeria',                 username: 'horizontrade',    password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
+    // Journey 5 — FMCG Importer
+    { id: 'org16', name: 'Metro Consumer Goods Ltd',           role: 'Importer · Kenya',                   username: 'metropcg',      password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
   ],
   consignments: [], documents: [], permissions: {}, docPermissions: {},
   payments: [], letterOfCredits: [], smartContracts: [], financePermissions: {},
@@ -182,14 +198,24 @@ function makeSeedXml(docType, m, ref) {
   const grossMass   = m.quantity.match(/[\d,]+/)?.[0]?.replace(',','') || '1000';
   const netMass     = Math.round(parseInt(grossMass) * 0.97);
   const arrival     = new Date(new Date(m.shipDate).getTime() + 14 * 86400000).toISOString().slice(0,10);
-  const carrier     = m.vessel.startsWith('KQ') ? 'Kenya Airways Cargo' : 'NordShip Line S.A.';
-  const exporterAddr = m.fromCountry === 'Morocco'  ? '12 Rue Al Borj, Casablanca 20000, Morocco'
-                     : m.fromCountry === 'Kenya'    ? 'Westlands Business Park, Nairobi, Kenya'
+  const carrier     = m.vessel.startsWith('KQ') ? 'Kenya Airways Cargo'
+                    : m.vessel.startsWith('ET') ? 'Ethiopian Airlines Cargo'
+                    : 'NordShip Line S.A.';
+  const exporterAddr = m.fromCountry === 'Morocco'      ? '12 Rue Al Borj, Casablanca 20000, Morocco'
+                     : m.fromCountry === 'Kenya'         ? 'Westlands Business Park, Nairobi, Kenya'
+                     : m.fromCountry === 'Tanzania'      ? 'Ohio Street, Dar es Salaam, Tanzania'
+                     : m.fromCountry === 'Ivory Coast'   ? 'Boulevard de la Paix, Abidjan, Ivory Coast'
+                     : m.fromCountry === 'Ghana'         ? 'Ring Road Central, Accra, Ghana'
+                     : m.fromCountry === 'South Africa'  ? 'Sandton Drive, Johannesburg, South Africa'
+                     : m.fromCountry === 'Egypt'         ? 'Port Said Road, Alexandria, Egypt'
                      : '14 Creek Road, Apapa, Lagos, Nigeria';
-  const importerAddr = m.toCountry === 'Netherlands' ? 'Prins Bernhardplein 200, Amsterdam, Netherlands'
-                     : m.toCountry === 'Germany'      ? 'Speicherstadt 1, Hamburg, Germany'
-                     : m.toCountry === 'United Kingdom' ? '1 Dock Road, Felixstowe, Suffolk, UK'
-                     : m.toCountry === 'South Africa'   ? 'Island View, Durban, South Africa'
+  const importerAddr = m.toCountry === 'Netherlands'    ? 'Prins Bernhardplein 200, Amsterdam, Netherlands'
+                     : m.toCountry === 'Germany'         ? 'Speicherstadt 1, Hamburg, Germany'
+                     : m.toCountry === 'United Kingdom'  ? '1 Dock Road, Felixstowe, Suffolk, UK'
+                     : m.toCountry === 'South Africa'    ? 'Island View, Durban, South Africa'
+                     : m.toCountry === 'Kenya'           ? 'Westlands Avenue, Nairobi, Kenya'
+                     : m.toCountry === 'Egypt'           ? 'Port Said Road, Alexandria, Egypt'
+                     : m.toCountry === 'Ghana'           ? 'Tema Industrial Area, Accra, Ghana'
                      : '24 Marina Street, Victoria Island, Lagos, Nigeria';
 
   if (docType === 'Bill of Lading') {
@@ -284,7 +310,7 @@ function makeSeedXml(docType, m, ref) {
   <BillOfLadingRef>BL-${ref.replace(/[A-Z]+-\d+-/,'')}</BillOfLadingRef>
   <CertificateOfOriginRef>CO-${ref.replace(/[A-Z]+-\d+-/,'')}</CertificateOfOriginRef>
   <InsuranceCertificateRef>INS-${seed}</InsuranceCertificateRef>
-  <DeclarantName>${m.fromCountry === 'Morocco' ? 'Morocco Customs' : m.fromCountry === 'Kenya' ? 'Kenya Revenue Authority' : 'Nigeria Customs'}</DeclarantName>
+  <DeclarantName>${m.fromCountry === 'Morocco' ? 'Morocco Customs' : m.fromCountry === 'Kenya' ? 'Kenya Revenue Authority' : m.fromCountry === 'Tanzania' ? 'Tanzania Revenue Authority' : m.fromCountry === 'Ivory Coast' ? 'Direction Générale des Douanes, Ivory Coast' : m.fromCountry === 'Ghana' ? 'Ghana Revenue Authority' : m.fromCountry === 'South Africa' ? 'South African Revenue Service (SARS)' : m.fromCountry === 'Egypt' ? 'Egyptian Customs Authority' : 'Nigeria Customs'}</DeclarantName>
   <DeclarationLocation>${m.originPort}</DeclarationLocation>
   <Status>ACCEPTED</Status>
 </CustomsDeclaration>`;
@@ -296,14 +322,14 @@ function makeSeedXml(docType, m, ref) {
 // ── Hardcoded demo consignments ──
 const ALPHA_CONSIGNMENTS = [
   // Morocco → Nigeria (AtlasPhosphate, org1)
-  { ucr:'UCR-2026-MA-NG-00101', product:'Triple Super Phosphate (TSP)',    hsCode:'3103.10', quantity:'2,400 MT', totalValue:340000, currency:'USD', exporter:'AtlasPhosphate S.A.', importer:'PrimeFert Nigeria Ltd',       fromCountry:'Morocco', toCountry:'Nigeria', originPort:'Port of Casablanca',  destinationPort:'Apapa Port, Lagos',      vessel:'MV Atlas Pioneer',    shipDate:'2026-02-18', incoterms:'CFR', invoiceRef:'INV-2026-APM-0101', declRef:'MA-EXP-2026-0101', status:'Delivered',   creatorOrgId:'org1', creatorOrgName:'AtlasPhosphate S.A.' },
-  { ucr:'UCR-2026-MA-NG-00102', product:'Di-Ammonium Phosphate (DAP)',     hsCode:'3105.30', quantity:'1,800 MT', totalValue:290000, currency:'USD', exporter:'AtlasPhosphate S.A.', importer:'TradeLink International Ltd', fromCountry:'Morocco', toCountry:'Nigeria', originPort:'Port of Casablanca',  destinationPort:'Tin Can Island Port',    vessel:'MV Maroc Express',    shipDate:'2026-02-20', incoterms:'FOB', invoiceRef:'INV-2026-APM-0102', declRef:'MA-EXP-2026-0102', status:'In Transit',  creatorOrgId:'org1', creatorOrgName:'AtlasPhosphate S.A.' },
-  { ucr:'UCR-2026-MA-NG-00103', product:'Granular Urea (46% N)',           hsCode:'3102.10', quantity:'3,000 MT', totalValue:510000, currency:'USD', exporter:'AtlasPhosphate S.A.', importer:'PrimeFert Nigeria Ltd',       fromCountry:'Morocco', toCountry:'Nigeria', originPort:'Port of Agadir',      destinationPort:'Apapa Port, Lagos',      vessel:'MV Sahara Star',      shipDate:'2026-03-01', incoterms:'CIF', invoiceRef:'INV-2026-APM-0103', declRef:'MA-EXP-2026-0103', status:'Customs',     creatorOrgId:'org1', creatorOrgName:'AtlasPhosphate S.A.' },
-  { ucr:'UCR-2026-MA-NG-00104', product:'Phosphoric Acid (75% P₂O₅)',     hsCode:'2809.20', quantity:'950 MT',   totalValue:178000, currency:'USD', exporter:'AtlasPhosphate S.A.', importer:'TradeLink International Ltd', fromCountry:'Morocco', toCountry:'Nigeria', originPort:'Port of Jorf Lasfar', destinationPort:'Onne Port',              vessel:'MV Chemtrans Atlas',  shipDate:'2026-03-05', incoterms:'CFR', invoiceRef:'INV-2026-APM-0104', declRef:'MA-EXP-2026-0104', status:'Submitted',   creatorOrgId:'org1', creatorOrgName:'AtlasPhosphate S.A.' },
-  { ucr:'UCR-2026-MA-NG-00105', product:'Mono-Ammonium Phosphate (MAP)',   hsCode:'3105.40', quantity:'2,100 MT', totalValue:375000, currency:'USD', exporter:'AtlasPhosphate S.A.', importer:'PrimeFert Nigeria Ltd',       fromCountry:'Morocco', toCountry:'Nigeria', originPort:'Port of Casablanca',  destinationPort:'Apapa Port, Lagos',      vessel:'MV Northern Cape',    shipDate:'2026-03-12', incoterms:'FOB', invoiceRef:'INV-2026-APM-0105', declRef:'MA-EXP-2026-0105', status:'Released',    creatorOrgId:'org1', creatorOrgName:'AtlasPhosphate S.A.' },
-  { ucr:'UCR-2026-MA-NG-00106', product:'Sulphate of Potash (SOP)',        hsCode:'3104.20', quantity:'1,200 MT', totalValue:264000, currency:'USD', exporter:'AtlasPhosphate S.A.', importer:'TradeLink International Ltd', fromCountry:'Morocco', toCountry:'Nigeria', originPort:'Port of Casablanca',  destinationPort:'Tin Can Island Port',    vessel:'MV Atlas Pioneer',    shipDate:'2026-03-18', incoterms:'CIF', invoiceRef:'INV-2026-APM-0106', declRef:'MA-EXP-2026-0106', status:'In Transit',  creatorOrgId:'org1', creatorOrgName:'AtlasPhosphate S.A.' },
-  { ucr:'UCR-2026-MA-NG-E001',  product:'Rock Phosphate (35% P₂O₅)',      hsCode:'2510.20', quantity:'4,500 MT', totalValue:148500, currency:'USD', exporter:'AtlasPhosphate S.A.', importer:'PrimeFert Nigeria Ltd',       fromCountry:'Morocco', toCountry:'Nigeria', originPort:'Port of Jorf Lasfar', destinationPort:'Apapa Port, Lagos',      vessel:'MV Desert Wind',      shipDate:'2026-01-24', incoterms:'CFR', invoiceRef:'INV-2026-APM-E001', declRef:'MA-EXP-2026-E001', status:'Under Review', creatorOrgId:'org1', creatorOrgName:'AtlasPhosphate S.A.', errorType:'Document Discrepancy', errorDescription:'Certificate of Origin issuer code does not match Morocco Customs registry. Awaiting reissue from MAEX.' },
-  { ucr:'UCR-2026-MA-NG-E003',  product:'Ammonium Sulphate (21% N)',      hsCode:'3102.21', quantity:'1,600 MT', totalValue:214400, currency:'USD', exporter:'AtlasPhosphate S.A.', importer:'TradeLink International Ltd', fromCountry:'Morocco', toCountry:'Nigeria', originPort:'Port of Casablanca',  destinationPort:'Tin Can Island Port',    vessel:'MV Maroc Express',    shipDate:'2026-02-10', incoterms:'FOB', invoiceRef:'INV-2026-APM-E003', declRef:'MA-EXP-2026-E003', status:'Under Review', creatorOrgId:'org1', creatorOrgName:'AtlasPhosphate S.A.', errorType:'HS Code Mismatch', errorDescription:'HS code declared on Export Declaration (3102.29) does not match Commercial Invoice (3102.21). Nigeria Customs has flagged for reconciliation.' },
+  { ucr:'UCR-2026-MA-NG-00101', product:'Triple Super Phosphate (TSP)',    hsCode:'3103.10', quantity:'2,400 MT', totalValue:340000, currency:'USD', exporter:'Nortex Minerals S.A.', importer:'AgriInput Supplies Ltd',       fromCountry:'Morocco', toCountry:'Nigeria', originPort:'Port of Casablanca',  destinationPort:'Apapa Port, Lagos',      vessel:'MV Atlas Pioneer',    shipDate:'2026-02-18', incoterms:'CFR', invoiceRef:'INV-2026-APM-0101', declRef:'MA-EXP-2026-0101', status:'Delivered',   creatorOrgId:'org1', creatorOrgName:'Nortex Minerals S.A.' },
+  { ucr:'UCR-2026-MA-NG-00102', product:'Di-Ammonium Phosphate (DAP)',     hsCode:'3105.30', quantity:'1,800 MT', totalValue:290000, currency:'USD', exporter:'Nortex Minerals S.A.', importer:'HorizonTrade International', fromCountry:'Morocco', toCountry:'Nigeria', originPort:'Port of Casablanca',  destinationPort:'Tin Can Island Port',    vessel:'MV Maroc Express',    shipDate:'2026-02-20', incoterms:'FOB', invoiceRef:'INV-2026-APM-0102', declRef:'MA-EXP-2026-0102', status:'In Transit',  creatorOrgId:'org1', creatorOrgName:'Nortex Minerals S.A.' },
+  { ucr:'UCR-2026-MA-NG-00103', product:'Granular Urea (46% N)',           hsCode:'3102.10', quantity:'3,000 MT', totalValue:510000, currency:'USD', exporter:'Nortex Minerals S.A.', importer:'AgriInput Supplies Ltd',       fromCountry:'Morocco', toCountry:'Nigeria', originPort:'Port of Agadir',      destinationPort:'Apapa Port, Lagos',      vessel:'MV Sahara Star',      shipDate:'2026-03-01', incoterms:'CIF', invoiceRef:'INV-2026-APM-0103', declRef:'MA-EXP-2026-0103', status:'Customs',     creatorOrgId:'org1', creatorOrgName:'Nortex Minerals S.A.' },
+  { ucr:'UCR-2026-MA-NG-00104', product:'Phosphoric Acid (75% P₂O₅)',     hsCode:'2809.20', quantity:'950 MT',   totalValue:178000, currency:'USD', exporter:'Nortex Minerals S.A.', importer:'HorizonTrade International', fromCountry:'Morocco', toCountry:'Nigeria', originPort:'Port of Jorf Lasfar', destinationPort:'Onne Port',              vessel:'MV Chemtrans Atlas',  shipDate:'2026-03-05', incoterms:'CFR', invoiceRef:'INV-2026-APM-0104', declRef:'MA-EXP-2026-0104', status:'Submitted',   creatorOrgId:'org1', creatorOrgName:'Nortex Minerals S.A.' },
+  { ucr:'UCR-2026-MA-NG-00105', product:'Mono-Ammonium Phosphate (MAP)',   hsCode:'3105.40', quantity:'2,100 MT', totalValue:375000, currency:'USD', exporter:'Nortex Minerals S.A.', importer:'AgriInput Supplies Ltd',       fromCountry:'Morocco', toCountry:'Nigeria', originPort:'Port of Casablanca',  destinationPort:'Apapa Port, Lagos',      vessel:'MV Northern Cape',    shipDate:'2026-03-12', incoterms:'FOB', invoiceRef:'INV-2026-APM-0105', declRef:'MA-EXP-2026-0105', status:'Released',    creatorOrgId:'org1', creatorOrgName:'Nortex Minerals S.A.' },
+  { ucr:'UCR-2026-MA-NG-00106', product:'Sulphate of Potash (SOP)',        hsCode:'3104.20', quantity:'1,200 MT', totalValue:264000, currency:'USD', exporter:'Nortex Minerals S.A.', importer:'HorizonTrade International', fromCountry:'Morocco', toCountry:'Nigeria', originPort:'Port of Casablanca',  destinationPort:'Tin Can Island Port',    vessel:'MV Atlas Pioneer',    shipDate:'2026-03-18', incoterms:'CIF', invoiceRef:'INV-2026-APM-0106', declRef:'MA-EXP-2026-0106', status:'In Transit',  creatorOrgId:'org1', creatorOrgName:'Nortex Minerals S.A.' },
+  { ucr:'UCR-2026-MA-NG-E001',  product:'Rock Phosphate (35% P₂O₅)',      hsCode:'2510.20', quantity:'4,500 MT', totalValue:148500, currency:'USD', exporter:'Nortex Minerals S.A.', importer:'AgriInput Supplies Ltd',       fromCountry:'Morocco', toCountry:'Nigeria', originPort:'Port of Jorf Lasfar', destinationPort:'Apapa Port, Lagos',      vessel:'MV Desert Wind',      shipDate:'2026-01-24', incoterms:'CFR', invoiceRef:'INV-2026-APM-E001', declRef:'MA-EXP-2026-E001', status:'Under Review', creatorOrgId:'org1', creatorOrgName:'Nortex Minerals S.A.', errorType:'Document Discrepancy', errorDescription:'Certificate of Origin issuer code does not match Morocco Customs registry. Awaiting reissue from MAEX.' },
+  { ucr:'UCR-2026-MA-NG-E003',  product:'Ammonium Sulphate (21% N)',      hsCode:'3102.21', quantity:'1,600 MT', totalValue:214400, currency:'USD', exporter:'Nortex Minerals S.A.', importer:'HorizonTrade International', fromCountry:'Morocco', toCountry:'Nigeria', originPort:'Port of Casablanca',  destinationPort:'Tin Can Island Port',    vessel:'MV Maroc Express',    shipDate:'2026-02-10', incoterms:'FOB', invoiceRef:'INV-2026-APM-E003', declRef:'MA-EXP-2026-E003', status:'Under Review', creatorOrgId:'org1', creatorOrgName:'Nortex Minerals S.A.', errorType:'HS Code Mismatch', errorDescription:'HS code declared on Export Declaration (3102.29) does not match Commercial Invoice (3102.21). Nigeria Customs has flagged for reconciliation.' },
   // Kenya exports (KRA, org4)
   { ucr:'KE-2026-EXP-00101', product:'Fresh Cut Flowers (Mixed)',          hsCode:'0603.19', quantity:'18,400 kg',totalValue: 92000, currency:'USD', exporter:'Kenya Flower Council',   importer:'Aalsmeer Flower Auction',   fromCountry:'Kenya',   toCountry:'Netherlands', originPort:'JKIA Cargo, Nairobi',  destinationPort:'Amsterdam Schiphol',     vessel:'KQ Cargo 101',        shipDate:'2026-02-15', incoterms:'CPT', invoiceRef:'INV-2026-KFC-0101', declRef:'KE-EXP-2026-0101', status:'Delivered',   creatorOrgId:'org4', creatorOrgName:'Kenya Revenue Authority' },
   { ucr:'KE-2026-EXP-00102', product:'Green Tea — Orthodox (PEKOE)',       hsCode:'0902.10', quantity:'42,000 kg',totalValue:168000, currency:'USD', exporter:'Kenya Tea Development Agency',importer:'British Tea Holdings Ltd', fromCountry:'Kenya',  toCountry:'United Kingdom', originPort:'Port of Mombasa',     destinationPort:'Port of Felixstowe',     vessel:'MV Kwanza Bridge',    shipDate:'2026-02-22', incoterms:'CIF', invoiceRef:'INV-2026-KTDA-0102',declRef:'KE-EXP-2026-0102', status:'In Transit',  creatorOrgId:'org4', creatorOrgName:'Kenya Revenue Authority' },
@@ -311,23 +337,56 @@ const ALPHA_CONSIGNMENTS = [
   { ucr:'KE-2026-EXP-00104', product:'Fresh Avocados — Hass',              hsCode:'0804.40', quantity:'38,000 kg',totalValue:114000, currency:'USD', exporter:'Kakuzi PLC',              importer:'EuroFresh Distributors B.V.',fromCountry:'Kenya', toCountry:'Netherlands',  originPort:'Port of Mombasa',     destinationPort:'Port of Rotterdam',      vessel:'MV African Spirit',   shipDate:'2026-03-08', incoterms:'CFR', invoiceRef:'INV-2026-KAK-0104', declRef:'KE-EXP-2026-0104', status:'Released',    creatorOrgId:'org4', creatorOrgName:'Kenya Revenue Authority' },
   { ucr:'KE-2026-EXP-00105', product:'Macadamia Nuts — Raw (In-Shell)',    hsCode:'0802.60', quantity:'14,500 kg',totalValue: 87000, currency:'USD', exporter:'Kenya Nut Company Ltd',   importer:'Olam International Ltd',    fromCountry:'Kenya',  toCountry:'South Africa',    originPort:'Port of Mombasa',     destinationPort:'Port of Durban',         vessel:'MV Safmarine Mafadi', shipDate:'2026-03-14', incoterms:'CIF', invoiceRef:'INV-2026-KNC-0105', declRef:'KE-EXP-2026-0105', status:'Submitted',   creatorOrgId:'org4', creatorOrgName:'Kenya Revenue Authority' },
   { ucr:'KE-2026-EXP-00106', product:'French Green Beans (Fine)',          hsCode:'0708.20', quantity:'22,000 kg',totalValue: 66000, currency:'USD', exporter:'Vegpro Group Ltd',        importer:'M&S Food Suppliers UK',     fromCountry:'Kenya',  toCountry:'United Kingdom',  originPort:'JKIA Cargo, Nairobi',  destinationPort:'Heathrow Air Cargo',     vessel:'KQ Cargo 107',        shipDate:'2026-03-19', incoterms:'DAP', invoiceRef:'INV-2026-VPG-0106', declRef:'KE-EXP-2026-0106', status:'In Transit',  creatorOrgId:'org4', creatorOrgName:'Kenya Revenue Authority' },
+  // Journey 1A — Vestline Apparel Ltd (org9): MSME fashion exporter, Lagos → Nairobi
+  // Story: 43-day overdue payment, identity not recognised cross-border
+  { ucr:'UCR-2026-NG-KE-01001', product:'Woven Cotton Garments (Kente-style)',       hsCode:'6204.42', quantity:'4,200 units', totalValue: 58800, currency:'USD', exporter:'Vestline Apparel Ltd', importer:'Nairobi Style Distributors',   fromCountry:'Nigeria', toCountry:'Kenya', originPort:'Murtala Muhammed Airport Cargo, Lagos', destinationPort:'JKIA Cargo, Nairobi',   vessel:'ET Cargo 441', shipDate:'2026-01-15', incoterms:'DAP', invoiceRef:'INV-2026-LTL-01001', declRef:'NG-EXP-2026-LT01', status:'Delivered',   creatorOrgId:'org9', creatorOrgName:'Vestline Apparel Ltd' },
+  { ucr:'UCR-2026-NG-KE-01002', product:'African Print Fabric (Ankara, 100% Cotton)', hsCode:'5208.52', quantity:'12,000 metres', totalValue: 43200, currency:'USD', exporter:'Vestline Apparel Ltd', importer:'Nairobi Style Distributors',   fromCountry:'Nigeria', toCountry:'Kenya', originPort:'Apapa Port, Lagos',                     destinationPort:'Port of Mombasa',       vessel:'MV East Africa', shipDate:'2026-02-10', incoterms:'FOB', invoiceRef:'INV-2026-LTL-01002', declRef:'NG-EXP-2026-LT02', status:'In Transit',  creatorOrgId:'org9', creatorOrgName:'Vestline Apparel Ltd' },
+  { ucr:'UCR-2026-NG-KE-01003', product:'Embroidered Dashiki Shirts (Mixed Sizes)',   hsCode:'6205.20', quantity:'2,800 units',  totalValue: 33600, currency:'USD', exporter:'Vestline Apparel Ltd', importer:'Nairobi Style Distributors',   fromCountry:'Nigeria', toCountry:'Kenya', originPort:'Murtala Muhammed Airport Cargo, Lagos', destinationPort:'JKIA Cargo, Nairobi',   vessel:'ET Cargo 508', shipDate:'2026-03-05', incoterms:'DAP', invoiceRef:'INV-2026-LTL-01003', declRef:'NG-EXP-2026-LT03', status:'Submitted',   creatorOrgId:'org9', creatorOrgName:'Vestline Apparel Ltd' },
+  // Journey 1B — Highland Growers Cooperative (org10): e-phyto not retrievable
+  // Story: Phytosanitary certificate cannot be digitally retrieved by Egypt Customs
+  { ucr:'UCR-2026-TZ-EG-02001', product:'Highland Arabica Coffee (Green Beans, AA Grade)',   hsCode:'0901.11', quantity:'28,000 kg', totalValue:196000, currency:'USD', exporter:'Highland Growers Cooperative', importer:'Cairo Import Partners Co.',  fromCountry:'Tanzania', toCountry:'Egypt', originPort:'Port of Dar es Salaam', destinationPort:'Port of Alexandria', vessel:'MV African Horizon',  shipDate:'2026-02-08', incoterms:'CIF', invoiceRef:'INV-2026-KCC-02001', declRef:'TZ-EXP-2026-KC01', status:'Under Review', creatorOrgId:'org10', creatorOrgName:'Highland Growers Cooperative', errorType:'Phytosanitary Hold', errorDescription:'E-phyto certificate issued by Tanzania Plant Health and Pesticides Authority (TPHPA) cannot be retrieved electronically by Egypt Customs Authority. Manual re-testing ordered at Port of Alexandria. Estimated delay: 18-22 days.' },
+  { ucr:'UCR-2026-TZ-EG-02002', product:'Highland Peaberry Coffee (Roasted, Specialty Grade)', hsCode:'0901.21', quantity:'14,500 kg', totalValue:130500, currency:'USD', exporter:'Highland Growers Cooperative', importer:'Cairo Import Partners Co.',  fromCountry:'Tanzania', toCountry:'Egypt', originPort:'Port of Dar es Salaam', destinationPort:'Port of Alexandria', vessel:'MV Red Sea Express', shipDate:'2026-03-14', incoterms:'FOB', invoiceRef:'INV-2026-KCC-02002', declRef:'TZ-EXP-2026-KC02', status:'In Transit',   creatorOrgId:'org10', creatorOrgName:'Highland Growers Cooperative' },
+  // Journey 1C — BorderLink Traders (org11): Informal cross-border trader
+  // Story: No DID, no documents — cannot build trade history for formal credit
+  { ucr:'UCR-2026-CI-GH-03001', product:'Dried Hibiscus Flowers (Bissap)',          hsCode:'0712.90', quantity:'320 kg',    totalValue:   960, currency:'USD', exporter:'BorderLink Traders', importer:'Kumasi Market Importers', fromCountry:'Ivory Coast', toCountry:'Ghana', originPort:'Abidjan Land Border, Elubo', destinationPort:'Elubo Border Post, Ghana', vessel:'Road — Truck GH-4421', shipDate:'2026-01-22', incoterms:'EXW', invoiceRef:'INV-2026-ADT-03001', declRef:'CI-EXP-2026-AD01', status:'Delivered',  creatorOrgId:'org11', creatorOrgName:'BorderLink Traders' },
+  { ucr:'UCR-2026-CI-GH-03002', product:'Shea Butter (Unrefined, Grade A)',          hsCode:'1515.90', quantity:'480 kg',    totalValue:  1200, currency:'USD', exporter:'BorderLink Traders', importer:'Kumasi Market Importers', fromCountry:'Ivory Coast', toCountry:'Ghana', originPort:'Abidjan Land Border, Elubo', destinationPort:'Elubo Border Post, Ghana', vessel:'Road — Truck GH-4421', shipDate:'2026-02-18', incoterms:'EXW', invoiceRef:'INV-2026-ADT-03002', declRef:'CI-EXP-2026-AD02', status:'Delivered',  creatorOrgId:'org11', creatorOrgName:'BorderLink Traders' },
+  { ucr:'UCR-2026-CI-GH-03003', product:'Hand-Woven Kente Cloth Strips',             hsCode:'5801.90', quantity:'150 metres', totalValue:   450, currency:'USD', exporter:'BorderLink Traders', importer:'Kumasi Market Importers', fromCountry:'Ivory Coast', toCountry:'Ghana', originPort:'Abidjan Land Border, Elubo', destinationPort:'Elubo Border Post, Ghana', vessel:'Road — Truck GH-5203', shipDate:'2026-03-11', incoterms:'EXW', invoiceRef:'INV-2026-ADT-03003', declRef:'CI-EXP-2026-AD03', status:'Submitted',  creatorOrgId:'org11', creatorOrgName:'BorderLink Traders' },
+  // Journey 3 — TransRoute Logistics Ltd (org13): Logistics Operator, multi-jurisdiction
+  // Story: No Single Window interoperability — port dwell time accumulating
+  { ucr:'UCR-2026-NG-KE-04001', product:'Industrial Machinery Parts (Mixed)',  hsCode:'8431.49', quantity:'14,200 kg', totalValue:312000, currency:'USD', exporter:'Western Industrial Exports Ltd', importer:'Mombasa Port Industrial Co.',    fromCountry:'Nigeria',  toCountry:'Kenya',        originPort:'Apapa Port, Lagos',  destinationPort:'Port of Mombasa',      vessel:'MV Mombasa Pride',      shipDate:'2026-02-22', incoterms:'CFR', invoiceRef:'INV-2026-PAF-04001', declRef:'NG-EXP-2026-PA01', status:'Customs',     creatorOrgId:'org13', creatorOrgName:'TransRoute Logistics Ltd', errorType:'Transit Delay', errorDescription:'Shipment held at Mombasa Port — transit customs declaration missing from Uganda leg. TransRoute Logistics awaiting re-submission through Kenya TradeNet Single Window. Port dwell time: 9 days and counting.' },
+  { ucr:'UCR-2026-GH-ZA-04002', product:'Cocoa Powder (Alkalized, Bulk)',      hsCode:'1805.00', quantity:'6,800 kg',  totalValue: 54400, currency:'USD', exporter:'Ghana Cocoa Processing Co.',  importer:'Johannesburg Confectionery Ltd', fromCountry:'Ghana',    toCountry:'South Africa', originPort:'Port of Tema',       destinationPort:'Port of Durban',       vessel:'MV Safmarine Kariba',   shipDate:'2026-03-09', incoterms:'CIF', invoiceRef:'INV-2026-PAF-04002', declRef:'GH-EXP-2026-PA02', status:'In Transit',  creatorOrgId:'org13', creatorOrgName:'TransRoute Logistics Ltd' },
 ];
 
 const BETA_CONSIGNMENTS = [
   // Nigeria → Morocco (PrimeFert/TradeLink, org5/org6)
-  { ucr:'UCR-2026-NG-MA-00201', product:'Sesame Seeds (White Hulled)',     hsCode:'1207.40', quantity:'1,200 MT', totalValue:156000, currency:'USD', exporter:'PrimeFert Nigeria Ltd',       importer:'Oleagineux du Maghreb S.A.',  fromCountry:'Nigeria', toCountry:'Morocco', originPort:'Apapa Port, Lagos',      destinationPort:'Port of Casablanca', vessel:'MV Bight of Benin',   shipDate:'2026-02-25', incoterms:'FOB', invoiceRef:'INV-2026-PFN-0201', declRef:'NG-EXP-2026-0201', status:'Delivered',   creatorOrgId:'org5', creatorOrgName:'PrimeFert Nigeria Ltd' },
-  { ucr:'UCR-2026-NG-MA-00202', product:'Raw Cocoa Beans (Grade 1)',       hsCode:'1801.00', quantity:'850 MT',   totalValue:272000, currency:'USD', exporter:'TradeLink International Ltd', importer:'Barry Callebaut Maroc S.A.',  fromCountry:'Nigeria', toCountry:'Morocco', originPort:'Tin Can Island Port',     destinationPort:'Port of Casablanca', vessel:'MV Ebony Star',       shipDate:'2026-03-04', incoterms:'CIF', invoiceRef:'INV-2026-TLI-0202', declRef:'NG-EXP-2026-0202', status:'In Transit',  creatorOrgId:'org6', creatorOrgName:'TradeLink International Ltd' },
-  { ucr:'UCR-2026-NG-MA-00203', product:'Palm Kernel Oil (PKO)',           hsCode:'1513.21', quantity:'600 MT',   totalValue: 78000, currency:'USD', exporter:'PrimeFert Nigeria Ltd',       importer:'Lesieur Cristal S.A.',        fromCountry:'Nigeria', toCountry:'Morocco', originPort:'Onne Port',               destinationPort:'Port of Agadir',     vessel:'MV Atlantic Trader', shipDate:'2026-03-10', incoterms:'CFR', invoiceRef:'INV-2026-PFN-0203', declRef:'NG-EXP-2026-0203', status:'Customs',     creatorOrgId:'org5', creatorOrgName:'PrimeFert Nigeria Ltd' },
-  { ucr:'UCR-2026-NG-MA-00204', product:'Cashew Nuts RCN (W240 Grade)',    hsCode:'0801.31', quantity:'420 MT',   totalValue:189000, currency:'USD', exporter:'TradeLink International Ltd', importer:'Olam Maroc S.A.',             fromCountry:'Nigeria', toCountry:'Morocco', originPort:'Apapa Port, Lagos',      destinationPort:'Port of Casablanca', vessel:'MV Bight of Benin',   shipDate:'2026-03-17', incoterms:'FOB', invoiceRef:'INV-2026-TLI-0204', declRef:'NG-EXP-2026-0204', status:'Submitted',   creatorOrgId:'org6', creatorOrgName:'TradeLink International Ltd' },
-  { ucr:'UCR-2026-NG-MA-E002',  product:'Soybean Meal (47% Protein)',      hsCode:'2304.00', quantity:'2,000 MT', totalValue:160000, currency:'USD', exporter:'PrimeFert Nigeria Ltd',       importer:'Coopagri Maroc',              fromCountry:'Nigeria', toCountry:'Morocco', originPort:'Apapa Port, Lagos',      destinationPort:'Port of Casablanca', vessel:'MV African Spirit',  shipDate:'2026-02-12', incoterms:'CIF', invoiceRef:'INV-2026-PFN-E002', declRef:'NG-EXP-2026-E002', status:'Under Review', creatorOrgId:'org5', creatorOrgName:'PrimeFert Nigeria Ltd', errorType:'Phytosanitary Failure', errorDescription:'NAQS phytosanitary certificate expired 14 days before shipment date. Morocco Plant Protection Directorate has placed shipment on hold pending resubmission.' },
+  { ucr:'UCR-2026-NG-MA-00201', product:'Sesame Seeds (White Hulled)',     hsCode:'1207.40', quantity:'1,200 MT', totalValue:156000, currency:'USD', exporter:'AgriInput Supplies Ltd',       importer:'Oleagineux du Maghreb S.A.',  fromCountry:'Nigeria', toCountry:'Morocco', originPort:'Apapa Port, Lagos',      destinationPort:'Port of Casablanca', vessel:'MV Bight of Benin',   shipDate:'2026-02-25', incoterms:'FOB', invoiceRef:'INV-2026-PFN-0201', declRef:'NG-EXP-2026-0201', status:'Delivered',   creatorOrgId:'org5', creatorOrgName:'AgriInput Supplies Ltd' },
+  { ucr:'UCR-2026-NG-MA-00202', product:'Raw Cocoa Beans (Grade 1)',       hsCode:'1801.00', quantity:'850 MT',   totalValue:272000, currency:'USD', exporter:'HorizonTrade International', importer:'Confitrade Maroc S.A.',  fromCountry:'Nigeria', toCountry:'Morocco', originPort:'Tin Can Island Port',     destinationPort:'Port of Casablanca', vessel:'MV Ebony Star',       shipDate:'2026-03-04', incoterms:'CIF', invoiceRef:'INV-2026-TLI-0202', declRef:'NG-EXP-2026-0202', status:'In Transit',  creatorOrgId:'org6', creatorOrgName:'HorizonTrade International' },
+  { ucr:'UCR-2026-NG-MA-00203', product:'Palm Kernel Oil (PKO)',           hsCode:'1513.21', quantity:'600 MT',   totalValue: 78000, currency:'USD', exporter:'AgriInput Supplies Ltd',       importer:'Maghreb Oils S.A.',        fromCountry:'Nigeria', toCountry:'Morocco', originPort:'Onne Port',               destinationPort:'Port of Agadir',     vessel:'MV Atlantic Trader', shipDate:'2026-03-10', incoterms:'CFR', invoiceRef:'INV-2026-PFN-0203', declRef:'NG-EXP-2026-0203', status:'Customs',     creatorOrgId:'org5', creatorOrgName:'AgriInput Supplies Ltd' },
+  { ucr:'UCR-2026-NG-MA-00204', product:'Cashew Nuts RCN (W240 Grade)',    hsCode:'0801.31', quantity:'420 MT',   totalValue:189000, currency:'USD', exporter:'HorizonTrade International', importer:'Horizon Agri Maroc S.A.',             fromCountry:'Nigeria', toCountry:'Morocco', originPort:'Apapa Port, Lagos',      destinationPort:'Port of Casablanca', vessel:'MV Bight of Benin',   shipDate:'2026-03-17', incoterms:'FOB', invoiceRef:'INV-2026-TLI-0204', declRef:'NG-EXP-2026-0204', status:'Submitted',   creatorOrgId:'org6', creatorOrgName:'HorizonTrade International' },
+  { ucr:'UCR-2026-NG-MA-E002',  product:'Soybean Meal (47% Protein)',      hsCode:'2304.00', quantity:'2,000 MT', totalValue:160000, currency:'USD', exporter:'AgriInput Supplies Ltd',       importer:'Coopagri Maroc',              fromCountry:'Nigeria', toCountry:'Morocco', originPort:'Apapa Port, Lagos',      destinationPort:'Port of Casablanca', vessel:'MV African Spirit',  shipDate:'2026-02-12', incoterms:'CIF', invoiceRef:'INV-2026-PFN-E002', declRef:'NG-EXP-2026-E002', status:'Under Review', creatorOrgId:'org5', creatorOrgName:'AgriInput Supplies Ltd', errorType:'Phytosanitary Failure', errorDescription:'NAQS phytosanitary certificate expired 14 days before shipment date. Morocco Plant Protection Directorate has placed shipment on hold pending resubmission.' },
+  // Journey 5 — Metro Consumer Goods Ltd (org16): FMCG Importer, Kenya
+  // Story: Manual SPS/TBT re-testing at destination; capital tied in inventory hedges
+  { ucr:'UCR-2026-ZA-KE-05001', product:'Household Cleaning Products (Bulk FMCG)',       hsCode:'3402.20', quantity:'8,400 units',  totalValue:126000, currency:'USD', exporter:'Cape Town Consumer Brands Ltd', importer:'Metro Consumer Goods Ltd', fromCountry:'South Africa', toCountry:'Kenya', originPort:'Port of Durban',       destinationPort:'Port of Mombasa', vessel:'MV Safmarine Ngami', shipDate:'2026-02-14', incoterms:'CIF', invoiceRef:'INV-2026-JCG-05001', declRef:'ZA-EXP-2026-JC01', status:'Delivered',    creatorOrgId:'org16', creatorOrgName:'Metro Consumer Goods Ltd' },
+  { ucr:'UCR-2026-EG-KE-05002', product:'Processed Food — Canned Tomatoes (Mixed Case)', hsCode:'2002.90', quantity:'22,000 cans',  totalValue: 88000, currency:'USD', exporter:'Cairo Food Exporters S.A.E.',   importer:'Metro Consumer Goods Ltd', fromCountry:'Egypt',        toCountry:'Kenya', originPort:'Port of Alexandria',   destinationPort:'Port of Mombasa', vessel:'MV Nile Spirit',     shipDate:'2026-03-01', incoterms:'CFR', invoiceRef:'INV-2026-JCG-05002', declRef:'EG-EXP-2026-JC02', status:'Under Review', creatorOrgId:'org16', creatorOrgName:'Metro Consumer Goods Ltd', errorType:'SPS Compliance Failure', errorDescription:'Kenya Bureau of Standards (KEBS) has flagged the consignment: maximum residue levels (MRLs) for pesticide BHC exceed Kenya\'s permissible thresholds. KEBS has ordered laboratory re-testing at Port of Mombasa. Estimated delay: 14-21 days pending results.' },
+  { ucr:'UCR-2026-NG-KE-05003', product:'Personal Care Products — Shea Butter Cosmetics', hsCode:'3304.99', quantity:'15,600 units', totalValue:109200, currency:'USD', exporter:'Lagos Beauty Exports Ltd',      importer:'Metro Consumer Goods Ltd', fromCountry:'Nigeria',      toCountry:'Kenya', originPort:'Apapa Port, Lagos',    destinationPort:'Port of Mombasa', vessel:'MV East Africa',     shipDate:'2026-03-20', incoterms:'FOB', invoiceRef:'INV-2026-JCG-05003', declRef:'NG-EXP-2026-JC03', status:'Submitted',   creatorOrgId:'org16', creatorOrgName:'Metro Consumer Goods Ltd' },
 ];
 
 function docsForConsignment(m) {
-  const coIssuer = m.fromCountry === 'Kenya'   ? 'Kenya Export Promotion & Branding Agency'
-                 : m.fromCountry === 'Morocco'  ? 'MAEX — Morocco Agri-Export Bureau'
+  const coIssuer = m.fromCountry === 'Kenya'        ? 'Kenya Export Promotion & Branding Agency'
+                 : m.fromCountry === 'Morocco'       ? 'MAEX — Morocco Agri-Export Bureau'
+                 : m.fromCountry === 'Tanzania'      ? 'Tanzania Trade Development Authority (TanTrade)'
+                 : m.fromCountry === 'Ivory Coast'   ? 'APEX-CI — Ivory Coast Export Promotion Agency'
+                 : m.fromCountry === 'Ghana'         ? 'Ghana Export Promotion Authority (GEPA)'
+                 : m.fromCountry === 'South Africa'  ? 'International Trade Administration Commission (ITAC)'
+                 : m.fromCountry === 'Egypt'         ? 'Egyptian Export Promotion Center (EEPC)'
                  : 'NEPC — Nigeria Export Promotion Council';
-  const edIssuer = m.fromCountry === 'Kenya'   ? 'Kenya Revenue Authority'
-                 : m.fromCountry === 'Morocco'  ? 'Morocco Customs'
+  const edIssuer = m.fromCountry === 'Kenya'        ? 'Kenya Revenue Authority'
+                 : m.fromCountry === 'Morocco'       ? 'Morocco Customs'
+                 : m.fromCountry === 'Tanzania'      ? 'Tanzania Revenue Authority'
+                 : m.fromCountry === 'Ivory Coast'   ? 'Direction Générale des Douanes (DGD), Ivory Coast'
+                 : m.fromCountry === 'Ghana'         ? 'Ghana Revenue Authority (GRA)'
+                 : m.fromCountry === 'South Africa'  ? 'South African Revenue Service (SARS)'
+                 : m.fromCountry === 'Egypt'         ? 'Egyptian Customs Authority'
                  : 'Nigeria Customs';
   return [
     { name:'Commercial Invoice',    docType:'Commercial Invoice',   issuer:m.creatorOrgName, suffix:'INV' },
@@ -390,6 +449,25 @@ function seedConsignments() {
         `"${d.name}" anchored to ${m.ucr}. Issued by ${d.issuer}.`, createdAt);
     }
   }
+  // Journey 1C: Strip documents for informal trader (org11) — story is the absence of records
+  store.documents = store.documents.filter(d => {
+    const c = store.consignments.find(c => c.id === d.consignmentId);
+    return c?.creatorOrgId !== 'org11';
+  });
+  store.consignments.forEach(c => { if (c.creatorOrgId === 'org11') c.documentCount = 0; });
+
+  // Journey 4: Egypt Customs (org14) gets viewer access to Kilimanjaro coffee consignments
+  ['UCR-2026-TZ-EG-02001', 'UCR-2026-TZ-EG-02002'].forEach(ucr => {
+    const c = store.consignments.find(x => x.ucr === ucr);
+    if (c) store.permissions[c.id]['org14'] = 'viewer';
+  });
+
+  // Journey 2: StanbicBank (org12) gets viewer access to LagosThreads consignments
+  ['UCR-2026-NG-KE-01001', 'UCR-2026-NG-KE-01002', 'UCR-2026-NG-KE-01003'].forEach(ucr => {
+    const c = store.consignments.find(x => x.ucr === ucr);
+    if (c) store.permissions[c.id]['org12'] = 'viewer';
+  });
+
   saveTangleLog();
   console.log(`[${NODE_NAME}] Seeded ${store.consignments.length} consignments`);
 }
@@ -447,9 +525,11 @@ app.put('/api/orgs/:id', (req, res) => {
 
 // DID registration
 function getAttestingAuthority(org) {
-  if (org.role?.includes('Morocco'))  return 'Morocco Customs';
-  if (org.role?.includes('Nigeria'))  return 'Nigeria Customs';
-  if (org.role?.includes('Kenya'))    return 'Kenya Revenue Authority';
+  if (org.role?.includes('Morocco'))   return 'Morocco Customs';
+  if (org.role?.includes('Nigeria'))   return 'Nigeria Customs';
+  if (org.role?.includes('Kenya'))     return 'Kenya Revenue Authority';
+  if (org.role?.includes('Tanzania'))  return 'Tanzania Revenue Authority';
+  if (org.role?.includes('Egypt'))     return 'Egypt Customs Authority';
   return 'National Registry';
 }
 
@@ -861,7 +941,7 @@ function seedFinanceData() {
     id: genId(), consignmentId: c1.id, ucr: c1.ucr,
     lcNumber: 'LC-2026-ATW-00101',
     issuingBank: 'Bank 1', advisingBank: 'Bank 2',
-    beneficiary: 'AtlasPhosphate S.A.', applicant: 'PrimeFert Nigeria Ltd',
+    beneficiary: 'Nortex Minerals S.A.', applicant: 'AgriInput Supplies Ltd',
     amount: 340000, currency: 'USD', expiryDate: '2026-07-31',
     status: 'Confirmed',
     documentCompliance: docs1.map((d, i) => ({ docType: d.title, required: true, submitted: true, compliant: i < 4 ? true : null })),
@@ -871,7 +951,7 @@ function seedFinanceData() {
     id: genId(), consignmentId: c2.id, ucr: c2.ucr,
     lcNumber: 'LC-2026-ATW-00102',
     issuingBank: 'Bank 1', advisingBank: 'Bank 2',
-    beneficiary: 'AtlasPhosphate S.A.', applicant: 'TradeLink International Ltd',
+    beneficiary: 'Nortex Minerals S.A.', applicant: 'HorizonTrade International',
     amount: 288000, currency: 'EUR', expiryDate: '2026-06-30',
     status: 'Issued',
     documentCompliance: docs2.map(d => ({ docType: d.title, required: true, submitted: false, compliant: null })),
@@ -910,16 +990,88 @@ function seedFinanceData() {
   store.smartContracts.push(sc1, sc2);
 
   // Seed tangle entries for all seeded finance records
-  const seedTs = (t, ts) => { if (!store.tangleLog.some(e => e.details && e.details.includes(t))) store.tangleLog.push({ id: genId(), timestamp: ts, hash: genHash(), type: 'finance', action: 'Finance Seeded', actor: 'AtlasPhosphate S.A.', details: t }); };
-  seedTs(`Payment INV-APM-2026-0101 created for ${c1.ucr}. USD 340,000. Partially Paid.`, ts1);
-  seedTs(`Payment INV-APM-2026-0102 created for ${c2.ucr}. EUR 288,000. Overdue.`, ts2);
-  seedTs(`LC LC-2026-ATW-00101 created for ${c1.ucr}. Amount: USD 340,000. Status: Confirmed.`, ts1);
-  seedTs(`LC LC-2026-ATW-00102 created for ${c2.ucr}. Amount: EUR 288,000. Status: Issued.`, ts2);
-  seedTs(`Contract SC-2026-ATW-0101 deployed for ${c1.ucr}. 3 release conditions. Hash: ${hash1}.`, ts1);
-  seedTs(`Contract SC-2026-ATW-0102 deployed for ${c2.ucr}. 2 release conditions. Hash: ${hash2}.`, ts2);
-  saveTangleLog();
+  const seedTs = (action, actor, t, ts) => { if (!store.tangleLog.some(e => e.details && e.details.includes(t))) store.tangleLog.push({ id: genId(), timestamp: ts, hash: genHash(), type: 'finance', action, actor, details: t }); };
+  seedTs('Payment Recorded',       'Nortex Minerals S.A.',    `Payment INV-APM-2026-0101 created for ${c1.ucr}. USD 340,000. Partially Paid.`, ts1);
+  seedTs('Payment Recorded',       'Nortex Minerals S.A.',    `Payment INV-APM-2026-0102 created for ${c2.ucr}. EUR 288,000. Overdue.`, ts2);
+  seedTs('Letter of Credit Issued','Atlas World Logistics',  `LC LC-2026-ATW-00101 issued for ${c1.ucr}. Amount: USD 340,000. Status: Confirmed.`, ts1);
+  seedTs('Letter of Credit Issued','Atlas World Logistics',  `LC LC-2026-ATW-00102 issued for ${c2.ucr}. Amount: EUR 288,000. Status: Issued.`, ts2);
+  seedTs('Smart Contract Deployed','Nortex Minerals S.A.',    `Contract SC-2026-ATW-0101 deployed for ${c1.ucr}. 3 release conditions. Hash: ${hash1}.`, ts1);
+  seedTs('Smart Contract Deployed','Nortex Minerals S.A.',    `Contract SC-2026-ATW-0102 deployed for ${c2.ucr}. 2 release conditions. Hash: ${hash2}.`, ts2);
 
-  console.log(`[${NODE_NAME}] Seeded finance data: 2 payments, 2 LCs, 2 smart contracts`);
+  // ── Journey 1A: LagosThreads — payments, LC, smart contract ──
+  const ltC1 = store.consignments.find(c => c.ucr === 'UCR-2026-NG-KE-01001');
+  const ltC2 = store.consignments.find(c => c.ucr === 'UCR-2026-NG-KE-01002');
+  const ltC3 = store.consignments.find(c => c.ucr === 'UCR-2026-NG-KE-01003');
+  if (ltC1 && ltC2 && ltC3) {
+    const lt1Ts = '2026-01-15T10:00:00.000Z';
+    const lt2Ts = '2026-02-10T09:30:00.000Z';
+    // Finance permissions — StanbicBank (org12) views all three
+    store.financePermissions[ltC1.id] = { 'org9': 'owner', 'org12': 'viewer' };
+    store.financePermissions[ltC2.id] = { 'org9': 'owner', 'org12': 'viewer' };
+    store.financePermissions[ltC3.id] = { 'org9': 'owner', 'org12': 'viewer' };
+    // Payment 1 — delivered, but 43 days overdue (working capital story)
+    const payLt1 = {
+      id: genId(), consignmentId: ltC1.id, ucr: ltC1.ucr,
+      invoiceRef: 'INV-2026-LTL-01001', amount: 58800, currency: 'USD',
+      dueDate: '2026-01-30', status: 'Overdue', paidAmount: 0,
+      paymentMethod: 'Open Account',
+      payorOrgId: 'org9', payeeOrgId: 'org9', creatorOrgId: 'org9',
+      notes: 'Payment 43 days overdue. Buyer citing cross-border identity verification delay — DID not recognised by Kenyan correspondent bank. Working capital severely strained.',
+      createdAt: lt1Ts, updatedAt: lt1Ts,
+    };
+    // Payment 2 — in transit, awaiting LC (solution in progress)
+    const payLt2 = {
+      id: genId(), consignmentId: ltC2.id, ucr: ltC2.ucr,
+      invoiceRef: 'INV-2026-LTL-01002', amount: 43200, currency: 'USD',
+      dueDate: '2026-04-10', status: 'Unpaid', paidAmount: 0,
+      paymentMethod: 'Letter of Credit',
+      payorOrgId: 'org9', payeeOrgId: 'org9', creatorOrgId: 'org9',
+      notes: 'Awaiting LC confirmation from Meridian Bank Trade Finance. Shipment in transit.',
+      createdAt: lt2Ts, updatedAt: lt2Ts,
+    };
+    store.payments.push(payLt1, payLt2);
+    // LC — StanbicBank as issuing bank (Journey 2 cross-link)
+    const ltDocs2 = store.documents.filter(d => d.consignmentId === ltC2.id);
+    const lcLt = {
+      id: genId(), consignmentId: ltC2.id, ucr: ltC2.ucr,
+      lcNumber: 'LC-2026-STB-01002',
+      issuingBank: 'Meridian Bank Trade Finance', advisingBank: 'Kenya Commercial Bank',
+      beneficiary: 'Vestline Apparel Ltd', applicant: 'Nairobi Style Distributors',
+      amount: 43200, currency: 'USD', expiryDate: '2026-08-31',
+      status: 'Issued',
+      documentCompliance: ltDocs2.map(d => ({ docType: d.title, required: true, submitted: false, compliant: null })),
+      creatorOrgId: 'org9', createdAt: lt2Ts,
+    };
+    store.letterOfCredits.push(lcLt);
+    // Smart Contract — 3 conditions, none yet met
+    const scHashLt = genHash();
+    const scLt = {
+      id: genId(), consignmentId: ltC2.id, ucr: ltC2.ucr,
+      contractRef: 'SC-2026-STB-01002', contractHash: scHashLt,
+      payorOrgId: 'org9', payeeOrgId: 'org9',
+      amount: 43200, currency: 'USD',
+      conditions: [
+        { id: 'cond-0', description: 'Bill of Lading presented and verified by StanbicBank', docType: 'Bill of Lading', met: false, metAt: null },
+        { id: 'cond-1', description: 'Certificate of Origin (AfCFTA) confirmed — duty reduction applied', docType: 'Certificate of Origin', met: false, metAt: null },
+        { id: 'cond-2', description: 'Goods cleared at JKIA Cargo, Nairobi', docType: 'Export Declaration', met: false, metAt: null },
+      ],
+      status: 'Active', autoRelease: true, creatorOrgId: 'org9',
+      createdAt: lt2Ts, settledAt: null,
+    };
+    store.smartContracts.push(scLt);
+    seedTs('Payment Recorded',       'Vestline Apparel Ltd',          `Payment INV-2026-LTL-01001 created for ${ltC1.ucr}. USD 58,800. Overdue — 43 days. Working capital strained.`, lt1Ts);
+    seedTs('Payment Recorded',       'Vestline Apparel Ltd',          `Payment INV-2026-LTL-01002 created for ${ltC2.ucr}. USD 43,200. Unpaid. Awaiting LC from StanbicBank.`, lt2Ts);
+    seedTs('Letter of Credit Issued','Meridian Bank Trade Finance',  `LC LC-2026-STB-01002 issued for ${ltC2.ucr}. Amount: USD 43,200. Issuing: Meridian Bank Trade Finance.`, lt2Ts);
+    seedTs('Smart Contract Deployed','Meridian Bank Trade Finance',  `Contract SC-2026-STB-01002 deployed for ${ltC2.ucr}. 3 release conditions. Hash: ${scHashLt}.`, lt2Ts);
+  }
+
+  // ── Journey 6: Central Finance Regulator (org15) gets finance viewer access to all records ──
+  for (const cId of Object.keys(store.financePermissions)) {
+    if (!store.financePermissions[cId]['org15']) store.financePermissions[cId]['org15'] = 'viewer';
+  }
+
+  saveTangleLog();
+  console.log(`[${NODE_NAME}] Seeded finance data: ${store.payments.length} payments, ${store.letterOfCredits.length} LCs, ${store.smartContracts.length} smart contracts`);
 }
 
 // Seed demo data

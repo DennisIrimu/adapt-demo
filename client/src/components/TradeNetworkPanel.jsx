@@ -600,6 +600,7 @@ export default function TradeNetworkPanel({
   peerConnected = false,
   nodeInfo,
   peerNodeName,
+  peerNodeCountry,
   onConnect,
   onDisconnect,
   connecting = false,
@@ -608,8 +609,15 @@ export default function TradeNetworkPanel({
 }) {
   const countryEntries = useMemo(() => aggregateOrgs(localOrgs, peerOrgs), [localOrgs, peerOrgs]);
   const routes = useMemo(() => aggregateRoutes(consignments), [consignments]);
-  const localAnchor = useMemo(() => dominantCountry(countryEntries, 'local'), [countryEntries]);
-  const peerAnchor  = useMemo(() => dominantCountry(countryEntries, 'peer'),  [countryEntries]);
+  const localAnchor = useMemo(() => {
+    const forced = nodeInfo?.nodeCountry;
+    if (forced && COUNTRY_COORDS[forced]) return { country: forced, coords: COUNTRY_COORDS[forced], n: localOrgs.length };
+    return dominantCountry(countryEntries, 'local');
+  }, [countryEntries, nodeInfo, localOrgs.length]);
+  const peerAnchor = useMemo(() => {
+    if (peerNodeCountry && COUNTRY_COORDS[peerNodeCountry]) return { country: peerNodeCountry, coords: COUNTRY_COORDS[peerNodeCountry], n: peerOrgs.length };
+    return dominantCountry(countryEntries, 'peer');
+  }, [countryEntries, peerNodeCountry, peerOrgs.length]);
 
   const DEFAULT_CENTER = [10, 8];
   const [zoom, setZoom] = useState(1);

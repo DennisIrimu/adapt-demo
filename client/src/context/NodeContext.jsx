@@ -8,6 +8,7 @@ export function NodeProvider({ children }) {
   const [nodeInfo, setNodeInfo] = useState(null);
   const [peerConnected, setPeerConnected] = useState(false);
   const [peerOrgs, setPeerOrgs] = useState([]);
+  const [peerNodeCountry, setPeerNodeCountry] = useState(null);
   const [tangleLog, setTangleLog] = useState([]);
   const [refreshKey, setRefreshKey] = useState(0);
   const wsRef = useRef(null);
@@ -20,7 +21,7 @@ export function NodeProvider({ children }) {
     setNodeInfo({ nodeId: data.nodeId, nodeName: data.nodeName, nodeIp: data.nodeIp });
     return data;
   }, []);
-  const logout = useCallback(() => { setUser(null); setNodeInfo(null); setPeerConnected(false); setPeerOrgs([]); }, []);
+  const logout = useCallback(() => { setUser(null); setNodeInfo(null); setPeerConnected(false); setPeerOrgs([]); setPeerNodeCountry(null); }, []);
 
   useEffect(() => {
     if (!user) return;
@@ -38,7 +39,7 @@ export function NodeProvider({ children }) {
       ws.onerror = () => {}; // silently fall back to polling
       ws.onmessage = (e) => {
         const msg = JSON.parse(e.data);
-        if (msg.type === 'PEER_STATUS') { setPeerConnected(msg.connected); if (msg.peerOrgs) setPeerOrgs(msg.peerOrgs); if (!msg.connected) setPeerOrgs([]); }
+        if (msg.type === 'PEER_STATUS') { setPeerConnected(msg.connected); if (msg.peerOrgs) setPeerOrgs(msg.peerOrgs); if (msg.peerNodeCountry) setPeerNodeCountry(msg.peerNodeCountry); if (!msg.connected) { setPeerOrgs([]); setPeerNodeCountry(null); } }
         else if (msg.type === 'PEER_ORGS') setPeerOrgs(msg.peerOrgs);
         else if (msg.type === 'TANGLE_UPDATE') setTangleLog(msg.log);
         else if (msg.type === 'DATA_SYNC') refresh();
@@ -60,7 +61,7 @@ export function NodeProvider({ children }) {
   }, [user]);
 
   return (
-    <Ctx.Provider value={{ user, nodeInfo, peerConnected, peerOrgs, tangleLog, refreshKey, login, logout, refresh }}>
+    <Ctx.Provider value={{ user, nodeInfo, peerConnected, peerOrgs, peerNodeCountry, tangleLog, refreshKey, login, logout, refresh }}>
       {children}
     </Ctx.Provider>
   );

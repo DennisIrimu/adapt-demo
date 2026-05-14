@@ -6,7 +6,7 @@ import { countryFromRole } from '../data/countries';
 import { Server, Link2, Globe } from 'lucide-react';
 
 export default function Network() {
-  const { user, nodeInfo, peerConnected, peerOrgs, tangleLog, refreshKey, refresh } = useNode();
+  const { user, nodeInfo, peerConnected, peerOrgs, peerNodeCountry, tangleLog, refreshKey, refresh } = useNode();
   const [orgs, setOrgs] = useState([]);
   const [consignments, setConsignments] = useState([]);
   const [discoverable, setDiscoverable] = useState([]);
@@ -80,6 +80,7 @@ export default function Network() {
           peerConnected={peerConnected}
           nodeInfo={nodeInfo}
           peerNodeName={peerNodeName}
+          peerNodeCountry={peerNodeCountry}
           onConnect={() => setShowDiscover(true)}
           onDisconnect={handleDisconnect}
           connecting={connecting}

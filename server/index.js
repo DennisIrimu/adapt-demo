@@ -17,6 +17,7 @@ const NODE_ID  = process.env.NODE_ID   || args.id   || 'alpha';
 const NODE_NAME= process.env.NODE_NAME || args.name || (NODE_ID === 'beta' ? 'Node Beta' : 'Node Alpha');
 const PEER_URL = process.env.PEER_URL  || args.peer || null;
 const NODE_IP  = `127.0.0.1:${PORT}`;
+const NODE_COUNTRY = process.env.NODE_COUNTRY || (NODE_ID === 'beta' ? 'Kenya' : 'Nigeria');
 
 const DATA_DIR = path.join(__dirname, '../data');
 const TANGLE_FILE = path.join(DATA_DIR, `tangle-${NODE_ID}.json`);
@@ -61,31 +62,31 @@ function validateCredential(regNumber) {
 // ── Store ──
 const store = {
   orgs: NODE_ID === 'alpha' ? [
-    { id: 'org1', name: 'Nortex Minerals S.A.',     role: 'Exporter · Morocco',          username: 'nortex',      password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
-    { id: 'org2', name: 'Morocco Customs',          role: 'Customs Authority · Morocco', username: 'macustoms',  password: 'demo', orgType: 'public',  did: null, verified: false, regNumber: null },
-    { id: 'org3', name: 'Nigeria Customs',          role: 'Customs Authority · Nigeria', username: 'ngcustoms',  password: 'demo', orgType: 'public',  did: null, verified: false, regNumber: null },
-    { id: 'org4', name: 'Kenya Revenue Authority',  role: 'Customs Authority · Kenya',   username: 'kra',        password: 'demo', orgType: 'public',  did: null, verified: false, regNumber: null },
-    { id: 'org7',  name: 'Financier 1',                       role: 'Financier',                          username: 'financier1',  password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
-    { id: 'org8',  name: 'Financier 2',                       role: 'Financier',                          username: 'financier2',  password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
+    { id: 'org1',  name: 'Nortex Minerals S.A.',         role: 'Exporter · Morocco',              username: 'nortex',       password: 'demo', orgType: 'private', did: 'did:iota:adapt:1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d', verified: true,  regNumber: 'RC-CASA-2018-042891', attestedBy: 'OMPIC – Office Marocain de la Propriété Industrielle et Commerciale' },
+    { id: 'org2',  name: 'Morocco Customs',               role: 'Customs Authority · Morocco',     username: 'macustoms',    password: 'demo', orgType: 'public',  did: 'did:iota:adapt:2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e', verified: true,  regNumber: 'GOV-MA-CUSTOMS-001',  attestedBy: 'Ministry of Economy and Finance, Morocco' },
+    { id: 'org3',  name: 'Nigeria Customs',               role: 'Customs Authority · Nigeria',     username: 'ngcustoms',    password: 'demo', orgType: 'public',  did: 'did:iota:adapt:3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f', verified: true,  regNumber: 'GOV-NG-CUSTOMS-001',  attestedBy: 'Federal Government of Nigeria' },
+    { id: 'org4',  name: 'Kenya Revenue Authority',       role: 'Customs Authority · Kenya',       username: 'kra',          password: 'demo', orgType: 'public',  did: 'did:iota:adapt:4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a', verified: true,  regNumber: 'GOV-KE-KRA-001',     attestedBy: 'Parliament of Kenya — KRA Act' },
+    { id: 'org7',  name: 'Financier 1',                   role: 'Financier',                       username: 'financier1',   password: 'demo', orgType: 'private', did: 'did:iota:adapt:7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b', verified: true,  regNumber: 'RC-2020-NG-071182',   attestedBy: 'Corporate Affairs Commission (CAC), Nigeria' },
+    { id: 'org8',  name: 'Financier 2',                   role: 'Financier',                       username: 'financier2',   password: 'demo', orgType: 'private', did: 'did:iota:adapt:8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c', verified: true,  regNumber: 'RC-2020-NG-071183',   attestedBy: 'Corporate Affairs Commission (CAC), Nigeria' },
     // Journey 1A — Urban Formal MSME Exporter
-    { id: 'org9',  name: 'Vestline Apparel Ltd',                  role: 'Exporter · Nigeria',                 username: 'vestline', password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
+    { id: 'org9',  name: 'Vestline Apparel Ltd',           role: 'Exporter · Nigeria',              username: 'vestline',     password: 'demo', orgType: 'private', did: 'did:iota:adapt:9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d', verified: true,  regNumber: 'RC-2019-NG-047821',   attestedBy: 'Corporate Affairs Commission (CAC), Nigeria' },
     // Journey 1B — Smallholder Agriculture Exporter
-    { id: 'org10', name: 'Highland Growers Cooperative',     role: 'Exporter · Tanzania',                username: 'highland',   password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
-    // Journey 1C — Informal Cross-Border Trader
-    { id: 'org11', name: 'BorderLink Traders',               role: 'Trader · West Africa',               username: 'borderlink',  password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
+    { id: 'org10', name: 'Highland Growers Cooperative',   role: 'Exporter · Tanzania',             username: 'highland',     password: 'demo', orgType: 'private', did: 'did:iota:adapt:0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e', verified: true,  regNumber: 'REG-TZ-2017-089234',  attestedBy: 'BRELA – Tanzania Business Registrations & Licensing Agency' },
+    // Journey 1C — Informal Cross-Border Trader (unverified — demo story)
+    { id: 'org11', name: 'BorderLink Traders',             role: 'Trader · West Africa',            username: 'borderlink',   password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null, attestedBy: null },
     // Journey 2 — Bank (Trade Finance)
-    { id: 'org12', name: 'Meridian Bank Trade Finance',          role: 'Financier · Nigeria',                username: 'meridian',      password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
+    { id: 'org12', name: 'Meridian Bank Trade Finance',    role: 'Financier · Nigeria',             username: 'meridian',     password: 'demo', orgType: 'private', did: 'did:iota:adapt:c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8', verified: true,  regNumber: 'RC-2008-NG-189034',   attestedBy: 'Corporate Affairs Commission (CAC), Nigeria' },
     // Journey 3 — Logistics Operator
-    { id: 'org13', name: 'TransRoute Logistics Ltd',              role: 'Logistics Operator',                 username: 'transroute',  password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
+    { id: 'org13', name: 'TransRoute Logistics Ltd',       role: 'Logistics Operator',              username: 'transroute',   password: 'demo', orgType: 'private', did: 'did:iota:adapt:d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9', verified: true,  regNumber: 'RC-2015-NG-293847',   attestedBy: 'Corporate Affairs Commission (CAC), Nigeria' },
     // Journey 4 — Destination Customs Officer
-    { id: 'org14', name: 'Egypt Customs Authority',            role: 'Customs Authority · Egypt',          username: 'egcustoms',    password: 'demo', orgType: 'public',  did: null, verified: false, regNumber: null },
+    { id: 'org14', name: 'Egypt Customs Authority',        role: 'Customs Authority · Egypt',       username: 'egcustoms',    password: 'demo', orgType: 'public',  did: 'did:iota:adapt:e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0', verified: true,  regNumber: 'GOV-EG-CUSTOMS-001',  attestedBy: 'General Authority for Investment (GAFI), Egypt' },
     // Journey 6 — Financial Regulator
-    { id: 'org15', name: 'Central Finance Regulator',             role: 'Financial Regulator · Nigeria',      username: 'cfregulator',       password: 'demo', orgType: 'public',  did: null, verified: false, regNumber: null },
+    { id: 'org15', name: 'Central Finance Regulator',      role: 'Financial Regulator · Nigeria',   username: 'cfregulator',  password: 'demo', orgType: 'public',  did: 'did:iota:adapt:f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1', verified: true,  regNumber: 'GOV-NG-CFR-001',      attestedBy: 'Federal Government of Nigeria' },
   ] : [
-    { id: 'org5',  name: 'AgriInput Supplies Ltd',              role: 'Importer · Nigeria',                 username: 'agrinput',    password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
-    { id: 'org6',  name: 'HorizonTrade International',        role: 'Importer · Nigeria',                 username: 'horizontrade',    password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
+    { id: 'org5',  name: 'AgriInput Supplies Ltd',         role: 'Importer · Nigeria',              username: 'agrinput',     password: 'demo', orgType: 'private', did: 'did:iota:adapt:5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b', verified: true,  regNumber: 'RC-2021-NG-061293',   attestedBy: 'Corporate Affairs Commission (CAC), Nigeria' },
+    { id: 'org6',  name: 'HorizonTrade International',     role: 'Importer · Nigeria',              username: 'horizontrade', password: 'demo', orgType: 'private', did: 'did:iota:adapt:6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c', verified: true,  regNumber: 'RC-2017-NG-142567',   attestedBy: 'Corporate Affairs Commission (CAC), Nigeria' },
     // Journey 5 — FMCG Importer
-    { id: 'org16', name: 'Metro Consumer Goods Ltd',           role: 'Importer · Kenya',                   username: 'metropcg',      password: 'demo', orgType: 'private', did: null, verified: false, regNumber: null },
+    { id: 'org16', name: 'Metro Consumer Goods Ltd',       role: 'Importer · Kenya',                username: 'metropcg',     password: 'demo', orgType: 'private', did: 'did:iota:adapt:a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2', verified: true,  regNumber: 'CPR-2018-KE-094831',  attestedBy: 'Registrar of Companies, Kenya' },
   ],
   consignments: [], documents: [], permissions: {}, docPermissions: {},
   payments: [], letterOfCredits: [], smartContracts: [], financePermissions: {},
@@ -487,7 +488,6 @@ app.post('/api/login', (req, res) => {
 });
 
 // Node info
-const NODE_COUNTRY = NODE_ID === 'beta' ? 'Kenya' : 'Nigeria';
 app.get('/api/node', (req, res) => res.json({ nodeId: NODE_ID, nodeName: NODE_NAME, nodeIp: NODE_IP, nodeCountry: NODE_COUNTRY, wsPort: WS_PORT, peerConnected: store.peerConnected, orgCount: store.orgs.length, peerOrgCount: store.peerOrgs.length }));
 
 app.get('/api/node/discover', (req, res) => {
@@ -522,6 +522,32 @@ app.put('/api/orgs/:id', (req, res) => {
   const org = store.orgs.find(o => o.id === req.params.id);
   if (org) syncOrgsToPeer();
   res.json({ ...org, password: undefined });
+});
+
+// ── National registry data for confirm-verification simulation ──
+const REGISTRY_DATA = {
+  org1:  { orgName: 'Nortex Minerals S.A.',              regNumber: 'RC-CASA-2018-042891', status: 'Active', registeredDate: '12 February 2018', address: 'Zone Industrielle Ain Sebaâ, Casablanca 20250, Morocco',                    industry: 'Mining & Minerals Processing',                              directors: ['Youssef El Mansouri', 'Fatima Benali'],              registry: 'OMPIC – Office Marocain de la Propriété Industrielle et Commerciale' },
+  org2:  { orgName: 'Morocco Customs',                   regNumber: 'GOV-MA-CUSTOMS-001',  status: 'Active', registeredDate: '01 January 1956',  address: 'Direction Générale des Douanes, Av. Abdelkrim Al Khattabi, Rabat, Morocco', industry: 'Government — Customs & Trade Regulation',                   directors: ['Director-General of Customs'],                       registry: 'Ministry of Economy and Finance, Morocco' },
+  org3:  { orgName: 'Nigeria Customs Service',           regNumber: 'GOV-NG-CUSTOMS-001',  status: 'Active', registeredDate: '03 March 1891',    address: 'NCS Headquarters, Old Secretariat Annex, Ikoyi, Lagos, Nigeria',           industry: 'Government — Customs & Border Control',                    directors: ['Comptroller-General of Customs'],                    registry: 'Federal Government of Nigeria — Customs & Excise Management Act' },
+  org4:  { orgName: 'Kenya Revenue Authority',           regNumber: 'GOV-KE-KRA-001',      status: 'Active', registeredDate: '01 July 1995',     address: 'Times Tower Building, Haile Selassie Avenue, Nairobi, Kenya',              industry: 'Government — Revenue & Customs Authority',                 directors: ['Commissioner-General KRA'],                          registry: 'Parliament of Kenya — KRA Act Cap. 469' },
+  org5:  { orgName: 'AgriInput Supplies Ltd',            regNumber: 'RC-2021-NG-061293',   status: 'Active', registeredDate: '19 April 2021',    address: '18 Ozumba Mbadiwe Avenue, Victoria Island, Lagos, Nigeria',                industry: 'Agricultural Inputs — Fertiliser Import & Distribution',   directors: ['Emeka Okafor', 'Ngozi Adeyemi'],                     registry: 'Corporate Affairs Commission (CAC), Nigeria' },
+  org6:  { orgName: 'HorizonTrade International',        regNumber: 'RC-2017-NG-142567',   status: 'Active', registeredDate: '07 August 2017',   address: '5 Customs Street, Lagos Island, Lagos, Nigeria',                           industry: 'Import & Export — Agricultural Commodities',               directors: ['Taiwo Akinwale', 'Blessing Eze'],                    registry: 'Corporate Affairs Commission (CAC), Nigeria' },
+  org7:  { orgName: 'Financier 1',                       regNumber: 'RC-2020-NG-071182',   status: 'Active', registeredDate: '14 January 2020',  address: '21 Broad Street, Lagos Island, Lagos, Nigeria',                            industry: 'Trade Finance & Banking',                                  directors: ['Adaeze Okonkwo', 'Babatunde Fashola'],               registry: 'Corporate Affairs Commission (CAC), Nigeria' },
+  org8:  { orgName: 'Financier 2',                       regNumber: 'RC-2020-NG-071183',   status: 'Active', registeredDate: '14 January 2020',  address: '21 Broad Street, Lagos Island, Lagos, Nigeria',                            industry: 'Trade Finance & Banking',                                  directors: ['Chidi Nwosu', 'Amaka Obi'],                          registry: 'Corporate Affairs Commission (CAC), Nigeria' },
+  org9:  { orgName: 'Vestline Apparel Ltd',              regNumber: 'RC-2019-NG-047821',   status: 'Active', registeredDate: '14 March 2019',    address: '42 Broad Street, Lagos Island, Lagos, Nigeria',                            industry: 'Textile & Garment Manufacturing',                          directors: ['Chidi Okafor', 'Amina Bello'],                       registry: 'Corporate Affairs Commission (CAC), Nigeria' },
+  org10: { orgName: 'Highland Growers Cooperative',      regNumber: 'REG-TZ-2017-089234',  status: 'Active', registeredDate: '08 June 2017',     address: 'Moshi District, Kilimanjaro Region, Tanzania',                             industry: 'Agricultural Export — Coffee',                             directors: ['James Mollel', 'Grace Swai', 'Peter Kimaro'],        registry: 'BRELA – Tanzania Business Registrations & Licensing Agency' },
+  org12: { orgName: 'Meridian Bank Trade Finance',       regNumber: 'RC-2008-NG-189034',   status: 'Active', registeredDate: '03 November 2008', address: 'Plot 4, Adeola Odeku Street, Victoria Island, Lagos, Nigeria',              industry: 'Banking & Trade Finance',                                  directors: ['Olumide Fawole', 'Chinwe Eze'],                      registry: 'Corporate Affairs Commission (CAC), Nigeria' },
+  org13: { orgName: 'TransRoute Logistics Ltd',          regNumber: 'RC-2015-NG-293847',   status: 'Active', registeredDate: '22 September 2015',address: 'Freight Terminal Road, Tin Can Island, Apapa, Lagos, Nigeria',              industry: 'Logistics, Freight & Customs Brokerage',                   directors: ['Kunle Adewale', 'Sule Ibrahim'],                     registry: 'Corporate Affairs Commission (CAC), Nigeria' },
+  org14: { orgName: 'Egypt Customs Authority',           regNumber: 'GOV-EG-CUSTOMS-001',  status: 'Active', registeredDate: '01 January 1964',  address: 'Egyptian Customs Authority, Port Said Road, Alexandria, Egypt',             industry: 'Government — Customs & Border Authority',                  directors: ['Chairperson, Egyptian Customs Authority'],           registry: 'General Authority for Investment (GAFI), Egypt' },
+  org15: { orgName: 'Central Finance Regulator',         regNumber: 'GOV-NG-CFR-001',      status: 'Active', registeredDate: '01 July 1958',     address: 'Central Business District, Abuja, Nigeria',                                industry: 'Government — Financial Regulation',                        directors: ['Governor, Central Finance Regulator'],               registry: 'Federal Government of Nigeria' },
+  org16: { orgName: 'Metro Consumer Goods Ltd',          regNumber: 'CPR-2018-KE-094831',  status: 'Active', registeredDate: '17 March 2018',    address: 'Westlands Commercial Zone, Nairobi, Kenya',                                industry: 'Fast Moving Consumer Goods (FMCG) — Import & Distribution',directors: ['David Kamau', 'Wanjiku Githii'],                      registry: 'Registrar of Companies, Kenya' },
+};
+
+app.get('/api/orgs/:id/confirm-verification', (req, res) => {
+  const data = REGISTRY_DATA[req.params.id];
+  if (!data) return res.status(404).json({ error: 'No registry data found for this organisation' });
+  // Simulate a slight delay for realism
+  res.json({ confirmed: true, ...data, confirmedAt: new Date().toISOString() });
 });
 
 // DID registration
@@ -861,7 +887,7 @@ if (!IS_VERCEL) {
       peerWs = new WebSocket(PEER_URL + '/peer');
       peerWs.on('open', () => {
         store.peerConnected = true;
-        peerWs.send(JSON.stringify({ type: 'HANDSHAKE', nodeId: NODE_ID, nodeName: NODE_NAME, nodeIp: NODE_IP, nodeCountry: NODE_COUNTRY, orgs: store.orgs.map(o => ({ id: o.id, name: o.name, role: o.role, did: o.did, verified: o.verified, nodeId: NODE_ID, nodeName: NODE_NAME })) }));
+        peerWs.send(JSON.stringify({ type: 'HANDSHAKE', nodeId: NODE_ID, nodeName: NODE_NAME, nodeIp: NODE_IP, nodeCountry: NODE_COUNTRY, orgs: store.orgs.map(o => ({ id: o.id, name: o.name, role: o.role, did: o.did, verified: o.verified, attestedBy: o.attestedBy, regNumber: o.regNumber, nodeId: NODE_ID, nodeName: NODE_NAME })) }));
         addLog('network', 'Peer Connected', 'System', `P2P handshake completed with peer at ${PEER_URL}. Organisations now discoverable.`);
         broadcastToClients({ type: 'PEER_STATUS', connected: true });
       });
@@ -875,7 +901,7 @@ if (!IS_VERCEL) {
 }
 
 function handlePeerIn(ws) {
-  ws.on('message', d => { const m = JSON.parse(d.toString()); if (m.type === 'HANDSHAKE') { store.peerOrgs = m.orgs || []; store.peerConnected = true; broadcastToClients({ type: 'PEER_STATUS', connected: true, peerOrgs: store.peerOrgs, peerNodeCountry: m.nodeCountry || null }); ws.send(JSON.stringify({ type: 'ORG_DIRECTORY', orgs: store.orgs.map(o => ({ id: o.id, name: o.name, role: o.role, did: o.did, verified: o.verified, nodeId: NODE_ID, nodeName: NODE_NAME })) })); addLog('network', 'Peer Connected', 'System', 'Inbound P2P connection accepted. Peer orgs now discoverable.'); } else handlePeerMsg(m); });
+  ws.on('message', d => { const m = JSON.parse(d.toString()); if (m.type === 'HANDSHAKE') { store.peerOrgs = m.orgs || []; store.peerConnected = true; broadcastToClients({ type: 'PEER_STATUS', connected: true, peerOrgs: store.peerOrgs, peerNodeCountry: m.nodeCountry || null }); ws.send(JSON.stringify({ type: 'ORG_DIRECTORY', orgs: store.orgs.map(o => ({ id: o.id, name: o.name, role: o.role, did: o.did, verified: o.verified, attestedBy: o.attestedBy, regNumber: o.regNumber, nodeId: NODE_ID, nodeName: NODE_NAME })) })); addLog('network', 'Peer Connected', 'System', 'Inbound P2P connection accepted. Peer orgs now discoverable.'); } else handlePeerMsg(m); });
   ws.on('close', () => { store.peerConnected = false; store.peerOrgs = []; broadcastToClients({ type: 'PEER_STATUS', connected: false, peerOrgs: [] }); });
 }
 function handlePeerMsg(m) {
@@ -1075,9 +1101,21 @@ function seedFinanceData() {
   console.log(`[${NODE_NAME}] Seeded finance data: ${store.payments.length} payments, ${store.letterOfCredits.length} LCs, ${store.smartContracts.length} smart contracts`);
 }
 
+function seedIdentities() {
+  for (const org of store.orgs) {
+    if (!org.verified || !org.did) continue;
+    const details = `DID created for ${org.name} (${org.regNumber}). Attested by ${org.attestedBy}. Anchored on the ledger.`;
+    if (store.tangleLog.some(e => e.details === details)) continue;
+    const ts = new Date(Date.now() - Math.floor(Math.random() * 90) * 86400000).toISOString();
+    store.tangleLog.push({ id: genId(), timestamp: ts, hash: genHash(), type: 'identity', action: 'DID Issued', actor: org.name, details, did: org.did, attestedBy: org.attestedBy });
+  }
+  saveTangleLog();
+}
+
 // Seed demo data
 seedConsignments();
 seedFinanceData();
+seedIdentities();
 
 // Start server — skipped on Vercel (serverless handles the lifecycle)
 if (!IS_VERCEL) {

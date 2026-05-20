@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNode } from '../context/NodeContext';
 import { api } from '../utils/api';
 import { Crown, Shield } from 'lucide-react';
+import InfoTip from './InfoTip';
 
 export default function Permissions() {
   const { user, peerOrgs, refresh, refreshKey } = useNode();
@@ -56,8 +57,14 @@ export default function Permissions() {
             <table>
               <thead>
                 <tr>
-                  <th style={{ minWidth: 200 }}>Consignment</th>
-                  {allOrgs.map(o => <th key={o.id} style={{ textAlign: 'center', minWidth: 110, fontSize: 9.5 }}>{o.name}</th>)}
+                  <InfoTip title="Consignment UCR" description="Unique Consignment Reference — click a row to expand full details." position="right">
+                    <th style={{ minWidth: 200 }}>Consignment</th>
+                  </InfoTip>
+                  {allOrgs.map(o => (
+                    <InfoTip key={o.id} title={o.name} description={`Toggle access level for ${o.name}. Owner = full access; Viewer = read-only; ✗ = no access.`} position="top">
+                      <th style={{ textAlign: 'center', minWidth: 110, fontSize: 9.5 }}>{o.name}</th>
+                    </InfoTip>
+                  ))}
                 </tr>
               </thead>
               <tbody>
@@ -73,16 +80,18 @@ export default function Permissions() {
                         const isOwner = p[o.id] === 'owner';
                         const hasAccess = isOwner || p[o.id] === 'viewer';
                         return (
-                          <td key={o.id} className="perm-cell" onClick={() => toggle(c.id, o.id, o.name, p[o.id], c.creatorOrgId)} style={{ cursor: isOwner ? 'default' : 'pointer' }}>
-                            {isOwner
-                              ? <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 3 }}>
-                                  <Crown style={{ width: 12, height: 12, color: '#f59e0b' }} />
-                                  <span style={{ color: '#16a34a', fontWeight: 700 }}>✓</span>
-                                </span>
-                              : hasAccess
-                                ? <span style={{ color: '#16a34a', fontWeight: 700 }}>✓</span>
-                                : <span style={{ color: '#d1d5db' }}>✗</span>}
-                          </td>
+                          <InfoTip key={o.id} title={isOwner ? 'Owner' : hasAccess ? 'Viewer — click to revoke' : 'No access — click to grant'} description={isOwner ? `${o.name} created this consignment and has full owner access.` : hasAccess ? `${o.name} has read-only access. Click to revoke.` : `${o.name} has no access. Click to grant viewer access.`} position="top">
+                            <td className="perm-cell" onClick={() => toggle(c.id, o.id, o.name, p[o.id], c.creatorOrgId)} style={{ cursor: isOwner ? 'default' : 'pointer' }}>
+                              {isOwner
+                                ? <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 3 }}>
+                                    <Crown style={{ width: 12, height: 12, color: '#f59e0b' }} />
+                                    <span style={{ color: '#16a34a', fontWeight: 700 }}>✓</span>
+                                  </span>
+                                : hasAccess
+                                  ? <span style={{ color: '#16a34a', fontWeight: 700 }}>✓</span>
+                                  : <span style={{ color: '#d1d5db' }}>✗</span>}
+                            </td>
+                          </InfoTip>
                         );
                       })}
                     </tr>

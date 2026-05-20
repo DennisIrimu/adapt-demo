@@ -1,434 +1,330 @@
 [
   {
-    "id": "9c913a35b46208a0",
+    "id": "c52db5628485f944",
+    "timestamp": "2026-05-20T08:11:25.748Z",
+    "hash": "0xacfc036f353498b400c5ae2013465493",
+    "type": "network",
+    "action": "Peer Connected",
+    "actor": "System",
+    "details": "Inbound P2P connection accepted. Peer orgs now discoverable."
+  },
+  {
+    "id": "9b8f7bad1f6d570d",
+    "timestamp": "2026-05-18T07:03:06.576Z",
+    "hash": "0x6ed1a3a01293f7f12b33dd595e6e9e40",
+    "type": "network",
+    "action": "Peer Connected",
+    "actor": "System",
+    "details": "P2P handshake completed with peer at ws://localhost:4000. Organisations now discoverable."
+  },
+  {
+    "id": "c95211c55d6865b5",
+    "timestamp": "2026-05-11T14:24:52.965Z",
+    "hash": "0xbee809352238124bd8ef3904258b60ce",
+    "type": "network",
+    "action": "Peer Connected",
+    "actor": "System",
+    "details": "Inbound P2P connection accepted. Peer orgs now discoverable."
+  },
+  {
+    "id": "c5b7474174dcf85b",
+    "timestamp": "2026-05-11T11:32:19.695Z",
+    "hash": "0x92a0fb9c2cd4cff2e90e767d822cd9bf",
+    "type": "network",
+    "action": "Peer Connected",
+    "actor": "System",
+    "details": "Inbound P2P connection accepted. Peer orgs now discoverable."
+  },
+  {
+    "id": "9e84435bfe4befe7",
     "timestamp": "2026-02-25T08:00:00.000Z",
-    "hash": "0xaa0bfd56d8d0fbb4026b8ea34ac80f1e",
+    "hash": "0xf5ce2093302e73f493197884b7f488da",
     "type": "document",
     "action": "Consignment Anchored",
-    "actor": "AgriInput Supplies Ltd",
+    "actor": "PrimeFert Nigeria Ltd",
     "details": "Digital twin created: UCR-2026-NG-MA-00201 — Sesame Seeds (White Hulled). Anchored on the ledger."
   },
   {
-    "id": "eb18664f7d5c27dd",
+    "id": "5b7650bfc5ec8744",
     "timestamp": "2026-02-25T08:00:00.000Z",
-    "hash": "0x4502ef4ba4c498582e3842fb248227ef",
+    "hash": "0x12f38c2a2dd8005a1f9014cf791411e4",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "AgriInput Supplies Ltd",
-    "details": "\"Commercial Invoice\" anchored to UCR-2026-NG-MA-00201. Issued by AgriInput Supplies Ltd."
+    "actor": "PrimeFert Nigeria Ltd",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-NG-MA-00201. Issued by PrimeFert Nigeria Ltd."
   },
   {
-    "id": "9111b0b69b23eec6",
+    "id": "fbca1c8b8a646f49",
     "timestamp": "2026-02-25T08:00:00.000Z",
-    "hash": "0xc2fff66850b571522fba95e663b684d1",
+    "hash": "0xc090883b6dd2fc6053dd938e4355747b",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "AgriInput Supplies Ltd",
-    "details": "\"Packing List\" anchored to UCR-2026-NG-MA-00201. Issued by AgriInput Supplies Ltd."
+    "actor": "PrimeFert Nigeria Ltd",
+    "details": "\"Packing List\" anchored to UCR-2026-NG-MA-00201. Issued by PrimeFert Nigeria Ltd."
   },
   {
-    "id": "85a6bd3a301356a8",
+    "id": "0c7f675facbfe3ec",
     "timestamp": "2026-02-25T08:00:00.000Z",
-    "hash": "0xd296dc510982f6a8f7ce980824d6df1a",
+    "hash": "0xb8a54d33eaf45d81112f092143852a94",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "AgriInput Supplies Ltd",
+    "actor": "PrimeFert Nigeria Ltd",
     "details": "\"Bill of Lading\" anchored to UCR-2026-NG-MA-00201. Issued by NordShip Line S.A.."
   },
   {
-    "id": "c809aef1d4f51c0f",
+    "id": "247bb122a2c45dd8",
     "timestamp": "2026-02-25T08:00:00.000Z",
-    "hash": "0xf6ee7a6f92328365596c84ac2bc229e4",
+    "hash": "0x3e016ebb1d526698bba8838d2f7c6b5f",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "AgriInput Supplies Ltd",
+    "actor": "PrimeFert Nigeria Ltd",
     "details": "\"Certificate of Origin\" anchored to UCR-2026-NG-MA-00201. Issued by NEPC — Nigeria Export Promotion Council."
   },
   {
-    "id": "2fb6684c6f435584",
+    "id": "f729bfd3b24b94f1",
     "timestamp": "2026-02-25T08:00:00.000Z",
-    "hash": "0x072d082178d1fcf91eae03f500b48835",
+    "hash": "0x68042e884b30438b03bbc78b868c7ff8",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "AgriInput Supplies Ltd",
+    "actor": "PrimeFert Nigeria Ltd",
     "details": "\"Export Declaration\" anchored to UCR-2026-NG-MA-00201. Issued by Nigeria Customs."
   },
   {
-    "id": "2c62ee7b7fdee5af",
+    "id": "0e9329908d10d23a",
     "timestamp": "2026-03-04T08:00:00.000Z",
-    "hash": "0xd2bdc764477c08d5b4e63e88b0b914f4",
+    "hash": "0x52b97ecc4214e5708a0d86c4c659ec0a",
     "type": "document",
     "action": "Consignment Anchored",
-    "actor": "HorizonTrade International",
+    "actor": "TradeLink International Ltd",
     "details": "Digital twin created: UCR-2026-NG-MA-00202 — Raw Cocoa Beans (Grade 1). Anchored on the ledger."
   },
   {
-    "id": "3ed2d7ce0419a7bb",
+    "id": "1bfc924a4cefec3f",
     "timestamp": "2026-03-04T08:00:00.000Z",
-    "hash": "0xb45d87213ceb5a2cb5ba4428a5a313d9",
+    "hash": "0xc9c9c35c71780b25b32e20f1d5dd2a44",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "HorizonTrade International",
-    "details": "\"Commercial Invoice\" anchored to UCR-2026-NG-MA-00202. Issued by HorizonTrade International."
+    "actor": "TradeLink International Ltd",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-NG-MA-00202. Issued by TradeLink International Ltd."
   },
   {
-    "id": "c61de9b314c9f4d1",
+    "id": "877353f7e0bb8c8d",
     "timestamp": "2026-03-04T08:00:00.000Z",
-    "hash": "0x0371d144f53dfd0f86f838d6f0501142",
+    "hash": "0x77410f12d349588c457dc2ad93bf243a",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "HorizonTrade International",
-    "details": "\"Packing List\" anchored to UCR-2026-NG-MA-00202. Issued by HorizonTrade International."
+    "actor": "TradeLink International Ltd",
+    "details": "\"Packing List\" anchored to UCR-2026-NG-MA-00202. Issued by TradeLink International Ltd."
   },
   {
-    "id": "aefb118042a4a72c",
+    "id": "a8904a5a921fc2c1",
     "timestamp": "2026-03-04T08:00:00.000Z",
-    "hash": "0x0c2a8c6949b783144e4ef61ce553270e",
+    "hash": "0xc951ad402bd337803a5661ec2f97351d",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "HorizonTrade International",
+    "actor": "TradeLink International Ltd",
     "details": "\"Bill of Lading\" anchored to UCR-2026-NG-MA-00202. Issued by NordShip Line S.A.."
   },
   {
-    "id": "33bb15669d5b65bc",
+    "id": "5d675dff3640da93",
     "timestamp": "2026-03-04T08:00:00.000Z",
-    "hash": "0x718a74bcd4998c5fc2e837db034b6b1e",
+    "hash": "0x0b129066f698d6ffce245a03597969f4",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "HorizonTrade International",
+    "actor": "TradeLink International Ltd",
     "details": "\"Certificate of Origin\" anchored to UCR-2026-NG-MA-00202. Issued by NEPC — Nigeria Export Promotion Council."
   },
   {
-    "id": "7bfe423d0fab0663",
+    "id": "ddab31ad26976c98",
     "timestamp": "2026-03-04T08:00:00.000Z",
-    "hash": "0xb515fb13fa83fa0cfb414c3e7b238ba3",
+    "hash": "0x60355ea0c27e06d7e54291cb656ba206",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "HorizonTrade International",
+    "actor": "TradeLink International Ltd",
     "details": "\"Export Declaration\" anchored to UCR-2026-NG-MA-00202. Issued by Nigeria Customs."
   },
   {
-    "id": "ce207dbaeab948fc",
+    "id": "00d275b5f626829e",
     "timestamp": "2026-03-10T08:00:00.000Z",
-    "hash": "0x03dfdc9f1561abca6474b8a3e0373e9a",
+    "hash": "0x21dc0ce3bc3394af5ea34b412057a3c9",
     "type": "document",
     "action": "Consignment Anchored",
-    "actor": "AgriInput Supplies Ltd",
+    "actor": "PrimeFert Nigeria Ltd",
     "details": "Digital twin created: UCR-2026-NG-MA-00203 — Palm Kernel Oil (PKO). Anchored on the ledger."
   },
   {
-    "id": "71c9ca83716a6412",
+    "id": "d4cd909870f775ae",
     "timestamp": "2026-03-10T08:00:00.000Z",
-    "hash": "0x47e9102b4b67ae7d2d32214a312c19c3",
+    "hash": "0x09a164b7905077c7eb8e2276ce81e103",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "AgriInput Supplies Ltd",
-    "details": "\"Commercial Invoice\" anchored to UCR-2026-NG-MA-00203. Issued by AgriInput Supplies Ltd."
+    "actor": "PrimeFert Nigeria Ltd",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-NG-MA-00203. Issued by PrimeFert Nigeria Ltd."
   },
   {
-    "id": "1c93fee88ee28733",
+    "id": "def1647023772706",
     "timestamp": "2026-03-10T08:00:00.000Z",
-    "hash": "0xb8d7cb3a92d7c71961ffe053c6581f1f",
+    "hash": "0x7aed276e9d9e39859b8526fb7dd888a9",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "AgriInput Supplies Ltd",
-    "details": "\"Packing List\" anchored to UCR-2026-NG-MA-00203. Issued by AgriInput Supplies Ltd."
+    "actor": "PrimeFert Nigeria Ltd",
+    "details": "\"Packing List\" anchored to UCR-2026-NG-MA-00203. Issued by PrimeFert Nigeria Ltd."
   },
   {
-    "id": "cc7fb4b9fc7efe6b",
+    "id": "b284e98c1d3b77e6",
     "timestamp": "2026-03-10T08:00:00.000Z",
-    "hash": "0x178c5c298107406a6f196f1e26802b93",
+    "hash": "0xcbe7e0a6b84648b403dd4bad1e706d36",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "AgriInput Supplies Ltd",
+    "actor": "PrimeFert Nigeria Ltd",
     "details": "\"Bill of Lading\" anchored to UCR-2026-NG-MA-00203. Issued by NordShip Line S.A.."
   },
   {
-    "id": "e0aacda8b3deac26",
+    "id": "afd2ae76f279b9ec",
     "timestamp": "2026-03-10T08:00:00.000Z",
-    "hash": "0x09187c69a8c60903bf03d3fb7fd640d7",
+    "hash": "0x557a5fb30e7e508d72f24cc86f6b9ecc",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "AgriInput Supplies Ltd",
+    "actor": "PrimeFert Nigeria Ltd",
     "details": "\"Certificate of Origin\" anchored to UCR-2026-NG-MA-00203. Issued by NEPC — Nigeria Export Promotion Council."
   },
   {
-    "id": "6ecf84373b18602b",
+    "id": "b89808d7482eb145",
     "timestamp": "2026-03-10T08:00:00.000Z",
-    "hash": "0xc4bc26856ae56d59fc5b91b7607ed61d",
+    "hash": "0x4056ec41cc5dc2dd7724e1c5618a131b",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "AgriInput Supplies Ltd",
+    "actor": "PrimeFert Nigeria Ltd",
     "details": "\"Export Declaration\" anchored to UCR-2026-NG-MA-00203. Issued by Nigeria Customs."
   },
   {
-    "id": "d1c96e13090a1734",
+    "id": "c8428a45c86cb11c",
     "timestamp": "2026-03-17T08:00:00.000Z",
-    "hash": "0x0c319fc2803229a69d549f0118638f43",
+    "hash": "0xe5be035732f9c2399076b9f59478577c",
     "type": "document",
     "action": "Consignment Anchored",
-    "actor": "HorizonTrade International",
+    "actor": "TradeLink International Ltd",
     "details": "Digital twin created: UCR-2026-NG-MA-00204 — Cashew Nuts RCN (W240 Grade). Anchored on the ledger."
   },
   {
-    "id": "dcd259e7f30a775d",
+    "id": "913d5c27aea95bd4",
     "timestamp": "2026-03-17T08:00:00.000Z",
-    "hash": "0xb39d0a581f2c9e22525b104e96df8aa4",
+    "hash": "0x0669cd2bb7e6d0033467edef290cbb91",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "HorizonTrade International",
-    "details": "\"Commercial Invoice\" anchored to UCR-2026-NG-MA-00204. Issued by HorizonTrade International."
+    "actor": "TradeLink International Ltd",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-NG-MA-00204. Issued by TradeLink International Ltd."
   },
   {
-    "id": "febf2e6e6f003681",
+    "id": "ffce8c8b192b59e5",
     "timestamp": "2026-03-17T08:00:00.000Z",
-    "hash": "0xea952a818a35752bc0e0c0d722e9b5d5",
+    "hash": "0x2bda7077ced8d2ecc4ea7a90055bcc0b",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "HorizonTrade International",
-    "details": "\"Packing List\" anchored to UCR-2026-NG-MA-00204. Issued by HorizonTrade International."
+    "actor": "TradeLink International Ltd",
+    "details": "\"Packing List\" anchored to UCR-2026-NG-MA-00204. Issued by TradeLink International Ltd."
   },
   {
-    "id": "7941515b3d2f0a03",
+    "id": "7fe2eab3f04c69b8",
     "timestamp": "2026-03-17T08:00:00.000Z",
-    "hash": "0x2957e764ecae468ade1501e1add3b6b7",
+    "hash": "0x838b84f2bd0d1da114216a0714227a60",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "HorizonTrade International",
+    "actor": "TradeLink International Ltd",
     "details": "\"Bill of Lading\" anchored to UCR-2026-NG-MA-00204. Issued by NordShip Line S.A.."
   },
   {
-    "id": "566aebe2ed5198fe",
+    "id": "3f876d16f7d7faa8",
     "timestamp": "2026-03-17T08:00:00.000Z",
-    "hash": "0xfe0aac86779b1402b066467e49b27755",
+    "hash": "0xb4b203ebeedf6f00de76533978650fe6",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "HorizonTrade International",
+    "actor": "TradeLink International Ltd",
     "details": "\"Certificate of Origin\" anchored to UCR-2026-NG-MA-00204. Issued by NEPC — Nigeria Export Promotion Council."
   },
   {
-    "id": "947659bb89366dba",
+    "id": "95bf5b064771fc76",
     "timestamp": "2026-03-17T08:00:00.000Z",
-    "hash": "0x696cf22f2464d029c64def8933f4432b",
+    "hash": "0x1ab58f4baa2e664e4c9dda61a7bb71ea",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "HorizonTrade International",
+    "actor": "TradeLink International Ltd",
     "details": "\"Export Declaration\" anchored to UCR-2026-NG-MA-00204. Issued by Nigeria Customs."
   },
   {
-    "id": "a1c9cd5c7c357d85",
+    "id": "c740aea5fb8417e7",
     "timestamp": "2026-02-12T08:00:00.000Z",
-    "hash": "0xa24f2dc068cb305b6eaf941354350869",
+    "hash": "0xcfc42af7777ef9fc3db7e1e5e8df4ae6",
     "type": "document",
     "action": "Consignment Anchored",
-    "actor": "AgriInput Supplies Ltd",
+    "actor": "PrimeFert Nigeria Ltd",
     "details": "Digital twin created: UCR-2026-NG-MA-E002 — Soybean Meal (47% Protein). Anchored on the ledger."
   },
   {
-    "id": "f1a1420efccab61e",
+    "id": "acb49e5242c0066d",
     "timestamp": "2026-02-12T08:00:00.000Z",
-    "hash": "0xa26882fd6dd485626cfd437ec92580ad",
+    "hash": "0x1af61107b67df71beef759f1b8422b14",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "AgriInput Supplies Ltd",
-    "details": "\"Commercial Invoice\" anchored to UCR-2026-NG-MA-E002. Issued by AgriInput Supplies Ltd."
+    "actor": "PrimeFert Nigeria Ltd",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-NG-MA-E002. Issued by PrimeFert Nigeria Ltd."
   },
   {
-    "id": "c1a0a6a24fd622cc",
+    "id": "6b1e1e5ead38664b",
     "timestamp": "2026-02-12T08:00:00.000Z",
-    "hash": "0x7a11cea5c05b2cd7113ea2a6d52c4238",
+    "hash": "0xbe0970aabf7a89d35a5fa13b76f3d5b7",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "AgriInput Supplies Ltd",
-    "details": "\"Packing List\" anchored to UCR-2026-NG-MA-E002. Issued by AgriInput Supplies Ltd."
+    "actor": "PrimeFert Nigeria Ltd",
+    "details": "\"Packing List\" anchored to UCR-2026-NG-MA-E002. Issued by PrimeFert Nigeria Ltd."
   },
   {
-    "id": "07fe479db8fe2ca2",
+    "id": "a2cd195b7500db24",
     "timestamp": "2026-02-12T08:00:00.000Z",
-    "hash": "0xc669e5b3eaac56c457ddc3a2fa48418b",
+    "hash": "0x4b6e077c1c2d98b51dd07a72e7e3aa62",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "AgriInput Supplies Ltd",
+    "actor": "PrimeFert Nigeria Ltd",
     "details": "\"Bill of Lading\" anchored to UCR-2026-NG-MA-E002. Issued by NordShip Line S.A.."
   },
   {
-    "id": "095ab35ccb1a2199",
+    "id": "d7ce8f1bd2ca7a2b",
     "timestamp": "2026-02-12T08:00:00.000Z",
-    "hash": "0x7cbc015c17195a7442a8ee61f5a5cd1a",
+    "hash": "0x32b292ba085cb6fea3d4d77a80412838",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "AgriInput Supplies Ltd",
+    "actor": "PrimeFert Nigeria Ltd",
     "details": "\"Certificate of Origin\" anchored to UCR-2026-NG-MA-E002. Issued by NEPC — Nigeria Export Promotion Council."
   },
   {
-    "id": "42f7741ece44e0c7",
+    "id": "1224939d1b50775c",
     "timestamp": "2026-02-12T08:00:00.000Z",
-    "hash": "0x1a4d5e415f044663f63e3d9bafa928d5",
+    "hash": "0x78800993d23718b6814bdc873002d88b",
     "type": "document",
     "action": "Document Anchored",
-    "actor": "AgriInput Supplies Ltd",
+    "actor": "PrimeFert Nigeria Ltd",
     "details": "\"Export Declaration\" anchored to UCR-2026-NG-MA-E002. Issued by Nigeria Customs."
   },
   {
-    "id": "1424fdb6f3c9302a",
-    "timestamp": "2026-02-14T08:00:00.000Z",
-    "hash": "0x42f38cdd2dd0cd2b1a49718f2fa98fa7",
-    "type": "document",
-    "action": "Consignment Anchored",
-    "actor": "Cape Town Consumer Brands Ltd",
-    "details": "Digital twin created: UCR-2026-ZA-KE-05001 — Household Cleaning Products (Bulk FMCG). Anchored on the ledger."
+    "id": "062f05e5b9b1b1f7",
+    "timestamp": "2026-03-27T09:08:07.987Z",
+    "hash": "0xe2492b7afa26d7a87eb2a5d26cfba703",
+    "type": "identity",
+    "action": "DID Issued",
+    "actor": "PrimeFert Nigeria Ltd",
+    "details": "DID created for PrimeFert Nigeria Ltd (RC-2021-NG-061293). Attested by Corporate Affairs Commission (CAC), Nigeria. Anchored on the ledger.",
+    "did": "did:iota:adapt:5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b",
+    "attestedBy": "Corporate Affairs Commission (CAC), Nigeria"
   },
   {
-    "id": "fdd3f9043dd0187e",
-    "timestamp": "2026-02-14T08:00:00.000Z",
-    "hash": "0xc0d83451d4e73a44c76647ebafc61435",
-    "type": "document",
-    "action": "Document Anchored",
-    "actor": "Cape Town Consumer Brands Ltd",
-    "details": "\"Commercial Invoice\" anchored to UCR-2026-ZA-KE-05001. Issued by Metro Consumer Goods Ltd."
-  },
-  {
-    "id": "97f425676b18c32b",
-    "timestamp": "2026-02-14T08:00:00.000Z",
-    "hash": "0xd246b9bbdfa1e2137c69b089a097ec75",
-    "type": "document",
-    "action": "Document Anchored",
-    "actor": "Cape Town Consumer Brands Ltd",
-    "details": "\"Packing List\" anchored to UCR-2026-ZA-KE-05001. Issued by Metro Consumer Goods Ltd."
-  },
-  {
-    "id": "78b541ba759aa24d",
-    "timestamp": "2026-02-14T08:00:00.000Z",
-    "hash": "0x063075b221a54b4fe73fb80ff691161f",
-    "type": "document",
-    "action": "Document Anchored",
-    "actor": "Cape Town Consumer Brands Ltd",
-    "details": "\"Bill of Lading\" anchored to UCR-2026-ZA-KE-05001. Issued by NordShip Line S.A.."
-  },
-  {
-    "id": "1c4ae980ebbd53bb",
-    "timestamp": "2026-02-14T08:00:00.000Z",
-    "hash": "0x4d82887b6714fe4b5a24937fbecc0782",
-    "type": "document",
-    "action": "Document Anchored",
-    "actor": "Cape Town Consumer Brands Ltd",
-    "details": "\"Certificate of Origin\" anchored to UCR-2026-ZA-KE-05001. Issued by International Trade Administration Commission (ITAC)."
-  },
-  {
-    "id": "bdeec186aa63bc50",
-    "timestamp": "2026-02-14T08:00:00.000Z",
-    "hash": "0xa44b1e7df625d2957ce920b59eba3aa9",
-    "type": "document",
-    "action": "Document Anchored",
-    "actor": "Cape Town Consumer Brands Ltd",
-    "details": "\"Export Declaration\" anchored to UCR-2026-ZA-KE-05001. Issued by South African Revenue Service (SARS)."
-  },
-  {
-    "id": "7d7791b54ff56bd3",
-    "timestamp": "2026-03-01T08:00:00.000Z",
-    "hash": "0x8f9c879b7361bdda576193f19ccf4222",
-    "type": "document",
-    "action": "Consignment Anchored",
-    "actor": "Cairo Food Exporters S.A.E.",
-    "details": "Digital twin created: UCR-2026-EG-KE-05002 — Processed Food — Canned Tomatoes (Mixed Case). Anchored on the ledger."
-  },
-  {
-    "id": "bc6ad643d4988c7a",
-    "timestamp": "2026-03-01T08:00:00.000Z",
-    "hash": "0xe06ca462078f9836e94756b67937a3a1",
-    "type": "document",
-    "action": "Document Anchored",
-    "actor": "Cairo Food Exporters S.A.E.",
-    "details": "\"Commercial Invoice\" anchored to UCR-2026-EG-KE-05002. Issued by Metro Consumer Goods Ltd."
-  },
-  {
-    "id": "15d6453006f3279b",
-    "timestamp": "2026-03-01T08:00:00.000Z",
-    "hash": "0x4e558a6347aaae92379ac9333527b3dc",
-    "type": "document",
-    "action": "Document Anchored",
-    "actor": "Cairo Food Exporters S.A.E.",
-    "details": "\"Packing List\" anchored to UCR-2026-EG-KE-05002. Issued by Metro Consumer Goods Ltd."
-  },
-  {
-    "id": "f99ad81931652d5b",
-    "timestamp": "2026-03-01T08:00:00.000Z",
-    "hash": "0x13dc1633c20204a83715e3ce7fef5d84",
-    "type": "document",
-    "action": "Document Anchored",
-    "actor": "Cairo Food Exporters S.A.E.",
-    "details": "\"Bill of Lading\" anchored to UCR-2026-EG-KE-05002. Issued by NordShip Line S.A.."
-  },
-  {
-    "id": "b1397e75ac292a9d",
-    "timestamp": "2026-03-01T08:00:00.000Z",
-    "hash": "0x8dfa12f384fe6be52166db80803e73ba",
-    "type": "document",
-    "action": "Document Anchored",
-    "actor": "Cairo Food Exporters S.A.E.",
-    "details": "\"Certificate of Origin\" anchored to UCR-2026-EG-KE-05002. Issued by Egyptian Export Promotion Center (EEPC)."
-  },
-  {
-    "id": "3d06d564341b8149",
-    "timestamp": "2026-03-01T08:00:00.000Z",
-    "hash": "0xd0a8e3558f1077772559ba01fc0b21bd",
-    "type": "document",
-    "action": "Document Anchored",
-    "actor": "Cairo Food Exporters S.A.E.",
-    "details": "\"Export Declaration\" anchored to UCR-2026-EG-KE-05002. Issued by Egyptian Customs Authority."
-  },
-  {
-    "id": "dca1dc0a46cb0543",
-    "timestamp": "2026-03-20T08:00:00.000Z",
-    "hash": "0x43990b90ebd65587679b6222c7b90c63",
-    "type": "document",
-    "action": "Consignment Anchored",
-    "actor": "Lagos Beauty Exports Ltd",
-    "details": "Digital twin created: UCR-2026-NG-KE-05003 — Personal Care Products — Shea Butter Cosmetics. Anchored on the ledger."
-  },
-  {
-    "id": "7b63fd65c2ef2b30",
-    "timestamp": "2026-03-20T08:00:00.000Z",
-    "hash": "0x39da82b87dbba278d514b5879a4c6b47",
-    "type": "document",
-    "action": "Document Anchored",
-    "actor": "Lagos Beauty Exports Ltd",
-    "details": "\"Commercial Invoice\" anchored to UCR-2026-NG-KE-05003. Issued by Metro Consumer Goods Ltd."
-  },
-  {
-    "id": "f1d86ada0b44acd8",
-    "timestamp": "2026-03-20T08:00:00.000Z",
-    "hash": "0xcf792d161adea191deee667796ea7865",
-    "type": "document",
-    "action": "Document Anchored",
-    "actor": "Lagos Beauty Exports Ltd",
-    "details": "\"Packing List\" anchored to UCR-2026-NG-KE-05003. Issued by Metro Consumer Goods Ltd."
-  },
-  {
-    "id": "dfdc7e017115f009",
-    "timestamp": "2026-03-20T08:00:00.000Z",
-    "hash": "0x199ce38608fcfb514af2d7692d774c70",
-    "type": "document",
-    "action": "Document Anchored",
-    "actor": "Lagos Beauty Exports Ltd",
-    "details": "\"Bill of Lading\" anchored to UCR-2026-NG-KE-05003. Issued by NordShip Line S.A.."
-  },
-  {
-    "id": "d7b1260fa6c0d9e8",
-    "timestamp": "2026-03-20T08:00:00.000Z",
-    "hash": "0xb4e9417b6db1f35a5dffbdfb87c092c5",
-    "type": "document",
-    "action": "Document Anchored",
-    "actor": "Lagos Beauty Exports Ltd",
-    "details": "\"Certificate of Origin\" anchored to UCR-2026-NG-KE-05003. Issued by NEPC — Nigeria Export Promotion Council."
-  },
-  {
-    "id": "d73c86ab6eb95dc6",
-    "timestamp": "2026-03-20T08:00:00.000Z",
-    "hash": "0x88513a51177bebf5b583ffc90b619faf",
-    "type": "document",
-    "action": "Document Anchored",
-    "actor": "Lagos Beauty Exports Ltd",
-    "details": "\"Export Declaration\" anchored to UCR-2026-NG-KE-05003. Issued by Nigeria Customs."
+    "id": "b1d76ea7c6350414",
+    "timestamp": "2026-03-12T09:08:07.987Z",
+    "hash": "0xcc89f6abd5ae7a84eb363b1d37d055e6",
+    "type": "identity",
+    "action": "DID Issued",
+    "actor": "TradeLink International Ltd",
+    "details": "DID created for TradeLink International Ltd (RC-2017-NG-142567). Attested by Corporate Affairs Commission (CAC), Nigeria. Anchored on the ledger.",
+    "did": "did:iota:adapt:6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c",
+    "attestedBy": "Corporate Affairs Commission (CAC), Nigeria"
   }
 ]

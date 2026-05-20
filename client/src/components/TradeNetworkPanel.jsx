@@ -70,13 +70,13 @@ function dominantCountry(entries, side) {
 // Radius kept small (0.55°) so they stay within typical country borders.
 // Angles rotated 30° so 2-org cases aren't strictly N/S and 3-org cases
 // don't sit on a horizontal line.
-// TWIN stays at country centroid. Actors are placed at compass points around
+// ADAPT node stays at country centroid. Actors are placed at compass points around
 // it: South, East, North, West (then diagonals for n > 4). Positive Y in
 // offsets = north. East is pulled inward so its right-extending label stays
-// inside the country border; N is squashed slightly to avoid TWIN's name label.
+// inside the country border; N is squashed slightly to avoid ADAPT node's name label.
 // Fractions of COUNTRY_SPREAD. Values close to ±1 push the actor near the
 // border; 0 = at centroid. Vertical-only compass points keep margin for
-// labels (E pulled in so label fits; N reduced so it doesn't crowd TWIN).
+// labels (E pulled in so label fits; N reduced so it doesn't crowd ADAPT node).
 const COMPASS_POINTS = {
   S:  [ 0.00, -0.90],
   E:  [ 0.65,  0.00],
@@ -136,7 +136,7 @@ function curvedPath(x1, y1, x2, y2, curvature = 0.4) {
   return `M ${x1} ${y1} Q ${mx} ${my} ${x2} ${y2}`;
 }
 
-// Hub-and-spoke lines from each actor to its node's TWIN marker. Lines that
+// Hub-and-spoke lines from each actor to its node's ADAPT node marker. Lines that
 // cross country borders are curved as elegant arcs; same-country lines stay
 // straight to keep the local cluster clean.
 function ActorConnections({ entries, localAnchor, peerAnchor, zoom, yLift }) {
@@ -208,7 +208,7 @@ function TradeArcs({ routes }) {
   );
 }
 
-// Beam between two TWIN markers (lifted above their country centroids)
+// Beam between two ADAPT node markers (lifted above their country centroids)
 function NodeConnectionBeam({ from, to, active, zoom, yLift }) {
   const { projection } = useMapContext();
   if (!projection || !from || !to) return null;
@@ -267,9 +267,9 @@ function CountryLabel({ entry, zoom }) {
   );
 }
 
-// TWIN node marker — rounded square with "TWIN" text floating above the country label.
+// ADAPT node marker — rounded square with "ADAPT" text floating above the country label.
 // Clickable: invokes onClick with the anchor country entry.
-function TwinNodeMarker({ anchor, label, side, zoom, yLift, onClick, isSelected }) {
+function NodeMarker({ anchor, label, side, zoom, yLift, onClick, isSelected }) {
   const { projection } = useMapContext();
   const [hovered, setHovered] = useState(false);
   if (!projection || !anchor) return null;
@@ -314,7 +314,7 @@ function TwinNodeMarker({ anchor, label, side, zoom, yLift, onClick, isSelected 
         fill="#ffffff"
         style={{ letterSpacing: `${1 / zoom}px`, pointerEvents: 'none' }}
       >
-        TWIN
+        ADAPT
       </text>
       <text
         x={p[0]} y={y - 6 / zoom}
@@ -521,7 +521,7 @@ function CountryDetailPanel({ country, onClose, peerNodeName, nodeName, expanded
   );
 }
 
-// Node-detail side panel — opens when a TWIN marker is clicked.
+// Node-detail side panel — opens when a ADAPT node marker is clicked.
 // Lists every org on that node grouped by country.
 function NodeDetailPanel({ side, nodeName, orgs, peerConnected, onClose }) {
   if (!orgs) return null;
@@ -659,7 +659,7 @@ export default function TradeNetworkPanel({
   };
   const handleClose = () => onSelectionChange?.({ countryName: null, expandedOrgKey: null, nodeSide: null });
 
-  // Lift used by TWIN markers (y above country centroid in SVG units)
+  // Lift used by ADAPT node markers (y above country centroid in SVG units)
   const yLift = 32 / zoom;
 
   return (
@@ -757,7 +757,7 @@ export default function TradeNetworkPanel({
             />
 
             {localAnchor && (
-              <TwinNodeMarker
+              <NodeMarker
                 anchor={localAnchor}
                 label={nodeInfo?.nodeName || 'This node'}
                 side="local"
@@ -768,7 +768,7 @@ export default function TradeNetworkPanel({
               />
             )}
             {peerConnected && peerAnchor && (
-              <TwinNodeMarker
+              <NodeMarker
                 anchor={peerAnchor}
                 label={peerNodeName || 'Peer node'}
                 side="peer"

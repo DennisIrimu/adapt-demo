@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNode } from '../context/NodeContext';
 import { Activity, Fingerprint, FileText, Shield, Wifi, Database } from 'lucide-react';
+import InfoTip from './InfoTip';
 
 const ICONS = { identity: Fingerprint, document: FileText, permission: Shield, network: Wifi };
 const COLORS = {
@@ -24,11 +25,11 @@ export default function TangleExplorer() {
   };
 
   const filterButtons = [
-    { k: 'all', l: 'All Events', I: Database },
-    { k: 'identity', l: 'Identity', I: Fingerprint },
-    { k: 'document', l: 'Documents', I: FileText },
-    { k: 'permission', l: 'Permissions', I: Shield },
-    { k: 'network', l: 'Network', I: Wifi },
+    { k: 'all',        l: 'All Events',  I: Database,    tip: 'Every ledger entry across identity, documents, permissions and network.' },
+    { k: 'identity',   l: 'Identity',    I: Fingerprint, tip: 'DID issuance and credential attestation events.' },
+    { k: 'document',   l: 'Documents',   I: FileText,    tip: 'Consignment anchoring and document upload events.' },
+    { k: 'permission', l: 'Permissions', I: Shield,      tip: 'Access grants and revocations on consignments.' },
+    { k: 'network',    l: 'Network',     I: Wifi,        tip: 'Peer node connections and P2P sync events.' },
   ];
 
   return (
@@ -41,18 +42,19 @@ export default function TangleExplorer() {
       {/* Stat cards */}
       <div className="g4" style={{ gridTemplateColumns: 'repeat(5, 1fr)' }}>
         {filterButtons.map(f => (
-          <div
-            key={f.k}
-            className="stat-card"
-            onClick={() => setFilter(f.k)}
-            style={{ cursor: 'pointer', border: filter === f.k ? '2px solid var(--nav-bg)' : '1px solid var(--card-border)', padding: '16px' }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
-              <f.I style={{ width: 14, height: 14, color: 'var(--text-muted)' }} />
-              <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.6px', color: 'var(--text-muted)' }}>{f.l}</span>
+          <InfoTip key={f.k} title={f.l} description={f.tip} position="bottom">
+            <div
+              className="stat-card"
+              onClick={() => setFilter(f.k)}
+              style={{ cursor: 'pointer', border: filter === f.k ? '2px solid var(--nav-bg)' : '1px solid var(--card-border)', padding: '16px' }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+                <f.I style={{ width: 14, height: 14, color: 'var(--text-muted)' }} />
+                <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.6px', color: 'var(--text-muted)' }}>{f.l}</span>
+              </div>
+              <div style={{ fontSize: 26, fontWeight: 800, color: filter === f.k ? 'var(--nav-bg)' : 'var(--text-primary)' }}>{counts[f.k]}</div>
             </div>
-            <div style={{ fontSize: 26, fontWeight: 800, color: filter === f.k ? 'var(--nav-bg)' : 'var(--text-primary)' }}>{counts[f.k]}</div>
-          </div>
+          </InfoTip>
         ))}
       </div>
 

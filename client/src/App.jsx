@@ -10,6 +10,7 @@ import Permissions from './components/Permissions';
 import TangleExplorer from './components/TangleExplorer';
 import Network from './components/Network';
 import { LayoutDashboard, FileStack, Fingerprint, Shield, Activity, LogOut, Wifi, WifiOff, CreditCard, Landmark, Globe } from 'lucide-react';
+import InfoTip from './components/InfoTip';
 
 const PAGES = [
   { id: 'dashboard',     label: 'Dashboard',      icon: LayoutDashboard },
@@ -21,6 +22,17 @@ const PAGES = [
   { id: 'network',       label: 'Trade Network',   icon: Globe },
   { id: 'tangle',        label: 'Analytics',       icon: Activity },
 ];
+
+const PAGE_TIPS = {
+  dashboard:       'Overview of your trade activity — consignments, payments and alerts.',
+  network:         'Geographic map of the trade network and peer node connections.',
+  consignments:    'View, create and manage all shipment records and linked documents.',
+  payments:        'Track invoices, letters of credit and payment status.',
+  'trade-finance': 'Letters of credit, smart contracts and settlement conditions.',
+  identity:        "Your organisation's verified digital identity and DID on the ledger.",
+  permissions:     'Control which organisations can view your consignments.',
+  tangle:          'Immutable ledger — every document, payment and identity event.',
+};
 
 export default function App() {
   const { user, nodeInfo, peerConnected, logout } = useNode();
@@ -44,15 +56,16 @@ export default function App() {
           <img src="/adapt-logo.png" alt="ADAPT" style={{ height: 22, width: 22, objectFit: 'contain', flexShrink: 0 }} />
           <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.25, minWidth: 0 }}>
             <span style={{ fontWeight: 700, fontSize: 14, color: 'var(--text-primary)', letterSpacing: '0.02em', whiteSpace: 'nowrap' }}>ADAPT</span>
-            
           </div>
         </div>
 
         <nav className="sb-nav">
           {PAGES.map(p => (
-            <button key={p.id} className={page === p.id ? 'active' : ''} onClick={() => setPage(p.id)}>
-              <p.icon /> {p.label}
-            </button>
+            <InfoTip key={p.id} title={p.label} description={PAGE_TIPS[p.id]} position="right">
+              <button className={page === p.id ? 'active' : ''} onClick={() => setPage(p.id)}>
+                <p.icon /> {p.label}
+              </button>
+            </InfoTip>
           ))}
         </nav>
 
@@ -68,14 +81,18 @@ export default function App() {
             </div>
           </div>
           <div className="sb-links">
-            <button>
-              {peerConnected
-                ? <><Wifi style={{ width: 13, height: 13, color: '#22c55e' }} /> <span>Node Online</span></>
-                : <><WifiOff style={{ width: 13, height: 13 }} /> <span>No Peer</span></>}
-            </button>
-            <button onClick={logout}>
-              <LogOut style={{ width: 13, height: 13 }} /> Sign Out
-            </button>
+            <InfoTip title={peerConnected ? 'Node Online' : 'No Peer Connected'} description={peerConnected ? 'This node is connected to a peer — data syncs in real time across the network.' : 'No peer node is connected. Data is stored locally only.'} position="right">
+              <button>
+                {peerConnected
+                  ? <><Wifi style={{ width: 13, height: 13, color: '#22c55e' }} /> <span>Node Online</span></>
+                  : <><WifiOff style={{ width: 13, height: 13 }} /> <span>No Peer</span></>}
+              </button>
+            </InfoTip>
+            <InfoTip title="Sign Out" description="End your session and return to the login screen." position="right">
+              <button onClick={logout}>
+                <LogOut style={{ width: 13, height: 13 }} /> Sign Out
+              </button>
+            </InfoTip>
           </div>
         </div>
       </aside>

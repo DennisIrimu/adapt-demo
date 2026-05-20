@@ -46,7 +46,7 @@ export function NodeProvider({ children }) {
       };
     } catch (e) { /* serverless — polling only */ }
     api.getTangle().then(setTangleLog).catch(() => {});
-    api.getNode().then(info => { setPeerConnected(info.peerConnected); setNodeInfo(prev => ({ ...prev, ...info })); }).catch(() => {});
+    api.getNode().then(info => { setPeerConnected(info.peerConnected); setNodeInfo(prev => ({ ...prev, ...info })); if (info.nodeCountry) setNodeInfo(prev => ({ ...prev, nodeCountry: info.nodeCountry })); }).catch(() => {});
     return () => ws?.close();
   }, [user, refresh]);
 

@@ -21,9 +21,9 @@ export default function InfoTip({ title, description, children, position = "top"
       <span style={{
         position: "absolute", top: -4, right: -4,
         width: 13, height: 13, borderRadius: "50%",
-        background: "rgba(15, 30, 53, 0.45)",
-        border: "1px solid rgba(255, 114, 0, 0.45)",
-        color: "rgba(255, 114, 0, 0.65)", fontSize: 8, fontWeight: 700,
+        background: "transparent",
+        border: "1px solid rgba(255, 114, 0, 0.3)",
+        color: "rgba(255, 114, 0, 0.4)", fontSize: 8, fontWeight: 700,
         fontFamily: "serif", display: "flex",
         alignItems: "center", justifyContent: "center",
         pointerEvents: "none", zIndex: 2, lineHeight: 1,

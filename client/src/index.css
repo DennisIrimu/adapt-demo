@@ -34,7 +34,7 @@ body{font-family:var(--font);background:var(--page-bg);color:var(--text-primary)
 .sb-brand img{height:26px;display:block}
 
 /* ── Sidebar Nav ── */
-.sb-nav{flex:1;padding:10px 10px;display:flex;flex-direction:column;gap:2px;overflow-y:auto}
+.sb-nav{flex:1;padding:10px 10px;display:flex;flex-direction:column;gap:2px;overflow:visible}
 .sb-nav button{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border:none;background:transparent;color:var(--nav-text);font-family:var(--font);font-size:13px;font-weight:500;cursor:pointer;border-radius:var(--radius-sm);transition:all 0.15s;text-align:left}
 .sb-nav button:hover{background:var(--nav-hover);color:var(--accent)}
 .sb-nav button.active{background:var(--accent);color:#ffffff}

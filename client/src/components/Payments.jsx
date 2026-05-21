@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNode } from '../context/NodeContext';
 import { api } from '../utils/api';
 import { CreditCard, Plus, X, ChevronRight, CheckCircle, Clock, AlertCircle, Share2, DollarSign, TrendingUp, AlertTriangle } from 'lucide-react';
+import InfoTip from './InfoTip';
 
 function fmtVal(n, cur = 'USD') {
   if (!n || isNaN(Number(n))) return '—';
@@ -145,12 +146,16 @@ export default function Payments() {
           <div style={{ padding: '16px 20px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid var(--card-border)' }}>
             <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-primary)' }}>Payment Records</h3>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button className="btn btn-s btn-sm" onClick={() => { setShowShare(true); setShareConsignment(consignments[0]?.id || ''); }}>
-                <Share2 style={{ width: 13, height: 13 }} /> Share Finance Access
-              </button>
-              <button className="btn btn-p btn-sm" onClick={() => setShowNew(true)}>
-                <Plus style={{ width: 13, height: 13 }} /> New Payment
-              </button>
+              <InfoTip title="Share Finance Access" description="Grant a financier or bank view access to payment records for a specific consignment, enabling trade finance decisions." position="left">
+                <button className="btn btn-s btn-sm" onClick={() => { setShowShare(true); setShareConsignment(consignments[0]?.id || ''); }}>
+                  <Share2 style={{ width: 13, height: 13 }} /> Share Finance Access
+                </button>
+              </InfoTip>
+              <InfoTip title="Record a new payment" description="Log an invoice or payment against a consignment. Tracks due dates, amounts, and settlement status on the ledger." position="left">
+                <button className="btn btn-p btn-sm" onClick={() => setShowNew(true)}>
+                  <Plus style={{ width: 13, height: 13 }} /> New Payment
+                </button>
+              </InfoTip>
             </div>
           </div>
 
@@ -224,12 +229,16 @@ export default function Payments() {
                       <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>{selected.currency}</span>
                     </div>
                     <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                      <button className="btn btn-s btn-sm" onClick={() => { const amt = Number(confirmAmt) || selected.paidAmount; const newAmt = selected.paidAmount + amt; handleStatusUpdate(newAmt >= selected.amount ? 'Paid' : 'Partially Paid', newAmt); setConfirmAmt(''); }}>
-                        <CheckCircle style={{ width: 12, height: 12 }} /> Confirm Receipt
-                      </button>
-                      <button className="btn btn-s btn-sm" style={{ borderColor: '#ef4444', color: '#ef4444' }} onClick={() => handleStatusUpdate('Overdue', selected.paidAmount)}>
-                        <AlertTriangle style={{ width: 12, height: 12 }} /> Mark Overdue
-                      </button>
+                      <InfoTip title="Confirm payment received" description="Record the amount received. If it covers the full invoice, the payment is marked Paid. Partial amounts update the balance." position="top">
+                        <button className="btn btn-s btn-sm" onClick={() => { const amt = Number(confirmAmt) || selected.paidAmount; const newAmt = selected.paidAmount + amt; handleStatusUpdate(newAmt >= selected.amount ? 'Paid' : 'Partially Paid', newAmt); setConfirmAmt(''); }}>
+                          <CheckCircle style={{ width: 12, height: 12 }} /> Confirm Receipt
+                        </button>
+                      </InfoTip>
+                      <InfoTip title="Mark as overdue" description="Flag this payment as overdue to alert the counterparty that the due date has passed." position="top">
+                        <button className="btn btn-s btn-sm" style={{ borderColor: '#ef4444', color: '#ef4444' }} onClick={() => handleStatusUpdate('Overdue', selected.paidAmount)}>
+                          <AlertTriangle style={{ width: 12, height: 12 }} /> Mark Overdue
+                        </button>
+                      </InfoTip>
                     </div>
                   </div>
                 )}

@@ -3,6 +3,7 @@ import { useNode } from '../context/NodeContext';
 import { api } from '../utils/api';
 import XmlViewer from './XmlViewer';
 import { Plus, Upload, Send, Download, FileText, Lock, X, AlertTriangle, ChevronLeft, Eye, Code2 } from 'lucide-react';
+import InfoTip from './InfoTip';
 
 function fmtValue(val, currency = 'USD') {
   if (!val || isNaN(Number(val))) return '—';
@@ -143,7 +144,9 @@ export default function Consignments({ searchQ = '', targetConsignment = null, o
           <h2 style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-primary)' }}>Consignments</h2>
           <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 2 }}>ADAPT trade documents anchored on ledger</div>
         </div>
-        <button className="btn btn-p" onClick={() => setShowCreate(true)}><Plus style={{ width: 14, height: 14 }} /> New Consignment</button>
+        <InfoTip title="Create a new consignment" description="Register a new shipment on the ADAPT ledger. You'll specify the route, product, and trade partners — all anchored immutably." position="left">
+          <button className="btn btn-p" onClick={() => setShowCreate(true)}><Plus style={{ width: 14, height: 14 }} /> New Consignment</button>
+        </InfoTip>
       </div>
 
       {/* Filter tabs */}
@@ -238,8 +241,12 @@ export default function Consignments({ searchQ = '', targetConsignment = null, o
               </div>
             </div>
             <div style={{ display: 'flex', gap: 6 }}>
-              <button className="btn btn-p btn-sm" onClick={() => setShowUpload(true)}><Upload style={{ width: 12, height: 12 }} /> Upload</button>
-              <button className="btn btn-s btn-sm" onClick={() => setShowShare(true)}><Send style={{ width: 12, height: 12 }} /> Share</button>
+              <InfoTip title="Upload a document" description="Attach a trade document (Bill of Lading, Invoice, Certificate of Origin, etc.) to this consignment. It will be anchored on the ledger." position="left">
+                <button className="btn btn-p btn-sm" onClick={() => setShowUpload(true)}><Upload style={{ width: 12, height: 12 }} /> Upload</button>
+              </InfoTip>
+              <InfoTip title="Share with an organisation" description="Grant another organisation access to view this consignment's documents." position="left">
+                <button className="btn btn-s btn-sm" onClick={() => setShowShare(true)}><Send style={{ width: 12, height: 12 }} /> Share</button>
+              </InfoTip>
               <button className="btn btn-s btn-sm" onClick={() => setSelectedC(null)}><X style={{ width: 12, height: 12 }} /></button>
             </div>
           </div>
@@ -302,14 +309,18 @@ export default function Consignments({ searchQ = '', targetConsignment = null, o
                     </div>
                     <div style={{ display: 'flex', gap: 6, flexShrink: 0 }}>
                       {isXml && (
-                        <button className="btn btn-s btn-sm" onClick={() => setViewingXml(d)}>
-                          <Eye style={{ width: 11, height: 11 }} /> View XML
-                        </button>
+                        <InfoTip title="View XML" description="Inspect the structured trade document — useful for verifying data against customs requirements." position="left">
+                          <button className="btn btn-s btn-sm" onClick={() => setViewingXml(d)}>
+                            <Eye style={{ width: 11, height: 11 }} /> View XML
+                          </button>
+                        </InfoTip>
                       )}
                       {d.filename && (
-                        <a href={api.downloadUrl(d.id)} className="btn btn-s btn-sm" style={{ textDecoration: 'none' }} target="_blank" rel="noreferrer">
-                          <Download style={{ width: 11, height: 11 }} />
-                        </a>
+                        <InfoTip title="Download" description="Download this document to your device." position="left">
+                          <a href={api.downloadUrl(d.id)} className="btn btn-s btn-sm" style={{ textDecoration: 'none' }} target="_blank" rel="noreferrer">
+                            <Download style={{ width: 11, height: 11 }} />
+                          </a>
+                        </InfoTip>
                       )}
                     </div>
                   </div>

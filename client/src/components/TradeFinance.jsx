@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { api } from '../utils/api';
 import { useNode } from '../context/NodeContext';
 import { Plus, ChevronRight, CheckCircle, Circle, Clock, Zap, Hash, RefreshCw, Share2, X } from 'lucide-react';
+import InfoTip from './InfoTip';
 
 /* ─── helpers ─── */
 const fmtVal = (n, cur = 'USD') => {
@@ -158,12 +159,16 @@ function LCTab({ user, consignments, allOrgs, refresh, refreshKey }) {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
           <h3 style={{ margin: 0, fontSize: 16, fontWeight: 600 }}>Letters of Credit</h3>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button className="btn-secondary" onClick={() => setShowShare(true)} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-              <Share2 size={14} /> Share Finance Access
-            </button>
-            <button className="btn-primary" onClick={() => setShowCreate(true)} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-              <Plus size={14} /> New LC
-            </button>
+            <InfoTip title="Share finance access" description="Allow a bank or financier to view LC details for this consignment, enabling them to assess and fund the trade." position="left">
+              <button className="btn-secondary" onClick={() => setShowShare(true)} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <Share2 size={14} /> Share Finance Access
+              </button>
+            </InfoTip>
+            <InfoTip title="Issue a Letter of Credit" description="Create an LC linking a consignment, issuing bank, and beneficiary. Tracks the full lifecycle from Draft to Drawn." position="left">
+              <button className="btn-primary" onClick={() => setShowCreate(true)} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <Plus size={14} /> New LC
+              </button>
+            </InfoTip>
           </div>
         </div>
 
@@ -251,9 +256,11 @@ function LCTab({ user, consignments, allOrgs, refresh, refreshKey }) {
 
           {/* Advance status */}
           {selectedLC.status !== 'Drawn' && selectedLC.status !== 'Expired' && selectedLC.creatorOrgId === user.id && (
-            <button className="btn-primary" style={{ width: '100%' }} onClick={() => advanceStatus(selectedLC)}>
-              Advance to {LC_STATUSES[LC_STATUSES.indexOf(selectedLC.status) + 1]}
-            </button>
+            <InfoTip title="Advance LC status" description="Move this Letter of Credit to the next stage in its lifecycle. Each step represents a key milestone in the payment process." position="top">
+              <button className="btn-primary" style={{ width: '100%' }} onClick={() => advanceStatus(selectedLC)}>
+                Advance to {LC_STATUSES[LC_STATUSES.indexOf(selectedLC.status) + 1]}
+              </button>
+            </InfoTip>
           )}
         </div>
       )}
@@ -426,9 +433,11 @@ function ContractsTab({ user, consignments, allOrgs, refresh, refreshKey }) {
       <div>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
           <h3 style={{ margin: 0, fontSize: 16, fontWeight: 600 }}>Smart Contracts</h3>
-          <button className="btn-primary" onClick={() => setShowCreate(true)} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-            <Plus size={14} /> New Contract
-          </button>
+          <InfoTip title="Deploy a smart contract" description="Create a conditional payment contract tied to a consignment. Funds are released automatically once all defined conditions are verified." position="left">
+            <button className="btn-primary" onClick={() => setShowCreate(true)} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <Plus size={14} /> New Contract
+            </button>
+          </InfoTip>
         </div>
 
         {contracts.length === 0 ? (
@@ -544,10 +553,12 @@ function ContractsTab({ user, consignments, allOrgs, refresh, refreshKey }) {
                     {cond.metAt && <div style={{ fontSize: 10, color: '#94a3b8' }}>{new Date(cond.metAt).toLocaleString()}</div>}
                   </div>
                   {!cond.met && c.status !== 'Released' && c.status !== 'Settled' && c.status !== 'Cancelled' && c.creatorOrgId === user.id && (
-                    <button
-                      style={{ fontSize: 11, padding: '3px 10px', borderRadius: 6, border: '1px solid #3b82f6', color: '#3b82f6', background: 'none', cursor: 'pointer', fontWeight: 600 }}
-                      onClick={() => markCondition(c, cond.id)}
-                    >Mark Met</button>
+                    <InfoTip title="Mark condition as met" description="Confirm that this condition has been satisfied. Once all conditions are met, the contract can be released." position="left">
+                      <button
+                        style={{ fontSize: 11, padding: '3px 10px', borderRadius: 6, border: '1px solid #3b82f6', color: '#3b82f6', background: 'none', cursor: 'pointer', fontWeight: 600 }}
+                        onClick={() => markCondition(c, cond.id)}
+                      >Mark Met</button>
+                    </InfoTip>
                   )}
                 </div>
               ))}
@@ -562,15 +573,19 @@ function ContractsTab({ user, consignments, allOrgs, refresh, refreshKey }) {
             {/* Actions */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {c.status === 'Draft' && c.creatorOrgId === user.id && (
-                <button className="btn-primary" onClick={() => advanceContract(c, 'Active')}>
-                  Activate Contract
-                </button>
+                <InfoTip title="Activate this contract" description="Move the contract from Draft to Active. Once active, conditions can be verified and the auto-release mechanism is armed." position="top">
+                  <button className="btn-primary" style={{ width: '100%' }} onClick={() => advanceContract(c, 'Active')}>
+                    Activate Contract
+                  </button>
+                </InfoTip>
               )}
               {canRelease && !c.autoRelease && c.creatorOrgId === user.id && (
-                <button className="btn-primary" style={{ background: '#9333ea', borderColor: '#9333ea', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}
-                  onClick={() => advanceContract(c, 'Released')}>
-                  <Zap size={14} /> Simulate Release
-                </button>
+                <InfoTip title="Simulate payment release" description="All conditions are met — trigger the simulated fund release to demonstrate the smart contract settlement flow." position="top">
+                  <button className="btn-primary" style={{ background: '#9333ea', borderColor: '#9333ea', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, width: '100%' }}
+                    onClick={() => advanceContract(c, 'Released')}>
+                    <Zap size={14} /> Simulate Release
+                  </button>
+                </InfoTip>
               )}
               {c.status === 'Released' && c.creatorOrgId === user.id && (
                 <button className="btn-primary" style={{ background: '#15803d', borderColor: '#15803d' }} onClick={() => advanceContract(c, 'Settled')}>

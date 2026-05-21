@@ -45,7 +45,9 @@ export default function Permissions() {
         <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--card-border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <Shield style={{ width: 16, height: 16, color: 'var(--amber)' }} />
-            <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-primary)' }}>Access Matrix</h3>
+            <InfoTip title="Access Matrix" description="Click any cell to grant or revoke access for that organisation. Crown = owner (cannot be changed). ✓ = can view. ✗ = no access. All changes are recorded on the ledger." position="right">
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-primary)', cursor: 'default' }}>Access Matrix</h3>
+            </InfoTip>
           </div>
           <span className="pill pill-b">{consignments.length} consignments</span>
         </div>
@@ -57,13 +59,9 @@ export default function Permissions() {
             <table>
               <thead>
                 <tr>
-                  <InfoTip title="Consignment UCR" description="Unique Consignment Reference — click a row to expand full details." position="right">
-                    <th style={{ minWidth: 200 }}>Consignment</th>
-                  </InfoTip>
+                  <th style={{ minWidth: 200 }}>Consignment</th>
                   {allOrgs.map(o => (
-                    <InfoTip key={o.id} title={o.name} description={`Toggle access level for ${o.name}. Owner = full access; Viewer = read-only; ✗ = no access.`} position="top">
-                      <th style={{ textAlign: 'center', minWidth: 110, fontSize: 9.5 }}>{o.name}</th>
-                    </InfoTip>
+                    <th key={o.id} style={{ textAlign: 'center', minWidth: 110, fontSize: 9.5 }}>{o.name}</th>
                   ))}
                 </tr>
               </thead>
@@ -80,18 +78,22 @@ export default function Permissions() {
                         const isOwner = p[o.id] === 'owner';
                         const hasAccess = isOwner || p[o.id] === 'viewer';
                         return (
-                          <InfoTip key={o.id} title={isOwner ? 'Owner' : hasAccess ? 'Viewer — click to revoke' : 'No access — click to grant'} description={isOwner ? `${o.name} created this consignment and has full owner access.` : hasAccess ? `${o.name} has read-only access. Click to revoke.` : `${o.name} has no access. Click to grant viewer access.`} position="top">
-                            <td className="perm-cell" onClick={() => toggle(c.id, o.id, o.name, p[o.id], c.creatorOrgId)} style={{ cursor: isOwner ? 'default' : 'pointer' }}>
-                              {isOwner
-                                ? <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 3 }}>
-                                    <Crown style={{ width: 12, height: 12, color: '#f59e0b' }} />
-                                    <span style={{ color: '#16a34a', fontWeight: 700 }}>✓</span>
-                                  </span>
-                                : hasAccess
-                                  ? <span style={{ color: '#16a34a', fontWeight: 700 }}>✓</span>
-                                  : <span style={{ color: '#d1d5db' }}>✗</span>}
-                            </td>
-                          </InfoTip>
+                          <td
+                            key={o.id}
+                            className="perm-cell"
+                            onClick={() => toggle(c.id, o.id, o.name, p[o.id], c.creatorOrgId)}
+                            style={{ cursor: isOwner ? 'default' : 'pointer', textAlign: 'center' }}
+                            title={isOwner ? `${o.name} — Owner` : hasAccess ? `${o.name} — Viewer (click to revoke)` : `${o.name} — No access (click to grant)`}
+                          >
+                            {isOwner
+                              ? <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 3 }}>
+                                  <Crown style={{ width: 12, height: 12, color: '#f59e0b' }} />
+                                  <span style={{ color: '#16a34a', fontWeight: 700 }}>✓</span>
+                                </span>
+                              : hasAccess
+                                ? <span style={{ color: '#16a34a', fontWeight: 700 }}>✓</span>
+                                : <span style={{ color: '#d1d5db' }}>✗</span>}
+                          </td>
                         );
                       })}
                     </tr>

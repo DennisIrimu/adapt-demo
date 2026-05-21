@@ -6,6 +6,7 @@ import {
   FileStack, TrendingUp, Activity, Wifi, WifiOff, Radio, Link2, Unlink, Server,
   AlertTriangle, FileText, Download, Eye, Code2, X, ChevronLeft, Globe, ArrowRight
 } from 'lucide-react';
+import InfoTip from './InfoTip';
 
 function fmtValue(val, currency = 'USD') {
   if (!val || isNaN(Number(val))) return '—';
@@ -258,11 +259,17 @@ export default function Dashboard({ searchQ = '', onViewDocs, onNavigate }) {
             </div>
             <div className="node-status-actions">
               {peerConnected
-                ? <button className="btn btn-sm btn-d" onClick={handleDisconnect}><Unlink style={{ width: 11, height: 11 }} /> Disconnect</button>
-                : <button className="btn btn-sm btn-p" onClick={() => setShowDiscover(true)}><Radio style={{ width: 11, height: 11 }} /> Connect</button>}
-              <button className="btn btn-sm btn-s" onClick={() => onNavigate?.('network')}>
-                <Globe style={{ width: 11, height: 11 }} /> View Network <ArrowRight style={{ width: 11, height: 11 }} />
-              </button>
+                ? <InfoTip title="Disconnect peer node" description="Stop syncing with the peer node. Your local data stays intact." position="right">
+                    <button className="btn btn-sm btn-d" onClick={handleDisconnect}><Unlink style={{ width: 11, height: 11 }} /> Disconnect</button>
+                  </InfoTip>
+                : <InfoTip title="Connect to peer node" description="Discover and connect to the peer ADAPT node to share org directories and consignment data across the network." position="right">
+                    <button className="btn btn-sm btn-p" onClick={() => setShowDiscover(true)}><Radio style={{ width: 11, height: 11 }} /> Connect</button>
+                  </InfoTip>}
+              <InfoTip title="View Trade Network" description="See a live geographic map of all organisations, trade routes, and peer node connections." position="right">
+                <button className="btn btn-sm btn-s" onClick={() => onNavigate?.('network')}>
+                  <Globe style={{ width: 11, height: 11 }} /> View Network <ArrowRight style={{ width: 11, height: 11 }} />
+                </button>
+              </InfoTip>
             </div>
             {errorCount > 0 && (
               <div className="node-status-alert">
@@ -350,14 +357,18 @@ export default function Dashboard({ searchQ = '', onViewDocs, onNavigate }) {
                     </div>
                     <div style={{ display: 'flex', gap: 6, flexShrink: 0 }}>
                       {isXml && (
-                        <button className="btn btn-s btn-sm" onClick={() => setViewingXml(d)}>
-                          <Eye style={{ width: 11, height: 11 }} /> View XML
-                        </button>
+                        <InfoTip title="View XML document" description="Inspect the structured trade document in XML format — useful for customs and compliance checks." position="left">
+                          <button className="btn btn-s btn-sm" onClick={() => setViewingXml(d)}>
+                            <Eye style={{ width: 11, height: 11 }} /> View XML
+                          </button>
+                        </InfoTip>
                       )}
                       {d.filename && (
-                        <a href={api.downloadUrl(d.id)} className="btn btn-s btn-sm" style={{ textDecoration: 'none' }} target="_blank" rel="noreferrer">
-                          <Download style={{ width: 11, height: 11 }} />
-                        </a>
+                        <InfoTip title="Download document" description="Download this trade document to your device." position="left">
+                          <a href={api.downloadUrl(d.id)} className="btn btn-s btn-sm" style={{ textDecoration: 'none' }} target="_blank" rel="noreferrer">
+                            <Download style={{ width: 11, height: 11 }} />
+                          </a>
+                        </InfoTip>
                       )}
                     </div>
                   </div>

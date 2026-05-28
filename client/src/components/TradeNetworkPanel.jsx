@@ -6,9 +6,9 @@ import { COUNTRY_COORDS, COUNTRY_SPREAD, ISO_TO_COUNTRY, countryFromRole } from 
 
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 const COLOR_BY_SIDE = {
-  local: '#11224E',
-  peer:  '#FF7200',
-  mixed: '#16a34a',
+  local: '#289145',
+  peer:  '#F3A31E',
+  mixed: '#289145',
 };
 const ACTOR_LAYER_ZOOM = 2.2;  // dots appear
 const ACTOR_LABEL_ZOOM = 3.5;  // labels appear
@@ -197,7 +197,7 @@ function TradeArcs({ routes }) {
             key={`${r.from}-${r.to}`}
             d={arcPath(p1, p2)}
             fill="none"
-            stroke="#FF7200"
+            stroke="#F3A31E"
             strokeWidth={Math.min(0.7 + r.count * 0.1, 1.6)}
             strokeOpacity={0.3}
             strokeLinecap="round"
@@ -302,7 +302,7 @@ function NodeMarker({ anchor, label, side, zoom, yLift, onClick, isSelected }) {
         width={w * scale} height={h * scale}
         rx={5 / zoom}
         fill={color}
-        stroke={isSelected ? '#FF7200' : '#ffffff'}
+        stroke={isSelected ? '#F3A31E' : '#ffffff'}
         strokeWidth={(isSelected ? 2 : 1.4) / zoom}
         style={{ filter: `drop-shadow(0 ${1.5 / zoom}px ${3 / zoom}px rgba(15,23,42,0.25))` }}
       />
@@ -357,7 +357,7 @@ function ActorMarker({ position, org, zoom, isSelected, onSelect }) {
       onMouseLeave={() => setHovered(false)}
     >
       <circle r={r + 2 / zoom} fill={color} fillOpacity={hovered ? 0.28 : 0.14} />
-      <circle r={r} fill={color} stroke={isSelected ? '#FF7200' : '#ffffff'} strokeWidth={(isSelected ? 1.6 : 1) / zoom} />
+      <circle r={r} fill={color} stroke={isSelected ? '#F3A31E' : '#ffffff'} strokeWidth={(isSelected ? 1.6 : 1) / zoom} />
       {(zoom >= ACTOR_LABEL_ZOOM || hovered || isSelected) && (
         <>
           <rect

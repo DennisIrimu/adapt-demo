@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNode } from '../context/NodeContext';
+import AdaptLogoMark from './AdaptLogoMark';
 
 const ALPHA_GROUPS = [
   {
@@ -92,10 +93,11 @@ export default function Login() {
   return (
     <div className="login-pg">
       <div className="login-box">
-        <div className="login-brand" style={{ display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'center' }}>
-          <img src="/adapt-logo.png" alt="ADAPT" className="login-logo-img" style={{ height: 36, width: 36, objectFit: 'contain' }} />
+        <div className="login-brand" style={{ display: 'flex', alignItems: 'center', gap: 12, justifyContent: 'center' }}>
+          <AdaptLogoMark size={42} />
           <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.25, textAlign: 'left' }}>
-            <span style={{ fontWeight: 700, fontSize: 20, color: 'var(--text-primary)', letterSpacing: '0.02em' }}>ADAPT</span>
+            <span style={{ fontWeight: 700, fontSize: 22, color: 'var(--text-primary)', letterSpacing: '0.04em' }}>ADAPT</span>
+            <span style={{ fontSize: 10, color: 'var(--text-muted)', letterSpacing: '0.08em', textTransform: 'uppercase', marginTop: 1 }}>Trade Platform</span>
           </div>
         </div>
         <p className="sub" style={{ marginTop: 10 }}>Trade & Logistics Platform — Sign in to your organisation</p>

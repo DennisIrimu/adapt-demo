@@ -17,13 +17,13 @@ export default function InfoTip({ title, description, children, position = "top"
       onMouseLeave={() => setVisible(false)}
     >
       {children}
-      {/* Always-visible badge */}
+      {/* Always-visible badge — transparent with green tint */}
       <span style={{
         position: "absolute", top: -4, right: -4,
         width: 13, height: 13, borderRadius: "50%",
         background: "transparent",
-        border: "1px solid rgba(255, 114, 0, 0.3)",
-        color: "rgba(255, 114, 0, 0.4)", fontSize: 8, fontWeight: 700,
+        border: "1px solid rgba(40, 145, 69, 0.3)",
+        color: "rgba(40, 145, 69, 0.4)", fontSize: 8, fontWeight: 700,
         fontFamily: "serif", display: "flex",
         alignItems: "center", justifyContent: "center",
         pointerEvents: "none", zIndex: 2, lineHeight: 1,
@@ -33,7 +33,7 @@ export default function InfoTip({ title, description, children, position = "top"
         <div style={{
           position: "absolute",
           ...positionStyles[position],
-          backgroundColor: "#1a2029",
+          backgroundColor: "#201C1E",
           color: "#fff",
           padding: description ? "10px 12px" : "6px 10px",
           borderRadius: "8px",
@@ -44,7 +44,7 @@ export default function InfoTip({ title, description, children, position = "top"
           zIndex: 9999,
           pointerEvents: "none",
           boxShadow: "0 4px 14px rgba(0,0,0,0.4)",
-          border: "1px solid #2a3a4a",
+          border: "1px solid #3D3739",
         }}>
           <div style={{
             display: "flex",
@@ -53,7 +53,7 @@ export default function InfoTip({ title, description, children, position = "top"
             marginBottom: description ? "7px" : 0,
           }}>
             <span style={{
-              color: "#FF7200",
+              color: "#289145",
               fontSize: "13px",
               fontWeight: 700,
               lineHeight: 1,
@@ -70,8 +70,8 @@ export default function InfoTip({ title, description, children, position = "top"
           </div>
           {description && (
             <>
-              <div style={{ borderTop: "1px solid #2e3a4a", marginBottom: "7px" }} />
-              <div style={{ fontSize: "11.5px", color: "#8fa3b8", lineHeight: "1.5" }}>
+              <div style={{ borderTop: "1px solid #3D3739", marginBottom: "7px" }} />
+              <div style={{ fontSize: "11.5px", color: "#9C9598", lineHeight: "1.5" }}>
                 {description}
               </div>
             </>

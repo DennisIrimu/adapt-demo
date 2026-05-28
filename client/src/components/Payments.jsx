@@ -14,7 +14,7 @@ function fmtVal(n, cur = 'USD') {
 }
 
 const STATUS_STYLES = {
-  'Unpaid':          { bg: '#fff4eb', color: '#c2410c', dot: '#FF7200' },
+  'Unpaid':          { bg: '#fff4eb', color: '#c2410c', dot: '#F3A31E' },
   'Partially Paid':  { bg: '#eff6ff', color: '#1d4ed8', dot: '#3b82f6' },
   'Paid':            { bg: '#f0fdf4', color: '#15803d', dot: '#22c55e' },
   'Overdue':         { bg: '#fef2f2', color: '#991b1b', dot: '#ef4444' },
@@ -31,7 +31,7 @@ function StatusPill({ status }) {
 }
 
 function StatCard({ icon: Icon, label, value, sub, color }) {
-  const colors = { orange: '#FF7200', green: '#22c55e', red: '#ef4444', blue: '#3b82f6' };
+  const colors = { orange: '#F3A31E', green: '#22c55e', red: '#ef4444', blue: '#3b82f6' };
   return (
     <div className="stat-card">
       <div className="stat-icon" style={{ background: `${colors[color]}18`, color: colors[color] }}><Icon style={{ width: 18, height: 18 }} /></div>

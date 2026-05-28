@@ -38,12 +38,12 @@ function DocsPill({ count, total }) {
 }
 
 const DOC_COLORS = {
-  'Bill of Lading':        { bg: '#fff4eb', color: '#FF7200' },
-  'Insurance Certificate': { bg: '#fff4eb', color: '#FF7200' },
+  'Bill of Lading':        { bg: '#fef9ec', color: '#F3A31E' },
+  'Insurance Certificate': { bg: '#fef9ec', color: '#F3A31E' },
   'Certificate of Origin': { bg: '#f0fdf4', color: '#16a34a' },
-  'Commercial Invoice':    { bg: '#e8ecf4', color: '#11224E' },
-  'Packing List':          { bg: '#e8ecf4', color: '#11224E' },
-  'Export Declaration':    { bg: '#e8ecf4', color: '#11224E' },
+  'Commercial Invoice':    { bg: '#e8f5ed', color: '#289145' },
+  'Packing List':          { bg: '#e8f5ed', color: '#289145' },
+  'Export Declaration':    { bg: '#e8f5ed', color: '#289145' },
 };
 
 function DocTypeIcon({ docType }) {

@@ -235,7 +235,7 @@ export default function Identity() {
                   </td>
                   <td>
                     <div style={{ fontWeight: 600, fontSize: 13 }}>{o.name}</div>
-                    {o.id === user.id && <div style={{ fontSize: 10, color: '#FF7200', fontWeight: 700 }}>You</div>}
+                    {o.id === user.id && <div style={{ fontSize: 10, color: '#289145', fontWeight: 700 }}>You</div>}
                     {o.nodeName && <div style={{ fontSize: 10, color: 'var(--text-muted)' }}>{o.nodeName}</div>}
                   </td>
                   <td style={{ fontSize: 12, color: 'var(--text-muted)' }}>{o.role}</td>

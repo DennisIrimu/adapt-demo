@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNode } from './context/NodeContext';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
@@ -9,7 +9,8 @@ import TradeFinance from './components/TradeFinance';
 import Permissions from './components/Permissions';
 import TangleExplorer from './components/TangleExplorer';
 import Network from './components/Network';
-import { LayoutDashboard, FileStack, Fingerprint, Shield, Activity, LogOut, Wifi, WifiOff, CreditCard, Landmark, Globe } from 'lucide-react';
+import AdaptLogoMark from './components/AdaptLogoMark';
+import { LayoutDashboard, FileStack, Fingerprint, Shield, Activity, LogOut, Wifi, WifiOff, CreditCard, Landmark, Globe, Moon, Sun } from 'lucide-react';
 import InfoTip from './components/InfoTip';
 
 const PAGES = [
@@ -39,6 +40,15 @@ export default function App() {
   const [page, setPage] = useState('dashboard');
   const [searchQ, setSearchQ] = useState('');
   const [targetConsignment, setTargetConsignment] = useState(null);
+  const [theme, setTheme] = useState(() => localStorage.getItem('adapt-theme') || 'light');
+
+  // Apply theme to <html> and persist
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('adapt-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme(t => t === 'light' ? 'dark' : 'light');
 
   if (!user) return <Login />;
 
@@ -52,10 +62,12 @@ export default function App() {
   return (
     <div className="layout">
       <aside className="sidebar">
+        {/* Brand lockup — always on dark sidebar */}
         <div className="sb-brand">
-          <img src="/adapt-logo.png" alt="ADAPT" style={{ height: 22, width: 22, objectFit: 'contain', flexShrink: 0 }} />
+          <AdaptLogoMark size={28} />
           <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.25, minWidth: 0 }}>
-            <span style={{ fontWeight: 700, fontSize: 14, color: 'var(--text-primary)', letterSpacing: '0.02em', whiteSpace: 'nowrap' }}>ADAPT</span>
+            <span style={{ fontWeight: 700, fontSize: 14, color: '#F6F5F3', letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>ADAPT</span>
+            <span style={{ fontSize: 9.5, color: '#7A6F72', letterSpacing: '0.05em', textTransform: 'uppercase', marginTop: 1 }}>Trade Platform</span>
           </div>
         </div>
 
@@ -71,12 +83,12 @@ export default function App() {
 
         <div className="sb-ft">
           <div className="entity-status">
-            <div className="es-label">Entity Status</div>
+            <div className="es-label">Entity</div>
             <div className="es-value">
               <div className={`dot ${peerConnected ? 'dot-on' : 'dot-off'}`} />
               <span>{user.name}</span>
             </div>
-            <div style={{ fontSize: 10.5, color: 'var(--text-muted)', marginTop: 3, paddingLeft: 13 }}>
+            <div style={{ fontSize: 10.5, color: '#7A6F72', marginTop: 3, paddingLeft: 13 }}>
               {peerConnected ? 'Peer synced' : 'Local only'} — {nodeInfo?.nodeName || 'Node'}
             </div>
           </div>
@@ -84,8 +96,15 @@ export default function App() {
             <InfoTip title={peerConnected ? 'Node Online' : 'No Peer Connected'} description={peerConnected ? 'This node is connected to a peer — data syncs in real time across the network.' : 'No peer node is connected. Data is stored locally only.'} position="right">
               <button>
                 {peerConnected
-                  ? <><Wifi style={{ width: 13, height: 13, color: '#22c55e' }} /> <span>Node Online</span></>
+                  ? <><Wifi style={{ width: 13, height: 13, color: '#289145' }} /> <span>Node Online</span></>
                   : <><WifiOff style={{ width: 13, height: 13 }} /> <span>No Peer</span></>}
+              </button>
+            </InfoTip>
+            <InfoTip title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'} description="Toggle between light and dark themes." position="right">
+              <button onClick={toggleTheme}>
+                {theme === 'light'
+                  ? <><Moon style={{ width: 13, height: 13 }} /> <span>Dark Mode</span></>
+                  : <><Sun style={{ width: 13, height: 13 }} /> <span>Light Mode</span></>}
               </button>
             </InfoTip>
             <InfoTip title="Sign Out" description="End your session and return to the login screen." position="right">

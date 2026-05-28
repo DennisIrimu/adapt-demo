@@ -9,7 +9,9 @@
     "node:alpha": "node server/index.js --port=4000 --ws=4010 --id=alpha --name='Node Alpha' --peer=ws://localhost:4011",
     "node:beta": "node server/index.js --port=4001 --ws=4011 --id=beta --name='Node Beta' --peer=ws://localhost:4010",
     "start": "npm run build && concurrently \"npm run node:alpha\" \"npm run node:beta\"",
-    "dev": "npm run build && concurrently \"npm run node:alpha\" \"npm run node:beta\""
+    "dev": "npm run build && concurrently \"npm run node:alpha\" \"npm run node:beta\"",
+    "proxy": "node server/proxy.js",
+    "demo": "npm run build && concurrently \"npm run node:alpha\" \"npm run node:beta\" \"npm run proxy\""
   },
   "dependencies": {
     "cors": "^2.8.5",

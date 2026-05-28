@@ -1,95 +1,159 @@
-# ADAPT System Demo v2
+# ADAPT — Africa Digital Access & Public Infrastructure for Trade
 
-A decentralised trade platform demo with two real nodes communicating via WebSocket P2P, showcasing digital identity (DID), cross-border document exchange, and permissioned data sharing on simulated IOTA Tangle.
+ADAPT is a framework for cross-border trade infrastructure — demonstrating how digital identity, document exchange, and trade finance can interoperate across organisations and jurisdictions without replacing existing systems.
 
-## Quick Start
+This repository contains a two-node interactive demo built for stakeholder presentations.
+
+---
+
+## Quick Start (Local)
 
 ```bash
 npm install
 npm run dev
 ```
 
-This builds the React client and starts **two nodes simultaneously**:
-- **Node Alpha** — http://localhost:4000 (Exporter Co. + Customs Authority)
-- **Node Beta** — http://localhost:4001 (Importer Co.)
+Builds the React client and starts two live nodes:
 
-Open both URLs in separate browser tabs. Log in with the demo credentials shown on the login page.
+| Node | URL | Organisations |
+|------|-----|---------------|
+| Alpha | http://localhost:4000 | AtlasPhosphate S.A., Morocco Customs, Nigeria Customs, Kenya Revenue Authority, Financier 1, Financier 2 |
+| Beta | http://localhost:4001 | PrimeFert Nigeria Ltd, TradeLink International Ltd |
+
+Open both URLs in separate browser windows and sign in with the credentials shown on each login page (password is `demo` for all accounts).
+
+---
+
+## Demo Credentials
+
+### Node Alpha — http://localhost:4000
+
+| Organisation | Username | Role |
+|---|---|---|
+| AtlasPhosphate S.A. | `atlas` | Exporter · Morocco |
+| Morocco Customs | `macustoms` | Customs Authority · Morocco |
+| Nigeria Customs | `ngcustoms` | Customs Authority · Nigeria |
+| Kenya Revenue Authority | `kra` | Customs Authority · Kenya |
+| Financier 1 | `financier1` | Financier |
+| Financier 2 | `financier2` | Financier |
+
+### Node Beta — http://localhost:4001
+
+| Organisation | Username | Role |
+|---|---|---|
+| PrimeFert Nigeria Ltd | `primefert` | Importer · Nigeria |
+| TradeLink International Ltd | `tradelink` | Importer · Nigeria |
+
+---
 
 ## Architecture
 
 ```
-┌─────────────────┐     WebSocket P2P     ┌─────────────────┐
-│   Node Alpha    │◄───────────────────────►│   Node Beta     │
-│   Port 4000     │    ws://4010 ↔ 4011    │   Port 4001     │
-│                 │                         │                 │
-│  Exporter Co.   │                         │  Importer Co.   │
-│  Customs Auth.  │                         │                 │
-│                 │                         │                 │
-│  Express + WS   │                         │  Express + WS   │
-│  In-memory store│                         │  In-memory store│
-└────────┬────────┘                         └────────┬────────┘
-         │                                           │
-         └──────────── IOTA Tangle (simulated) ──────┘
+┌─────────────────────┐    WebSocket P2P    ┌─────────────────────┐
+│     Node Alpha      │◄────────────────────►│     Node Beta       │
+│   localhost:4000    │   ws://4010 ↔ 4011   │   localhost:4001    │
+│                     │                       │                     │
+│  Exporters          │                       │  Importers          │
+│  Customs Authorities│                       │                     │
+│  Financiers         │                       │                     │
+└─────────────────────┘                       └─────────────────────┘
+          │                                             │
+          └──────── Distributed Ledger (simulated) ─────┘
 ```
 
-Each node is a separate Express server with its own:
-- In-memory data store (orgs, consignments, documents, permissions, tangle log)
-- WebSocket server for client push updates
-- P2P WebSocket connection to the peer node
+Each node is a standalone Express server with:
+- In-memory store (orgs, consignments, documents, permissions, tangle log)
+- WebSocket server for real-time client push
+- P2P WebSocket to the peer node for cross-border data sync
+
+---
 
 ## Features
 
-### Login System
-- Each organisation has its own username/password
-- Separate sessions per browser tab
-- Node Alpha: `exporter/demo`, `customs/demo`
-- Node Beta: `importer/demo`
+### Digital Identity
+- Private organisations register a DID using a business registration number
+- 5-step animated verification — format check → registry query → licence status → DID generation → credential issuance
+- Government authorities (Morocco Customs, Nigeria Customs, KRA) act as **attestation authorities** — not registrants
+- Verifiable Credentials anchored on the distributed ledger
+- Peer organisations can inspect a "View Credential" modal showing DID, issuing authority, and ledger hash
 
-### Digital Identity (DIDs)
-- Register organisations with a business registration number
-- Animated 5-step verification simulation
-- W3C DID format: `did:iota:0x...`
-- Verifiable Credentials linked to DID
-- **Editable org names** — click edit icon to rename during demos
+**Test registration numbers:**
 
-### Consignments (Digital Twins)
-- UCR as primary identifier
-- Commercial Invoice # and Export Declaration # as secondary IDs
-- Documents anchor to the consignment twin
-- **File upload** — actual files stored in memory (base64), downloadable by shared orgs
+| Code | Result |
+|---|---|
+| `BRN-123456` | ✓ Passes — valid business registration |
+| `TIN-254789` | ✓ Passes — valid tax ID |
+| `BRN-000000` | ✗ Fails step 2 — blacklisted |
+| `BRN-111111` | ✗ Fails step 3 — expired licence |
+| `BRN-222222` | ✗ Fails step 3 — suspended |
+| `X-anything` | ✗ Fails step 2 — invalid prefix |
+
+### Consignments
+- UCR as primary identifier; Commercial Invoice and Export Declaration as secondary IDs
+- Documents attach to consignment digital twins
+- File upload (stored in memory, downloadable by authorised parties)
+
+### Payments
+- Full payment lifecycle per consignment: Unpaid → Partially Paid → Paid / Overdue
+- Status changes anchored as ledger events
+- Finance access managed independently from document access
+
+### Trade Finance
+- **Letters of Credit** — Draft → Issued → Advised → Confirmed → Presented → Drawn, with document compliance checklist
+- **Smart Contracts** — encode payment release conditions; auto-releases when all conditions are met; each state transition anchored on ledger
 
 ### Cross-Node Sharing
-- Share consignments + docs to orgs on the peer node
-- P2P WebSocket transfers the full data package
-- Peer orgs are searchable after handshake
-- Connection status visible in sidebar and dashboard
+- Connect Alpha and Beta nodes from the Dashboard
+- Share consignments and documents to organisations on the peer node
+- Peer orgs are searchable; Identity page shows their verified credentials
 
-### Permissions
-- Visual access control matrix
-- Click cells to grant/revoke
-- Owner indicated with crown icon
-- All changes anchored on tangle with audit trail
+### Access Control
+- Visual permission matrix per consignment
+- Grant / revoke per organisation
+- All changes produce an immutable ledger audit entry
 
-### Tangle Explorer
-- Filterable by type: identity, document, permission, network
-- Colour-coded entries
-- Hashes, timestamps, actors
-- Events sync across both nodes in real time
+### Analytics (Ledger Explorer)
+- Filterable event log: identity, document, permission, payment, contract, network
+- Hash, timestamp, actor, and detail for every event
+- Syncs across both nodes in real time
 
-## Demo Credentials
+---
 
-| Node | Username | Password | Organisation |
-|------|----------|----------|-------------|
-| Alpha (4000) | exporter | demo | Exporter Co. |
-| Alpha (4000) | customs | demo | Customs Authority |
-| Beta (4001) | importer | demo | Importer Co. |
+## Deployment
 
-## Customising Org Names
-Click the **edit icon** on any org card in the Identity page to rename it live during a demo. Changes sync to the peer node.
+### Railway (recommended — free tier)
+
+1. Push this repository to GitHub.
+2. Create two Railway services from the same repo.
+3. Set environment variables per service:
+
+**adapt-alpha**
+```
+NODE_ID=alpha
+NODE_NAME=Node Alpha
+PEER_URL=wss://<adapt-beta-railway-url>
+```
+
+**adapt-beta**
+```
+NODE_ID=beta
+NODE_NAME=Node Beta
+PEER_URL=wss://<adapt-alpha-railway-url>
+```
+
+> `PORT` is set automatically by Railway. WebSocket runs on the same port as HTTP — no separate WS port needed.
+
+4. Set the start command for each service:
+   - Alpha: `node server/index.js`
+   - Beta: `node server/index.js`
+
+> **Note:** You must build the client (`npm run build`) and commit `server/public/` before deploying, since the build step is not run on Railway. Remove `server/public/` from `.gitignore` before pushing to GitHub.
+
+---
 
 ## Tech Stack
-- **Backend**: Node.js, Express, WebSocket (ws)
-- **Frontend**: React 18, Vite, Lucide icons
-- **Fonts**: DM Sans, JetBrains Mono
-- **Storage**: In-memory (resets on restart)
-- **File handling**: Multer (upload), base64 in-memory storage
+
+- **Backend:** Node.js 18+, Express, WebSocket (ws), Multer
+- **Frontend:** React 18, Vite, Lucide icons
+- **Fonts:** DM Sans, JetBrains Mono
+- **Storage:** In-memory (resets on server restart — intentional for demo)

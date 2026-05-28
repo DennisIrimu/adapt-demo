@@ -14,7 +14,7 @@ export const api = {
   getAllOrgs: () => req('/api/orgs/all'),
   updateOrg: (id, d) => req(`/api/orgs/${id}`, { method: 'PUT', body: JSON.stringify(d) }),
   registerOrg: (id, regNumber) => req(`/api/orgs/${id}/register`, { method: 'POST', body: JSON.stringify({ regNumber }) }),
-  validateCredential: (regNumber) => req('/api/orgs/validate-credential', { method: 'POST', body: JSON.stringify({ regNumber }) }),
+  validateCredential: (regNumber, orgId) => req('/api/orgs/validate-credential', { method: 'POST', body: JSON.stringify({ regNumber, orgId }) }),
   getConsignments: (orgId) => req(`/api/consignments?orgId=${orgId}`),
   createConsignment: (d) => req('/api/consignments', { method: 'POST', body: JSON.stringify(d) }),
   getDocuments: (orgId, cId) => req(`/api/documents?orgId=${orgId}${cId ? `&consignmentId=${cId}` : ''}`),

@@ -92,6 +92,207 @@ function seedLog(type, action, actor, details, timestamp) {
   store.tangleLog.push({ id: genId(), timestamp, hash: genHash(), type, action, actor, details });
 }
 
+// ── PDF generator for seeded documents ──
+function makeSeedPdf(docType, ref, issuer, ucr, shipDate, exporter, importer, fromCountry, toCountry) {
+  const lines = {
+    'Commercial Invoice': [
+      `COMMERCIAL INVOICE`, ``,
+      `Invoice No : ${ref}`,
+      `Date       : ${shipDate}`,
+      `Exporter   : ${exporter}`,
+      `Importer   : ${importer}`,
+      `UCR        : ${ucr}`,
+      `Route      : ${fromCountry} to ${toCountry}`,
+      ``, `This document serves as the commercial invoice for the above shipment.`,
+      `All details are as agreed under the relevant sales contract.`,
+    ],
+    'Packing List': [
+      `PACKING LIST`, ``,
+      `Reference  : ${ref}`,
+      `Date       : ${shipDate}`,
+      `Exporter   : ${exporter}`,
+      `UCR        : ${ucr}`,
+      ``, `Package details are as per the accompanying commercial invoice.`,
+      `All goods have been inspected and packed in accordance with export requirements.`,
+    ],
+    'Bill of Lading': [
+      `BILL OF LADING`, ``,
+      `B/L No     : ${ref}`,
+      `Date       : ${shipDate}`,
+      `Shipper    : ${exporter}`,
+      `Consignee  : ${importer}`,
+      `UCR        : ${ucr}`,
+      `Port of Loading    : ${fromCountry}`,
+      `Port of Discharge  : ${toCountry}`,
+      ``, `Received in apparent good order and condition the goods described herein.`,
+    ],
+    'Certificate of Origin': [
+      `CERTIFICATE OF ORIGIN`, ``,
+      `Certificate No : ${ref}`,
+      `Date           : ${shipDate}`,
+      `Issued by      : ${issuer}`,
+      `Exporter       : ${exporter}`,
+      `UCR            : ${ucr}`,
+      `Country of Origin : ${fromCountry}`,
+      ``, `We hereby certify that the goods described in this document`,
+      `originate in ${fromCountry} and comply with all applicable regulations.`,
+    ],
+    'Export Declaration': [
+      `EXPORT DECLARATION`, ``,
+      `Declaration No : ${ref}`,
+      `Date           : ${shipDate}`,
+      `Declarant      : ${issuer}`,
+      `Exporter       : ${exporter}`,
+      `UCR            : ${ucr}`,
+      `Country of Export : ${fromCountry}`,
+      `Country of Destination : ${toCountry}`,
+      ``, `This export declaration is submitted in accordance with applicable customs regulations.`,
+    ],
+  };
+  const body = (lines[docType] || [`${docType}`, ``, `Reference: ${ref}`, `Issuer: ${issuer}`, `UCR: ${ucr}`])
+    .map(l => `(${l.replace(/[()\\]/g, '\\$&')}) Tj T*`)
+    .join('\n');
+
+  const stream =
+    `BT\n/F1 11 Tf\n72 720 Td\n14 TL\n` + body + `\nET`;
+  const streamLen = Buffer.byteLength(stream, 'utf8');
+
+  const pdf =
+    `%PDF-1.4\n` +
+    `1 0 obj<</Type/Catalog/Pages 2 0 R>>endobj\n` +
+    `2 0 obj<</Type/Pages/Kids[3 0 R]/Count 1>>endobj\n` +
+    `3 0 obj<</Type/Page/MediaBox[0 0 612 792]/Parent 2 0 R/Resources<</Font<</F1 4 0 R>>>>/Contents 5 0 R>>endobj\n` +
+    `4 0 obj<</Type/Font/Subtype/Type1/BaseFont/Helvetica>>endobj\n` +
+    `5 0 obj<</Length ${streamLen}>>\nstream\n${stream}\nendstream\nendobj\n` +
+    `xref\n0 6\n0000000000 65535 f \n` +
+    `trailer<</Size 6/Root 1 0 R>>\nstartxref\n0\n%%EOF\n`;
+
+  return Buffer.from(pdf, 'utf8').toString('base64');
+}
+
+// ── XML generator for seeded BOL / Export Declaration documents ──
+function makeSeedXml(docType, m, ref) {
+  // Deterministic fake values derived from the UCR so they're stable across restarts
+  const seed = parseInt(m.ucr.replace(/\D/g, '').slice(-4) || '1234');
+  const voyageNo  = `V${2600 + (seed % 99)}`;
+  const imoNo     = `IMO${9000000 + (seed % 999999)}`;
+  const blOriginals = '3';
+  const containerNo = `TCKU${3000000 + (seed % 9999999)}`;
+  const sealNo      = `SL${10000 + (seed % 89999)}`;
+  const grossMass   = m.quantity.match(/[\d,]+/)?.[0]?.replace(',','') || '1000';
+  const netMass     = Math.round(parseInt(grossMass) * 0.97);
+  const arrival     = new Date(new Date(m.shipDate).getTime() + 14 * 86400000).toISOString().slice(0,10);
+  const carrier     = m.vessel.startsWith('KQ') ? 'Kenya Airways Cargo' : 'NordShip Line S.A.';
+  const exporterAddr = m.fromCountry === 'Morocco'  ? '12 Rue Al Borj, Casablanca 20000, Morocco'
+                     : m.fromCountry === 'Kenya'    ? 'Westlands Business Park, Nairobi, Kenya'
+                     : '14 Creek Road, Apapa, Lagos, Nigeria';
+  const importerAddr = m.toCountry === 'Netherlands' ? 'Prins Bernhardplein 200, Amsterdam, Netherlands'
+                     : m.toCountry === 'Germany'      ? 'Speicherstadt 1, Hamburg, Germany'
+                     : m.toCountry === 'United Kingdom' ? '1 Dock Road, Felixstowe, Suffolk, UK'
+                     : m.toCountry === 'South Africa'   ? 'Island View, Durban, South Africa'
+                     : '24 Marina Street, Victoria Island, Lagos, Nigeria';
+
+  if (docType === 'Bill of Lading') {
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<TransportDocument>
+  <TransportDocumentReference>${ref}</TransportDocumentReference>
+  <ContractQuotationReference>${m.ucr}</ContractQuotationReference>
+  <IssueDate>${m.shipDate}</IssueDate>
+  <ShippedOnBoardDate>${m.shipDate}</ShippedOnBoardDate>
+  <IssuerCode>NL-SHP-001</IssuerCode>
+  <ServiceContractReference>${m.invoiceRef}</ServiceContractReference>
+  <Shipper>
+    <PartyName>${m.exporter}</PartyName>
+    <Address>${exporterAddr}</Address>
+    <RegistrationNumber>REG-${m.fromCountry.slice(0,2).toUpperCase()}-${seed}</RegistrationNumber>
+    <TaxIdentifier>TAX-${seed + 1000}</TaxIdentifier>
+  </Shipper>
+  <Consignee>
+    <PartyName>${m.importer}</PartyName>
+    <Address>${importerAddr}</Address>
+    <RegistrationNumber>REG-${m.toCountry.slice(0,2).toUpperCase()}-${seed + 500}</RegistrationNumber>
+  </Consignee>
+  <VesselName>${m.vessel}</VesselName>
+  <VoyageNumber>${voyageNo}</VoyageNumber>
+  <IMONumber>${imoNo}</IMONumber>
+  <CarrierName>${carrier}</CarrierName>
+  <PortOfLoading>${m.originPort}</PortOfLoading>
+  <PortOfDischarge>${m.destinationPort}</PortOfDischarge>
+  <EstimatedArrival>${arrival}</EstimatedArrival>
+  <HSCode>${m.hsCode}</HSCode>
+  <DescriptionOfGoods>${m.product}</DescriptionOfGoods>
+  <Quantity>${grossMass}</Quantity>
+  <QuantityUnit>MT</QuantityUnit>
+  <GrossWeight>${grossMass}</GrossWeight>
+  <GrossWeightUnit>MT</GrossWeightUnit>
+  <NumberOfPackages>${Math.ceil(parseInt(grossMass) / 25)}</NumberOfPackages>
+  <DeclaredValue>${m.totalValue}</DeclaredValue>
+  <Currency>${m.currency}</Currency>
+  <Incoterms>${m.incoterms}</Incoterms>
+  <FreightPayableBy>${m.incoterms === 'FOB' ? 'Consignee' : 'Shipper'}</FreightPayableBy>
+  <NumberOfOriginalsBL>${blOriginals}</NumberOfOriginalsBL>
+  <IssuePlaceAndDate>${m.originPort}, ${m.shipDate}</IssuePlaceAndDate>
+  <SignatoryName>Captain, ${m.vessel}</SignatoryName>
+</TransportDocument>`;
+  }
+
+  if (docType === 'Export Declaration') {
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<CustomsDeclaration>
+  <DeclarationNumber>${ref}</DeclarationNumber>
+  <UCR>${m.ucr}</UCR>
+  <DeclarationDate>${m.shipDate}</DeclarationDate>
+  <DeclarationType>EX</DeclarationType>
+  <ProcedureCode>1000</ProcedureCode>
+  <CountryOfDispatch>${m.fromCountry}</CountryOfDispatch>
+  <CountryOfDestination>${m.toCountry}</CountryOfDestination>
+  <PortOfExport>${m.originPort}</PortOfExport>
+  <PortOfDestination>${m.destinationPort}</PortOfDestination>
+  <Exporter>
+    <Name>${m.exporter}</Name>
+    <Address>${exporterAddr}</Address>
+    <Identifier>EXP-${m.fromCountry.slice(0,2).toUpperCase()}-${seed}</Identifier>
+    <TaxIdentifier>TAX-${seed + 1000}</TaxIdentifier>
+  </Exporter>
+  <Consignee>
+    <Name>${m.importer}</Name>
+    <Address>${importerAddr}</Address>
+    <Identifier>IMP-${m.toCountry.slice(0,2).toUpperCase()}-${seed + 500}</Identifier>
+  </Consignee>
+  <TransportMode>1</TransportMode>
+  <VesselName>${m.vessel}</VesselName>
+  <VoyageNumber>${voyageNo}</VoyageNumber>
+  <IMONumber>${imoNo}</IMONumber>
+  <ContainerNumber>${containerNo}</ContainerNumber>
+  <SealNumber>${sealNo}</SealNumber>
+  <HSCode>${m.hsCode}</HSCode>
+  <Description>${m.product}</Description>
+  <Quantity>${grossMass}</Quantity>
+  <QuantityUnit>MT</QuantityUnit>
+  <UnitPrice>${Math.round(m.totalValue / parseInt(grossMass))}</UnitPrice>
+  <CustomsValue>${m.totalValue}</CustomsValue>
+  <Currency>${m.currency}</Currency>
+  <GrossMass>${grossMass}</GrossMass>
+  <NetMass>${netMass}</NetMass>
+  <CountryOfOrigin>${m.fromCountry}</CountryOfOrigin>
+  <PreferenceCode>100</PreferenceCode>
+  <InvoiceNumber>${m.invoiceRef}</InvoiceNumber>
+  <InvoiceDate>${m.shipDate}</InvoiceDate>
+  <InvoiceTotal>${m.totalValue}</InvoiceTotal>
+  <InvoiceCurrency>${m.currency}</InvoiceCurrency>
+  <Incoterms>${m.incoterms}</Incoterms>
+  <BillOfLadingRef>BL-${ref.replace(/[A-Z]+-\d+-/,'')}</BillOfLadingRef>
+  <CertificateOfOriginRef>CO-${ref.replace(/[A-Z]+-\d+-/,'')}</CertificateOfOriginRef>
+  <InsuranceCertificateRef>INS-${seed}</InsuranceCertificateRef>
+  <DeclarantName>${m.fromCountry === 'Morocco' ? 'Morocco Customs' : m.fromCountry === 'Kenya' ? 'Kenya Revenue Authority' : 'Nigeria Customs'}</DeclarantName>
+  <DeclarationLocation>${m.originPort}</DeclarationLocation>
+  <Status>ACCEPTED</Status>
+</CustomsDeclaration>`;
+  }
+
+  return null;
+}
+
 // ── Hardcoded demo consignments ──
 const ALPHA_CONSIGNMENTS = [
   // Morocco → Nigeria (AtlasPhosphate, org1)
@@ -169,14 +370,21 @@ function seedConsignments() {
       const ref = d.suffix === 'INV' ? m.invoiceRef
                 : d.suffix === 'ED'  ? m.declRef
                 : `${d.suffix}-${m.ucr.split('-').pop()}`;
+      const xmlContent = (d.suffix === 'BL' || d.suffix === 'ED') ? makeSeedXml(d.docType, m, ref) : null;
+      const fileBase64 = xmlContent
+        ? Buffer.from(xmlContent, 'utf8').toString('base64')
+        : makeSeedPdf(d.docType, ref, d.issuer, m.ucr, m.shipDate, m.exporter, m.importer, m.fromCountry, m.toCountry);
+      const filename = xmlContent ? `${ref}.xml` : `${ref}.pdf`;
+      const format   = xmlContent ? 'XML' : 'PDF';
+      const fileSize = Buffer.from(fileBase64, 'base64').length;
       store.documents.push({
         id: `${cId}-${d.suffix}`, consignmentId: cId,
         title: d.name, docType: d.docType,
-        filename: `${ref}.pdf`, fileSize: 0,
+        filename, fileSize, fileBase64,
         hash: genHash(),
         creatorOrgId: m.creatorOrgId, creatorOrgName: m.creatorOrgName,
         timestamp: createdAt, reference: ref,
-        format: 'PDF', issuer: d.issuer,
+        format, issuer: d.issuer,
       });
       seedLog('document', 'Document Anchored', m.exporter,
         `"${d.name}" anchored to ${m.ucr}. Issued by ${d.issuer}.`, createdAt);
@@ -543,33 +751,48 @@ app.get('/api/peer/orgs', (req, res) => {
 });
 app.get('*', (req, res) => { const f = path.join(publicDir, 'index.html'); existsSync(f) ? res.sendFile(f) : res.status(404).json({ error: 'Build first' }); });
 
-// ── WebSocket (attached to HTTP server — single port, works on Railway) ──
+// ── WebSocket + P2P (disabled on Vercel — serverless can't hold sockets) ──
+const IS_VERCEL = !!process.env.VERCEL;
 const httpServer = http.createServer(app);
-const wss = new WebSocketServer({ server: httpServer });
 const clients = new Set();
-wss.on('connection', (ws, req) => {
-  const url = new URL(req.url, `http://localhost:${PORT}`);
-  if (url.pathname === '/peer') { handlePeerIn(ws); } else { clients.add(ws); ws.on('close', () => clients.delete(ws)); ws.send(JSON.stringify({ type: 'NODE_INFO', nodeId: NODE_ID, nodeName: NODE_NAME })); }
-});
-function broadcastToClients(msg) { const d = JSON.stringify(msg); clients.forEach(c => { if (c.readyState === WebSocket.OPEN) c.send(d); }); }
 
-// ── P2P ──
-let peerWs = null;
-function connectToPeer() {
-  if (!PEER_URL || peerWs?.readyState === WebSocket.OPEN) return;
-  try {
-    peerWs = new WebSocket(PEER_URL + '/peer');
-    peerWs.on('open', () => {
-      store.peerConnected = true;
-      peerWs.send(JSON.stringify({ type: 'HANDSHAKE', nodeId: NODE_ID, nodeName: NODE_NAME, nodeIp: NODE_IP, orgs: store.orgs.map(o => ({ id: o.id, name: o.name, role: o.role, did: o.did, verified: o.verified, nodeId: NODE_ID, nodeName: NODE_NAME })) }));
-      addLog('network', 'Peer Connected', 'System', `P2P handshake completed with peer at ${PEER_URL}. Organisations now discoverable.`);
-      broadcastToClients({ type: 'PEER_STATUS', connected: true });
-    });
-    peerWs.on('message', d => handlePeerMsg(JSON.parse(d.toString())));
-    peerWs.on('close', () => { store.peerConnected = false; store.peerOrgs = []; broadcastToClients({ type: 'PEER_STATUS', connected: false, peerOrgs: [] }); });
-    peerWs.on('error', () => {});
-  } catch (e) {}
+function broadcastToClients(msg) {
+  if (IS_VERCEL) return; // no persistent connections on serverless
+  const d = JSON.stringify(msg);
+  clients.forEach(c => { if (c.readyState === WebSocket.OPEN) c.send(d); });
 }
+
+let peerWs = null;
+function connectToPeer() {}   // no-op stub (filled below if not Vercel)
+function syncOrgsToPeer() {}  // no-op stub
+
+if (!IS_VERCEL) {
+  const wss = new WebSocketServer({ server: httpServer });
+  wss.on('connection', (ws, req) => {
+    const url = new URL(req.url, `http://localhost:${PORT}`);
+    if (url.pathname === '/peer') { handlePeerIn(ws); } else { clients.add(ws); ws.on('close', () => clients.delete(ws)); ws.send(JSON.stringify({ type: 'NODE_INFO', nodeId: NODE_ID, nodeName: NODE_NAME })); }
+  });
+
+  // ── P2P ──
+  connectToPeer = function() {
+    if (!PEER_URL || peerWs?.readyState === WebSocket.OPEN) return;
+    try {
+      peerWs = new WebSocket(PEER_URL + '/peer');
+      peerWs.on('open', () => {
+        store.peerConnected = true;
+        peerWs.send(JSON.stringify({ type: 'HANDSHAKE', nodeId: NODE_ID, nodeName: NODE_NAME, nodeIp: NODE_IP, orgs: store.orgs.map(o => ({ id: o.id, name: o.name, role: o.role, did: o.did, verified: o.verified, nodeId: NODE_ID, nodeName: NODE_NAME })) }));
+        addLog('network', 'Peer Connected', 'System', `P2P handshake completed with peer at ${PEER_URL}. Organisations now discoverable.`);
+        broadcastToClients({ type: 'PEER_STATUS', connected: true });
+      });
+      peerWs.on('message', d => handlePeerMsg(JSON.parse(d.toString())));
+      peerWs.on('close', () => { store.peerConnected = false; store.peerOrgs = []; broadcastToClients({ type: 'PEER_STATUS', connected: false, peerOrgs: [] }); });
+      peerWs.on('error', () => {});
+    } catch (e) {}
+  };
+
+  syncOrgsToPeer = function() { if (peerWs?.readyState === WebSocket.OPEN) peerWs.send(JSON.stringify({ type: 'ORG_UPDATE', orgs: store.orgs.map(o => ({ id: o.id, name: o.name, role: o.role, did: o.did, verified: o.verified, nodeId: NODE_ID, nodeName: NODE_NAME })) })); };
+}
+
 function handlePeerIn(ws) {
   ws.on('message', d => { const m = JSON.parse(d.toString()); if (m.type === 'HANDSHAKE') { store.peerOrgs = m.orgs || []; store.peerConnected = true; broadcastToClients({ type: 'PEER_STATUS', connected: true, peerOrgs: store.peerOrgs }); ws.send(JSON.stringify({ type: 'ORG_DIRECTORY', orgs: store.orgs.map(o => ({ id: o.id, name: o.name, role: o.role, did: o.did, verified: o.verified, nodeId: NODE_ID, nodeName: NODE_NAME })) })); addLog('network', 'Peer Connected', 'System', 'Inbound P2P connection accepted. Peer orgs now discoverable.'); } else handlePeerMsg(m); });
   ws.on('close', () => { store.peerConnected = false; store.peerOrgs = []; broadcastToClients({ type: 'PEER_STATUS', connected: false, peerOrgs: [] }); });
@@ -589,7 +812,6 @@ function handlePeerMsg(m) {
     }
   }
 }
-function syncOrgsToPeer() { if (peerWs?.readyState === WebSocket.OPEN) peerWs.send(JSON.stringify({ type: 'ORG_UPDATE', orgs: store.orgs.map(o => ({ id: o.id, name: o.name, role: o.role, did: o.did, verified: o.verified, nodeId: NODE_ID, nodeName: NODE_NAME })) })); }
 
 function seedFinanceData() {
   if (NODE_ID !== 'alpha') return;
@@ -700,7 +922,14 @@ function seedFinanceData() {
   console.log(`[${NODE_NAME}] Seeded finance data: 2 payments, 2 LCs, 2 smart contracts`);
 }
 
-// Seed demo data then start
+// Seed demo data
 seedConsignments();
 seedFinanceData();
-httpServer.listen(PORT, () => { console.log(`[${NODE_NAME}] Listening on port ${PORT} (HTTP + WS on same port)`); });
+
+// Start server — skipped on Vercel (serverless handles the lifecycle)
+if (!IS_VERCEL) {
+  httpServer.listen(PORT, () => { console.log(`[${NODE_NAME}] Listening on port ${PORT} (HTTP + WS on same port)`); });
+}
+
+// Export for Vercel's @vercel/node runner
+export default app;

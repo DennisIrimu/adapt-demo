@@ -1081,5 +1081,1120 @@
     "details": "DID created for Financier 2 (RC-2020-NG-071183). Attested by Corporate Affairs Commission (CAC), Nigeria. Anchored on the ledger.",
     "did": "did:iota:adapt:8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c",
     "attestedBy": "Corporate Affairs Commission (CAC), Nigeria"
+  },
+  {
+    "id": "2434b63711f8f07f",
+    "timestamp": "2026-02-18T08:00:00.000Z",
+    "hash": "0x9aa4f2a2689ed7be8a76284ce8005f00",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Nortex Minerals S.A.",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-MA-NG-00101. Issued by Nortex Minerals S.A.."
+  },
+  {
+    "id": "2b23ce89f6876499",
+    "timestamp": "2026-02-18T08:00:00.000Z",
+    "hash": "0x4efff5bc2d5b74924f73e7379737d625",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Nortex Minerals S.A.",
+    "details": "\"Packing List\" anchored to UCR-2026-MA-NG-00101. Issued by Nortex Minerals S.A.."
+  },
+  {
+    "id": "5cf9a23c48475dae",
+    "timestamp": "2026-02-20T08:00:00.000Z",
+    "hash": "0x0e8c61844e1d31583934dbf083c9e5fd",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Nortex Minerals S.A.",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-MA-NG-00102. Issued by Nortex Minerals S.A.."
+  },
+  {
+    "id": "e2cd1953e2f52b1e",
+    "timestamp": "2026-02-20T08:00:00.000Z",
+    "hash": "0xa280edaced948fde5bfc4d96b609e99f",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Nortex Minerals S.A.",
+    "details": "\"Packing List\" anchored to UCR-2026-MA-NG-00102. Issued by Nortex Minerals S.A.."
+  },
+  {
+    "id": "3ca0658f800a1d84",
+    "timestamp": "2026-03-01T08:00:00.000Z",
+    "hash": "0x62d5eda6146bc953f3751ebfd89f230c",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Nortex Minerals S.A.",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-MA-NG-00103. Issued by Nortex Minerals S.A.."
+  },
+  {
+    "id": "c0925a1bdf043774",
+    "timestamp": "2026-03-01T08:00:00.000Z",
+    "hash": "0x6806f547de150360a371dd00dd314dce",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Nortex Minerals S.A.",
+    "details": "\"Packing List\" anchored to UCR-2026-MA-NG-00103. Issued by Nortex Minerals S.A.."
+  },
+  {
+    "id": "298534687cf7b888",
+    "timestamp": "2026-03-05T08:00:00.000Z",
+    "hash": "0x8a97c793439ddf7e880e5226b8705c83",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Nortex Minerals S.A.",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-MA-NG-00104. Issued by Nortex Minerals S.A.."
+  },
+  {
+    "id": "a766af4e02a44832",
+    "timestamp": "2026-03-05T08:00:00.000Z",
+    "hash": "0xc3f938916dfcefcc2e8325f69232bde4",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Nortex Minerals S.A.",
+    "details": "\"Packing List\" anchored to UCR-2026-MA-NG-00104. Issued by Nortex Minerals S.A.."
+  },
+  {
+    "id": "ab3ae8eaba32fb27",
+    "timestamp": "2026-03-12T08:00:00.000Z",
+    "hash": "0xb40c136ac1d8d8c6e239235e4986fea7",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Nortex Minerals S.A.",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-MA-NG-00105. Issued by Nortex Minerals S.A.."
+  },
+  {
+    "id": "f536642d1c784e4a",
+    "timestamp": "2026-03-12T08:00:00.000Z",
+    "hash": "0x70ee221ef5334f63c46fd0976854dedd",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Nortex Minerals S.A.",
+    "details": "\"Packing List\" anchored to UCR-2026-MA-NG-00105. Issued by Nortex Minerals S.A.."
+  },
+  {
+    "id": "a90fbe9db56128aa",
+    "timestamp": "2026-03-18T08:00:00.000Z",
+    "hash": "0x164bc2cd632b7e009fb8f816d7e7b03c",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Nortex Minerals S.A.",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-MA-NG-00106. Issued by Nortex Minerals S.A.."
+  },
+  {
+    "id": "84e2cb325b7f5bb6",
+    "timestamp": "2026-03-18T08:00:00.000Z",
+    "hash": "0x7ac10353b20efc6042c766244cbbdced",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Nortex Minerals S.A.",
+    "details": "\"Packing List\" anchored to UCR-2026-MA-NG-00106. Issued by Nortex Minerals S.A.."
+  },
+  {
+    "id": "eda46e3c1d9ae59b",
+    "timestamp": "2026-01-24T08:00:00.000Z",
+    "hash": "0x410980a11068bc0a49d9895c7324fae1",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Nortex Minerals S.A.",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-MA-NG-E001. Issued by Nortex Minerals S.A.."
+  },
+  {
+    "id": "3461acb90c385dba",
+    "timestamp": "2026-01-24T08:00:00.000Z",
+    "hash": "0x7c904a9c238c5e43ec30092174fe0f44",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Nortex Minerals S.A.",
+    "details": "\"Packing List\" anchored to UCR-2026-MA-NG-E001. Issued by Nortex Minerals S.A.."
+  },
+  {
+    "id": "25c3f36bca7dfb68",
+    "timestamp": "2026-02-10T08:00:00.000Z",
+    "hash": "0xf483538ebdd7ee78ee7ebfdf9c520fd0",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Nortex Minerals S.A.",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-MA-NG-E003. Issued by Nortex Minerals S.A.."
+  },
+  {
+    "id": "8f577307ea9b3eae",
+    "timestamp": "2026-02-10T08:00:00.000Z",
+    "hash": "0x921ea1ed2f2e9592af2bb047ef041786",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Nortex Minerals S.A.",
+    "details": "\"Packing List\" anchored to UCR-2026-MA-NG-E003. Issued by Nortex Minerals S.A.."
+  },
+  {
+    "id": "a5525c32031ff7a0",
+    "timestamp": "2026-01-15T08:00:00.000Z",
+    "hash": "0x62f321a893e1ffdf54619ee1b95a7484",
+    "type": "document",
+    "action": "Consignment Anchored",
+    "actor": "Vestline Apparel Ltd",
+    "details": "Digital twin created: UCR-2026-NG-KE-01001 — Woven Cotton Garments (Kente-style). Anchored on the ledger."
+  },
+  {
+    "id": "e9bf68b7e1f8448b",
+    "timestamp": "2026-01-15T08:00:00.000Z",
+    "hash": "0x767b64d5319730337b707607a4922cab",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Vestline Apparel Ltd",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-NG-KE-01001. Issued by Vestline Apparel Ltd."
+  },
+  {
+    "id": "b9b84e773de3d2d7",
+    "timestamp": "2026-01-15T08:00:00.000Z",
+    "hash": "0xa975d275959d192e43557b23fba55221",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Vestline Apparel Ltd",
+    "details": "\"Packing List\" anchored to UCR-2026-NG-KE-01001. Issued by Vestline Apparel Ltd."
+  },
+  {
+    "id": "999c7b970e5c9e5a",
+    "timestamp": "2026-01-15T08:00:00.000Z",
+    "hash": "0x8cf2ce6648488ec95efa4cf6ff86051b",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Vestline Apparel Ltd",
+    "details": "\"Bill of Lading\" anchored to UCR-2026-NG-KE-01001. Issued by NordShip Line S.A.."
+  },
+  {
+    "id": "23d3741b29df299d",
+    "timestamp": "2026-01-15T08:00:00.000Z",
+    "hash": "0x30faad9ea732c337f06c27ba16fab43b",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Vestline Apparel Ltd",
+    "details": "\"Certificate of Origin\" anchored to UCR-2026-NG-KE-01001. Issued by NEPC — Nigeria Export Promotion Council."
+  },
+  {
+    "id": "dc7efa99444fceb8",
+    "timestamp": "2026-01-15T08:00:00.000Z",
+    "hash": "0xbec5a2e66af6fc03756d53fe807bcc1b",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Vestline Apparel Ltd",
+    "details": "\"Export Declaration\" anchored to UCR-2026-NG-KE-01001. Issued by Nigeria Customs."
+  },
+  {
+    "id": "8402112684d817d8",
+    "timestamp": "2026-02-10T08:00:00.000Z",
+    "hash": "0xb6ac621ec34c99180c0bf2fb0c1442a1",
+    "type": "document",
+    "action": "Consignment Anchored",
+    "actor": "Vestline Apparel Ltd",
+    "details": "Digital twin created: UCR-2026-NG-KE-01002 — African Print Fabric (Ankara, 100% Cotton). Anchored on the ledger."
+  },
+  {
+    "id": "1133ae6dcf7c50e5",
+    "timestamp": "2026-02-10T08:00:00.000Z",
+    "hash": "0x599ed526426feb7e9188cc38fe83386f",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Vestline Apparel Ltd",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-NG-KE-01002. Issued by Vestline Apparel Ltd."
+  },
+  {
+    "id": "959a7ed2049782e6",
+    "timestamp": "2026-02-10T08:00:00.000Z",
+    "hash": "0x1f17e5cf194ecf62592981d9910fd1c3",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Vestline Apparel Ltd",
+    "details": "\"Packing List\" anchored to UCR-2026-NG-KE-01002. Issued by Vestline Apparel Ltd."
+  },
+  {
+    "id": "5282bb3d2b57a958",
+    "timestamp": "2026-02-10T08:00:00.000Z",
+    "hash": "0xd410068785279b32b75dccfabe334f98",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Vestline Apparel Ltd",
+    "details": "\"Bill of Lading\" anchored to UCR-2026-NG-KE-01002. Issued by NordShip Line S.A.."
+  },
+  {
+    "id": "a28decf721554e29",
+    "timestamp": "2026-02-10T08:00:00.000Z",
+    "hash": "0x53a4b7599bca38a23ae623fc3d7a2de8",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Vestline Apparel Ltd",
+    "details": "\"Certificate of Origin\" anchored to UCR-2026-NG-KE-01002. Issued by NEPC — Nigeria Export Promotion Council."
+  },
+  {
+    "id": "ebaffaf703038bfc",
+    "timestamp": "2026-02-10T08:00:00.000Z",
+    "hash": "0x36d3a1a4b6c7fc217ad88c0d11e439f8",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Vestline Apparel Ltd",
+    "details": "\"Export Declaration\" anchored to UCR-2026-NG-KE-01002. Issued by Nigeria Customs."
+  },
+  {
+    "id": "0c5b6fe0fee14524",
+    "timestamp": "2026-03-05T08:00:00.000Z",
+    "hash": "0xa3e1d0b8cc0d8e80ef2be755522398ba",
+    "type": "document",
+    "action": "Consignment Anchored",
+    "actor": "Vestline Apparel Ltd",
+    "details": "Digital twin created: UCR-2026-NG-KE-01003 — Embroidered Dashiki Shirts (Mixed Sizes). Anchored on the ledger."
+  },
+  {
+    "id": "47707ad3a8a7ce58",
+    "timestamp": "2026-03-05T08:00:00.000Z",
+    "hash": "0xfb0c65e4d7c7e6d6cecaf416c0b3f61f",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Vestline Apparel Ltd",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-NG-KE-01003. Issued by Vestline Apparel Ltd."
+  },
+  {
+    "id": "37b1b1ef8c31fb17",
+    "timestamp": "2026-03-05T08:00:00.000Z",
+    "hash": "0x47442266e4c0c2e822899049a4087ee0",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Vestline Apparel Ltd",
+    "details": "\"Packing List\" anchored to UCR-2026-NG-KE-01003. Issued by Vestline Apparel Ltd."
+  },
+  {
+    "id": "72f3fb760064cf7e",
+    "timestamp": "2026-03-05T08:00:00.000Z",
+    "hash": "0x2fafb52f5e9366b02407c1827d2cb86a",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Vestline Apparel Ltd",
+    "details": "\"Bill of Lading\" anchored to UCR-2026-NG-KE-01003. Issued by NordShip Line S.A.."
+  },
+  {
+    "id": "d6153cd32d422e29",
+    "timestamp": "2026-03-05T08:00:00.000Z",
+    "hash": "0x77e8515641e9061e48496b9b27281cc1",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Vestline Apparel Ltd",
+    "details": "\"Certificate of Origin\" anchored to UCR-2026-NG-KE-01003. Issued by NEPC — Nigeria Export Promotion Council."
+  },
+  {
+    "id": "e27cdf119e0a5635",
+    "timestamp": "2026-03-05T08:00:00.000Z",
+    "hash": "0x99a548477ac7b18aca7cccdbfc05d581",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Vestline Apparel Ltd",
+    "details": "\"Export Declaration\" anchored to UCR-2026-NG-KE-01003. Issued by Nigeria Customs."
+  },
+  {
+    "id": "899e13e841511b42",
+    "timestamp": "2026-02-08T08:00:00.000Z",
+    "hash": "0x2f3a0bbe83f8bf541b52a7a036dc9abd",
+    "type": "document",
+    "action": "Consignment Anchored",
+    "actor": "Highland Growers Cooperative",
+    "details": "Digital twin created: UCR-2026-TZ-EG-02001 — Highland Arabica Coffee (Green Beans, AA Grade). Anchored on the ledger."
+  },
+  {
+    "id": "3a98d2187be27365",
+    "timestamp": "2026-02-08T08:00:00.000Z",
+    "hash": "0x34034c75a7c833363fafafb54c3e4518",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Highland Growers Cooperative",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-TZ-EG-02001. Issued by Highland Growers Cooperative."
+  },
+  {
+    "id": "8a42dc28aa8b31db",
+    "timestamp": "2026-02-08T08:00:00.000Z",
+    "hash": "0x3d77e848221da8bb9c10d1dd84cdbe09",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Highland Growers Cooperative",
+    "details": "\"Packing List\" anchored to UCR-2026-TZ-EG-02001. Issued by Highland Growers Cooperative."
+  },
+  {
+    "id": "44121df88205cce2",
+    "timestamp": "2026-02-08T08:00:00.000Z",
+    "hash": "0x040fdfdb9ccc24e9a3fcce5c30f6a625",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Highland Growers Cooperative",
+    "details": "\"Bill of Lading\" anchored to UCR-2026-TZ-EG-02001. Issued by NordShip Line S.A.."
+  },
+  {
+    "id": "a222cd19d76f21ee",
+    "timestamp": "2026-02-08T08:00:00.000Z",
+    "hash": "0x9f0bef5aba357fa0032bb5923a0c27b5",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Highland Growers Cooperative",
+    "details": "\"Certificate of Origin\" anchored to UCR-2026-TZ-EG-02001. Issued by Tanzania Trade Development Authority (TanTrade)."
+  },
+  {
+    "id": "41e78937b33cdd44",
+    "timestamp": "2026-02-08T08:00:00.000Z",
+    "hash": "0xabbbfe79bd5680ada3f38b9a5f3be3c7",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Highland Growers Cooperative",
+    "details": "\"Export Declaration\" anchored to UCR-2026-TZ-EG-02001. Issued by Tanzania Revenue Authority."
+  },
+  {
+    "id": "e7f660681d3e28c7",
+    "timestamp": "2026-03-14T08:00:00.000Z",
+    "hash": "0x54d1eeb6d7132634f8a66f06be165898",
+    "type": "document",
+    "action": "Consignment Anchored",
+    "actor": "Highland Growers Cooperative",
+    "details": "Digital twin created: UCR-2026-TZ-EG-02002 — Highland Peaberry Coffee (Roasted, Specialty Grade). Anchored on the ledger."
+  },
+  {
+    "id": "8842be4e6cb46db6",
+    "timestamp": "2026-03-14T08:00:00.000Z",
+    "hash": "0xbd9b16c7e79460eebbcea52c83356e74",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Highland Growers Cooperative",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-TZ-EG-02002. Issued by Highland Growers Cooperative."
+  },
+  {
+    "id": "6a67fa0504feecec",
+    "timestamp": "2026-03-14T08:00:00.000Z",
+    "hash": "0x8bbf90fc452cb884da134d27093284de",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Highland Growers Cooperative",
+    "details": "\"Packing List\" anchored to UCR-2026-TZ-EG-02002. Issued by Highland Growers Cooperative."
+  },
+  {
+    "id": "6afa33dc66d9bf26",
+    "timestamp": "2026-03-14T08:00:00.000Z",
+    "hash": "0x09a2f0f613c7a4baf0c130a88277bef0",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Highland Growers Cooperative",
+    "details": "\"Bill of Lading\" anchored to UCR-2026-TZ-EG-02002. Issued by NordShip Line S.A.."
+  },
+  {
+    "id": "fe7f93c64919dd3b",
+    "timestamp": "2026-03-14T08:00:00.000Z",
+    "hash": "0xbe2ab6ad43c26777d521a37aae0539f8",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Highland Growers Cooperative",
+    "details": "\"Certificate of Origin\" anchored to UCR-2026-TZ-EG-02002. Issued by Tanzania Trade Development Authority (TanTrade)."
+  },
+  {
+    "id": "aad388193a57c585",
+    "timestamp": "2026-03-14T08:00:00.000Z",
+    "hash": "0xe015dd59a9976e2f2ac5bb9dbd86d31d",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Highland Growers Cooperative",
+    "details": "\"Export Declaration\" anchored to UCR-2026-TZ-EG-02002. Issued by Tanzania Revenue Authority."
+  },
+  {
+    "id": "cb453b982db0e2d2",
+    "timestamp": "2026-01-22T08:00:00.000Z",
+    "hash": "0x9582840c420d1f312ca5b54da7468d8e",
+    "type": "document",
+    "action": "Consignment Anchored",
+    "actor": "BorderLink Traders",
+    "details": "Digital twin created: UCR-2026-CI-GH-03001 — Dried Hibiscus Flowers (Bissap). Anchored on the ledger."
+  },
+  {
+    "id": "104dccf6b2e9478f",
+    "timestamp": "2026-01-22T08:00:00.000Z",
+    "hash": "0xe22c35ebbdc7b61f76f5860794ef6044",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "BorderLink Traders",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-CI-GH-03001. Issued by BorderLink Traders."
+  },
+  {
+    "id": "2546a8cd2e0c2302",
+    "timestamp": "2026-01-22T08:00:00.000Z",
+    "hash": "0x55027f39fb9dee23a87f260972ca1e8b",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "BorderLink Traders",
+    "details": "\"Packing List\" anchored to UCR-2026-CI-GH-03001. Issued by BorderLink Traders."
+  },
+  {
+    "id": "e7a63d393f318dc7",
+    "timestamp": "2026-01-22T08:00:00.000Z",
+    "hash": "0xfcdf283fe538a5dde556119d31bc5258",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "BorderLink Traders",
+    "details": "\"Bill of Lading\" anchored to UCR-2026-CI-GH-03001. Issued by NordShip Line S.A.."
+  },
+  {
+    "id": "b9ef1611315eb6e7",
+    "timestamp": "2026-01-22T08:00:00.000Z",
+    "hash": "0x93404aa6d4e3ae97d73e19b3be1a21a9",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "BorderLink Traders",
+    "details": "\"Certificate of Origin\" anchored to UCR-2026-CI-GH-03001. Issued by APEX-CI — Ivory Coast Export Promotion Agency."
+  },
+  {
+    "id": "f32f20a72e330996",
+    "timestamp": "2026-01-22T08:00:00.000Z",
+    "hash": "0x10a3c1699b31e2a2241423101c0584b9",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "BorderLink Traders",
+    "details": "\"Export Declaration\" anchored to UCR-2026-CI-GH-03001. Issued by Direction Générale des Douanes (DGD), Ivory Coast."
+  },
+  {
+    "id": "12afe4bfa0c73148",
+    "timestamp": "2026-02-18T08:00:00.000Z",
+    "hash": "0x2a8c9766c3a237a86a819135737e4e66",
+    "type": "document",
+    "action": "Consignment Anchored",
+    "actor": "BorderLink Traders",
+    "details": "Digital twin created: UCR-2026-CI-GH-03002 — Shea Butter (Unrefined, Grade A). Anchored on the ledger."
+  },
+  {
+    "id": "daa26ae125b756c5",
+    "timestamp": "2026-02-18T08:00:00.000Z",
+    "hash": "0x81ec15e83162781c461c0c77ec96057d",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "BorderLink Traders",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-CI-GH-03002. Issued by BorderLink Traders."
+  },
+  {
+    "id": "ea895509d2fcbb5b",
+    "timestamp": "2026-02-18T08:00:00.000Z",
+    "hash": "0x716b102c7b33a0ac360221cbbb3c4604",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "BorderLink Traders",
+    "details": "\"Packing List\" anchored to UCR-2026-CI-GH-03002. Issued by BorderLink Traders."
+  },
+  {
+    "id": "ffc25a80a1073bd9",
+    "timestamp": "2026-02-18T08:00:00.000Z",
+    "hash": "0xaa5503ffee545068fb276dcc22d55330",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "BorderLink Traders",
+    "details": "\"Bill of Lading\" anchored to UCR-2026-CI-GH-03002. Issued by NordShip Line S.A.."
+  },
+  {
+    "id": "8067256289bab957",
+    "timestamp": "2026-02-18T08:00:00.000Z",
+    "hash": "0x015bc25b4b29e7960e14f3366bdc465f",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "BorderLink Traders",
+    "details": "\"Certificate of Origin\" anchored to UCR-2026-CI-GH-03002. Issued by APEX-CI — Ivory Coast Export Promotion Agency."
+  },
+  {
+    "id": "b68d71c15eb5900f",
+    "timestamp": "2026-02-18T08:00:00.000Z",
+    "hash": "0x7f2e6eca1a958e1dc5f3da68708bc778",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "BorderLink Traders",
+    "details": "\"Export Declaration\" anchored to UCR-2026-CI-GH-03002. Issued by Direction Générale des Douanes (DGD), Ivory Coast."
+  },
+  {
+    "id": "9e6b577115fb30f3",
+    "timestamp": "2026-03-11T08:00:00.000Z",
+    "hash": "0xfe74268f926ad1dcdc315336443b42db",
+    "type": "document",
+    "action": "Consignment Anchored",
+    "actor": "BorderLink Traders",
+    "details": "Digital twin created: UCR-2026-CI-GH-03003 — Hand-Woven Kente Cloth Strips. Anchored on the ledger."
+  },
+  {
+    "id": "f29840015176f63c",
+    "timestamp": "2026-03-11T08:00:00.000Z",
+    "hash": "0xd40ae8279782cf5da369cde3cdb35ac1",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "BorderLink Traders",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-CI-GH-03003. Issued by BorderLink Traders."
+  },
+  {
+    "id": "356811f2ffa3583b",
+    "timestamp": "2026-03-11T08:00:00.000Z",
+    "hash": "0xc6eb8770380a70a577b0c361af9f3d3e",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "BorderLink Traders",
+    "details": "\"Packing List\" anchored to UCR-2026-CI-GH-03003. Issued by BorderLink Traders."
+  },
+  {
+    "id": "2fad21d5a6148261",
+    "timestamp": "2026-03-11T08:00:00.000Z",
+    "hash": "0xc8575067521ed4842d50f08943d3ea66",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "BorderLink Traders",
+    "details": "\"Bill of Lading\" anchored to UCR-2026-CI-GH-03003. Issued by NordShip Line S.A.."
+  },
+  {
+    "id": "51d6d57150630136",
+    "timestamp": "2026-03-11T08:00:00.000Z",
+    "hash": "0x7aa8a75cd675332a0a5cd3ff8a3630b6",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "BorderLink Traders",
+    "details": "\"Certificate of Origin\" anchored to UCR-2026-CI-GH-03003. Issued by APEX-CI — Ivory Coast Export Promotion Agency."
+  },
+  {
+    "id": "eb436a1baed23691",
+    "timestamp": "2026-03-11T08:00:00.000Z",
+    "hash": "0x310ecc0d9ddd3a232ec867fd22cb4c73",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "BorderLink Traders",
+    "details": "\"Export Declaration\" anchored to UCR-2026-CI-GH-03003. Issued by Direction Générale des Douanes (DGD), Ivory Coast."
+  },
+  {
+    "id": "feac1d35b520922e",
+    "timestamp": "2026-02-22T08:00:00.000Z",
+    "hash": "0x652ed78f9af13a6ad07079864aa07531",
+    "type": "document",
+    "action": "Consignment Anchored",
+    "actor": "Western Industrial Exports Ltd",
+    "details": "Digital twin created: UCR-2026-NG-KE-04001 — Industrial Machinery Parts (Mixed). Anchored on the ledger."
+  },
+  {
+    "id": "195f376c01dbd433",
+    "timestamp": "2026-02-22T08:00:00.000Z",
+    "hash": "0xa0f2e25dce5514186f55f96975161e65",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Western Industrial Exports Ltd",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-NG-KE-04001. Issued by TransRoute Logistics Ltd."
+  },
+  {
+    "id": "21461fa2203dbace",
+    "timestamp": "2026-02-22T08:00:00.000Z",
+    "hash": "0xd2118eca501346f35b3a78dcbf791b27",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Western Industrial Exports Ltd",
+    "details": "\"Packing List\" anchored to UCR-2026-NG-KE-04001. Issued by TransRoute Logistics Ltd."
+  },
+  {
+    "id": "9885bf2caf489e09",
+    "timestamp": "2026-02-22T08:00:00.000Z",
+    "hash": "0xc72501f4aef9bcfd3a0a59ed69b399da",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Western Industrial Exports Ltd",
+    "details": "\"Bill of Lading\" anchored to UCR-2026-NG-KE-04001. Issued by NordShip Line S.A.."
+  },
+  {
+    "id": "a37f82c63c1c2b83",
+    "timestamp": "2026-02-22T08:00:00.000Z",
+    "hash": "0xdc1332efa15f30743e51eaf58fa0f4f3",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Western Industrial Exports Ltd",
+    "details": "\"Certificate of Origin\" anchored to UCR-2026-NG-KE-04001. Issued by NEPC — Nigeria Export Promotion Council."
+  },
+  {
+    "id": "7f71861ef27ea78b",
+    "timestamp": "2026-02-22T08:00:00.000Z",
+    "hash": "0xe0d2390662e1192fd324ccd3e5121579",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Western Industrial Exports Ltd",
+    "details": "\"Export Declaration\" anchored to UCR-2026-NG-KE-04001. Issued by Nigeria Customs."
+  },
+  {
+    "id": "9e697786bb7e4519",
+    "timestamp": "2026-03-09T08:00:00.000Z",
+    "hash": "0x0b0dc86ccb838d767e0e70efb5c1e714",
+    "type": "document",
+    "action": "Consignment Anchored",
+    "actor": "Ghana Cocoa Processing Co.",
+    "details": "Digital twin created: UCR-2026-GH-ZA-04002 — Cocoa Powder (Alkalized, Bulk). Anchored on the ledger."
+  },
+  {
+    "id": "a0a3a8fd2c270c18",
+    "timestamp": "2026-03-09T08:00:00.000Z",
+    "hash": "0x39a1971d32dc9185382816f9f9b017dd",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Ghana Cocoa Processing Co.",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-GH-ZA-04002. Issued by TransRoute Logistics Ltd."
+  },
+  {
+    "id": "a08fc25aca731de3",
+    "timestamp": "2026-03-09T08:00:00.000Z",
+    "hash": "0x5ff9b07bef953e1888c7e7dc25564829",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Ghana Cocoa Processing Co.",
+    "details": "\"Packing List\" anchored to UCR-2026-GH-ZA-04002. Issued by TransRoute Logistics Ltd."
+  },
+  {
+    "id": "b16b39852e17c674",
+    "timestamp": "2026-03-09T08:00:00.000Z",
+    "hash": "0x6869703eb8b524fd9afa9ddf0fec040e",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Ghana Cocoa Processing Co.",
+    "details": "\"Bill of Lading\" anchored to UCR-2026-GH-ZA-04002. Issued by NordShip Line S.A.."
+  },
+  {
+    "id": "fa2bf79694fcac97",
+    "timestamp": "2026-03-09T08:00:00.000Z",
+    "hash": "0x0d3dcd9d45498fe31ad61a59003aa686",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Ghana Cocoa Processing Co.",
+    "details": "\"Certificate of Origin\" anchored to UCR-2026-GH-ZA-04002. Issued by Ghana Export Promotion Authority (GEPA)."
+  },
+  {
+    "id": "1ba877a501860a02",
+    "timestamp": "2026-03-09T08:00:00.000Z",
+    "hash": "0x0730d96c834be225fabd6cb3b68cc862",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Ghana Cocoa Processing Co.",
+    "details": "\"Export Declaration\" anchored to UCR-2026-GH-ZA-04002. Issued by Ghana Revenue Authority (GRA)."
+  },
+  {
+    "id": "f75259a4223e5032",
+    "timestamp": "2026-02-18T09:00:00.000Z",
+    "hash": "0x15f3a342140dccdc7a1fe9cab868f8e9",
+    "type": "finance",
+    "action": "Letter of Credit Issued",
+    "actor": "Atlas World Logistics",
+    "details": "LC LC-2026-ATW-00101 issued for UCR-2026-MA-NG-00101. Amount: USD 340,000. Status: Confirmed."
+  },
+  {
+    "id": "4831154d08965644",
+    "timestamp": "2026-02-20T11:30:00.000Z",
+    "hash": "0x770200b30c45156ec642060598e5fe6d",
+    "type": "finance",
+    "action": "Letter of Credit Issued",
+    "actor": "Atlas World Logistics",
+    "details": "LC LC-2026-ATW-00102 issued for UCR-2026-MA-NG-00102. Amount: EUR 288,000. Status: Issued."
+  },
+  {
+    "id": "b3cb40a202fa40a7",
+    "timestamp": "2026-02-18T09:00:00.000Z",
+    "hash": "0x9c3f443d984c37d0e4ce6c8790948d52",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Nortex Minerals S.A.",
+    "details": "Contract SC-2026-ATW-0101 deployed for UCR-2026-MA-NG-00101. 3 release conditions. Hash: 0x52381089f2fb0ccd463b3af0d8968b9b."
+  },
+  {
+    "id": "6786c19350099662",
+    "timestamp": "2026-02-20T11:30:00.000Z",
+    "hash": "0xb05bbdc44b238fbdc51ed17064b1715e",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Nortex Minerals S.A.",
+    "details": "Contract SC-2026-ATW-0102 deployed for UCR-2026-MA-NG-00102. 2 release conditions. Hash: 0x9f16d663ee060f9fc03668d77d345998."
+  },
+  {
+    "id": "5e9cbf470cc1d05b",
+    "timestamp": "2026-01-15T10:00:00.000Z",
+    "hash": "0xb64aae985e19b8efab7deddb6979c4a0",
+    "type": "finance",
+    "action": "Payment Recorded",
+    "actor": "Vestline Apparel Ltd",
+    "details": "Payment INV-2026-LTL-01001 created for UCR-2026-NG-KE-01001. USD 58,800. Overdue — 43 days. Working capital strained."
+  },
+  {
+    "id": "9b28e31bddaf1404",
+    "timestamp": "2026-02-10T09:30:00.000Z",
+    "hash": "0x827e66757531318540f484dd981a7e7a",
+    "type": "finance",
+    "action": "Payment Recorded",
+    "actor": "Vestline Apparel Ltd",
+    "details": "Payment INV-2026-LTL-01002 created for UCR-2026-NG-KE-01002. USD 43,200. Unpaid. Awaiting LC from StanbicBank."
+  },
+  {
+    "id": "e2fd9a69a412186f",
+    "timestamp": "2026-02-10T09:30:00.000Z",
+    "hash": "0x1c26bfa2ca126082603bd700a17d25a6",
+    "type": "finance",
+    "action": "Letter of Credit Issued",
+    "actor": "Meridian Bank Trade Finance",
+    "details": "LC LC-2026-STB-01002 issued for UCR-2026-NG-KE-01002. Amount: USD 43,200. Issuing: Meridian Bank Trade Finance."
+  },
+  {
+    "id": "3665c4f7edd7adb3",
+    "timestamp": "2026-02-10T09:30:00.000Z",
+    "hash": "0x404de5e3747c20dcc4f5a311b11e6983",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Meridian Bank Trade Finance",
+    "details": "Contract SC-2026-STB-01002 deployed for UCR-2026-NG-KE-01002. 3 release conditions. Hash: 0xd2de1552555cb87ab36127e3127df525."
+  },
+  {
+    "id": "9be2c2e189495fdb",
+    "timestamp": "2026-05-07T15:20:55.751Z",
+    "hash": "0xa3df9fe9e9ff99bf36788f26a758c8d1",
+    "type": "identity",
+    "action": "DID Issued",
+    "actor": "Nortex Minerals S.A.",
+    "details": "DID created for Nortex Minerals S.A. (RC-CASA-2018-042891). Attested by OMPIC – Office Marocain de la Propriété Industrielle et Commerciale. Anchored on the ledger.",
+    "did": "did:iota:adapt:1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d",
+    "attestedBy": "OMPIC – Office Marocain de la Propriété Industrielle et Commerciale"
+  },
+  {
+    "id": "bb01402284472ae4",
+    "timestamp": "2026-04-13T15:20:55.751Z",
+    "hash": "0x6c92dbbd00206ca8c3b6d93ba4e2df4e",
+    "type": "identity",
+    "action": "DID Issued",
+    "actor": "Vestline Apparel Ltd",
+    "details": "DID created for Vestline Apparel Ltd (RC-2019-NG-047821). Attested by Corporate Affairs Commission (CAC), Nigeria. Anchored on the ledger.",
+    "did": "did:iota:adapt:9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d",
+    "attestedBy": "Corporate Affairs Commission (CAC), Nigeria"
+  },
+  {
+    "id": "867eb9ae8520cd01",
+    "timestamp": "2026-03-16T15:20:55.751Z",
+    "hash": "0x90222940622c905b6943ad4717ed85f9",
+    "type": "identity",
+    "action": "DID Issued",
+    "actor": "Highland Growers Cooperative",
+    "details": "DID created for Highland Growers Cooperative (REG-TZ-2017-089234). Attested by BRELA – Tanzania Business Registrations & Licensing Agency. Anchored on the ledger.",
+    "did": "did:iota:adapt:0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e",
+    "attestedBy": "BRELA – Tanzania Business Registrations & Licensing Agency"
+  },
+  {
+    "id": "6e2f6b63fa9391c6",
+    "timestamp": "2026-05-14T15:20:55.751Z",
+    "hash": "0x386bf9f0b438268a4012cc7f5d38d483",
+    "type": "identity",
+    "action": "DID Issued",
+    "actor": "Meridian Bank Trade Finance",
+    "details": "DID created for Meridian Bank Trade Finance (RC-2008-NG-189034). Attested by Corporate Affairs Commission (CAC), Nigeria. Anchored on the ledger.",
+    "did": "did:iota:adapt:c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8",
+    "attestedBy": "Corporate Affairs Commission (CAC), Nigeria"
+  },
+  {
+    "id": "56396b4bfc647c26",
+    "timestamp": "2026-03-21T15:20:55.751Z",
+    "hash": "0x9c79ec492c5d0a5f32a8c9b216e97be8",
+    "type": "identity",
+    "action": "DID Issued",
+    "actor": "TransRoute Logistics Ltd",
+    "details": "DID created for TransRoute Logistics Ltd (RC-2015-NG-293847). Attested by Corporate Affairs Commission (CAC), Nigeria. Anchored on the ledger.",
+    "did": "did:iota:adapt:d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9",
+    "attestedBy": "Corporate Affairs Commission (CAC), Nigeria"
+  },
+  {
+    "id": "944e256cf60bf989",
+    "timestamp": "2026-05-10T15:20:55.751Z",
+    "hash": "0x6389d8d206c0e3eb660450481306f8f7",
+    "type": "identity",
+    "action": "DID Issued",
+    "actor": "Egypt Customs Authority",
+    "details": "DID created for Egypt Customs Authority (GOV-EG-CUSTOMS-001). Attested by General Authority for Investment (GAFI), Egypt. Anchored on the ledger.",
+    "did": "did:iota:adapt:e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0",
+    "attestedBy": "General Authority for Investment (GAFI), Egypt"
+  },
+  {
+    "id": "810ed0bf4c7a8348",
+    "timestamp": "2026-05-08T15:20:55.751Z",
+    "hash": "0x7e02066beb474e79e8c794af34357fae",
+    "type": "identity",
+    "action": "DID Issued",
+    "actor": "Central Finance Regulator",
+    "details": "DID created for Central Finance Regulator (GOV-NG-CFR-001). Attested by Federal Government of Nigeria. Anchored on the ledger.",
+    "did": "did:iota:adapt:f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1",
+    "attestedBy": "Federal Government of Nigeria"
+  },
+  {
+    "id": "d9130f013a2fff23",
+    "timestamp": "2026-02-18T09:00:00.000Z",
+    "hash": "0xdef30fc770b4569d5db7a961e959de75",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Nortex Minerals S.A.",
+    "details": "Contract SC-2026-ATW-0101 deployed for UCR-2026-MA-NG-00101. 3 release conditions. Hash: 0xe8e88b5c25b811f47bca6b764fe0c152."
+  },
+  {
+    "id": "de7ba5215d8701a2",
+    "timestamp": "2026-02-20T11:30:00.000Z",
+    "hash": "0x0e4f8ec9b5664a770d831b16724a0a66",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Nortex Minerals S.A.",
+    "details": "Contract SC-2026-ATW-0102 deployed for UCR-2026-MA-NG-00102. 2 release conditions. Hash: 0x467aa82592754645ac02ee8db5716656."
+  },
+  {
+    "id": "bdbd4afcd01e460d",
+    "timestamp": "2026-02-10T09:30:00.000Z",
+    "hash": "0xb359b1de7130c0e9cb6e14961ea9cde3",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Meridian Bank Trade Finance",
+    "details": "Contract SC-2026-STB-01002 deployed for UCR-2026-NG-KE-01002. 3 release conditions. Hash: 0x5d839a4776403a85dcf80a61d25cca22."
+  },
+  {
+    "id": "982353d33529444f",
+    "timestamp": "2026-02-18T09:00:00.000Z",
+    "hash": "0x10d6e2313251b2a2acf409f71dd288aa",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Nortex Minerals S.A.",
+    "details": "Contract SC-2026-ATW-0101 deployed for UCR-2026-MA-NG-00101. 3 release conditions. Hash: 0xfdcdab7f6a1460a09434974c19ace319."
+  },
+  {
+    "id": "aec26db9baab88e0",
+    "timestamp": "2026-02-20T11:30:00.000Z",
+    "hash": "0xee231f312ea0d3715f96f07fbfb08c81",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Nortex Minerals S.A.",
+    "details": "Contract SC-2026-ATW-0102 deployed for UCR-2026-MA-NG-00102. 2 release conditions. Hash: 0x3bca90595155c66b1433e5aba8bfa6b4."
+  },
+  {
+    "id": "505bc286db5a59cb",
+    "timestamp": "2026-02-10T09:30:00.000Z",
+    "hash": "0xe0db551683aeef52ce0f07377aa0479a",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Meridian Bank Trade Finance",
+    "details": "Contract SC-2026-STB-01002 deployed for UCR-2026-NG-KE-01002. 3 release conditions. Hash: 0xf0f66de792125669dfdfcbbc1f7ec861."
+  },
+  {
+    "id": "44d8341bbf8c06b0",
+    "timestamp": "2026-02-18T09:00:00.000Z",
+    "hash": "0x96b7be8836bc50727c941d1baa4a3c28",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Nortex Minerals S.A.",
+    "details": "Contract SC-2026-ATW-0101 deployed for UCR-2026-MA-NG-00101. 3 release conditions. Hash: 0x98918d0d8586168d78f27ef343c0b68e."
+  },
+  {
+    "id": "59ea41d367c5743c",
+    "timestamp": "2026-02-20T11:30:00.000Z",
+    "hash": "0x8752d8f1114a5d44016c48250f741c64",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Nortex Minerals S.A.",
+    "details": "Contract SC-2026-ATW-0102 deployed for UCR-2026-MA-NG-00102. 2 release conditions. Hash: 0x2cb487fcaba726946579d5ebf861337a."
+  },
+  {
+    "id": "f7cc2a95a6c8c0cc",
+    "timestamp": "2026-02-10T09:30:00.000Z",
+    "hash": "0x10d1e7c91787ff3e664e3d34a7db730d",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Meridian Bank Trade Finance",
+    "details": "Contract SC-2026-STB-01002 deployed for UCR-2026-NG-KE-01002. 3 release conditions. Hash: 0x83e7ea35c9a1b399a583ae80987d0e5c."
+  },
+  {
+    "id": "7a23f6f269f8adb7",
+    "timestamp": "2026-02-18T09:00:00.000Z",
+    "hash": "0x42010de8185218cec576796ba5d80738",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Nortex Minerals S.A.",
+    "details": "Contract SC-2026-ATW-0101 deployed for UCR-2026-MA-NG-00101. 3 release conditions. Hash: 0x5603726fec89223670fa6cc7a6410b83."
+  },
+  {
+    "id": "a8b3259566f067c2",
+    "timestamp": "2026-02-20T11:30:00.000Z",
+    "hash": "0x1ecbac957149a5e5e8f199dcf59c107f",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Nortex Minerals S.A.",
+    "details": "Contract SC-2026-ATW-0102 deployed for UCR-2026-MA-NG-00102. 2 release conditions. Hash: 0x70c85fb5bcb2107de533baa2607ac5bd."
+  },
+  {
+    "id": "bb5468ba9e8a0738",
+    "timestamp": "2026-02-10T09:30:00.000Z",
+    "hash": "0x724c82b60099653aa82c54656a01d072",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Meridian Bank Trade Finance",
+    "details": "Contract SC-2026-STB-01002 deployed for UCR-2026-NG-KE-01002. 3 release conditions. Hash: 0x732b1f99ad09abcd6022e254b4d159b7."
+  },
+  {
+    "id": "2eabc4c8269bd8bd",
+    "timestamp": "2026-02-18T09:00:00.000Z",
+    "hash": "0x16b4e1931b0372c800bfc5ac9079d119",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Nortex Minerals S.A.",
+    "details": "Contract SC-2026-ATW-0101 deployed for UCR-2026-MA-NG-00101. 3 release conditions. Hash: 0x38ec53338cde5fa09c823ee2d1953308."
+  },
+  {
+    "id": "ca95ba9b48ee6b03",
+    "timestamp": "2026-02-20T11:30:00.000Z",
+    "hash": "0x60d6c550c25017b480bef12f9e7ef348",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Nortex Minerals S.A.",
+    "details": "Contract SC-2026-ATW-0102 deployed for UCR-2026-MA-NG-00102. 2 release conditions. Hash: 0x5376f1fb7f28d40b481d6b7a8626087a."
+  },
+  {
+    "id": "4fb16a5efc2908bf",
+    "timestamp": "2026-02-10T09:30:00.000Z",
+    "hash": "0xd12ddfe1f97f44d81ca478e7454a72cd",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Meridian Bank Trade Finance",
+    "details": "Contract SC-2026-STB-01002 deployed for UCR-2026-NG-KE-01002. 3 release conditions. Hash: 0x2463080bbbb614dace7a1d1cc090bccd."
+  },
+  {
+    "id": "cad84f4e7053fde7",
+    "timestamp": "2026-02-23T12:18:05.348Z",
+    "hash": "0x616614dd422b8a20e07cdcc35faa48a5",
+    "type": "identity",
+    "action": "DID Issued",
+    "actor": "Nortex Minerals S.A.",
+    "details": "DID created for Nortex Minerals S.A. (RC-CASA-2018-042891). Attested by Morocco National Registry. Anchored on the ledger.",
+    "did": "did:iota:adapt:1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d",
+    "attestedBy": "Morocco National Registry"
+  },
+  {
+    "id": "fa698daf24d036a6",
+    "timestamp": "2026-04-16T12:18:05.348Z",
+    "hash": "0x4959ce1d89f3267fd5c7ab8fcb233c88",
+    "type": "identity",
+    "action": "DID Issued",
+    "actor": "Financier 1",
+    "details": "DID created for Financier 1 (RC-2020-NG-071182). Attested by Nigeria National Registry. Anchored on the ledger.",
+    "did": "did:iota:adapt:7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b",
+    "attestedBy": "Nigeria National Registry"
+  },
+  {
+    "id": "827fb44d0935d669",
+    "timestamp": "2026-04-23T12:18:05.348Z",
+    "hash": "0xa9496196317870b99ab7b008845aacf2",
+    "type": "identity",
+    "action": "DID Issued",
+    "actor": "Financier 2",
+    "details": "DID created for Financier 2 (RC-2020-NG-071183). Attested by Nigeria National Registry. Anchored on the ledger.",
+    "did": "did:iota:adapt:8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c",
+    "attestedBy": "Nigeria National Registry"
+  },
+  {
+    "id": "ba85f9ed565aa7be",
+    "timestamp": "2026-03-16T12:18:05.348Z",
+    "hash": "0xf029e754d755043b073c012e7fa6d134",
+    "type": "identity",
+    "action": "DID Issued",
+    "actor": "Vestline Apparel Ltd",
+    "details": "DID created for Vestline Apparel Ltd (RC-2019-NG-047821). Attested by Nigeria National Registry. Anchored on the ledger.",
+    "did": "did:iota:adapt:9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d",
+    "attestedBy": "Nigeria National Registry"
+  },
+  {
+    "id": "91120d3abfe920c7",
+    "timestamp": "2026-03-25T12:18:05.348Z",
+    "hash": "0xc9f148eae7113ee465f6bc8937492825",
+    "type": "identity",
+    "action": "DID Issued",
+    "actor": "Meridian Bank Trade Finance",
+    "details": "DID created for Meridian Bank Trade Finance (RC-2008-NG-189034). Attested by Nigeria National Registry. Anchored on the ledger.",
+    "did": "did:iota:adapt:c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8",
+    "attestedBy": "Nigeria National Registry"
+  },
+  {
+    "id": "ac2dc11fd388f973",
+    "timestamp": "2026-04-30T12:18:05.348Z",
+    "hash": "0x4328edf378b54623a3b8fcd1a87fbcfa",
+    "type": "identity",
+    "action": "DID Issued",
+    "actor": "TransRoute Logistics Ltd",
+    "details": "DID created for TransRoute Logistics Ltd (RC-2015-NG-293847). Attested by Nigeria National Registry. Anchored on the ledger.",
+    "did": "did:iota:adapt:d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9",
+    "attestedBy": "Nigeria National Registry"
+  },
+  {
+    "id": "a6e37a49c4b24f12",
+    "timestamp": "2026-02-18T09:00:00.000Z",
+    "hash": "0xabc3280f6713fa5903854fe3d1a20ef9",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Nortex Minerals S.A.",
+    "details": "Contract SC-2026-ATW-0101 deployed for UCR-2026-MA-NG-00101. 3 release conditions. Hash: 0x1a49cf50329bb671ca5917aa915f5be6."
+  },
+  {
+    "id": "6cb9a567ed6023ab",
+    "timestamp": "2026-02-20T11:30:00.000Z",
+    "hash": "0x14f1c27b4a4680cdaf3633d21f50c63c",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Nortex Minerals S.A.",
+    "details": "Contract SC-2026-ATW-0102 deployed for UCR-2026-MA-NG-00102. 2 release conditions. Hash: 0xa1723eaab4457b42699017deb0a74135."
+  },
+  {
+    "id": "912e5d9221b167a3",
+    "timestamp": "2026-02-10T09:30:00.000Z",
+    "hash": "0xdf14720f68353b9127e0f05cee315871",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Meridian Bank Trade Finance",
+    "details": "Contract SC-2026-STB-01002 deployed for UCR-2026-NG-KE-01002. 3 release conditions. Hash: 0xd9b531a7fe19eef5ee2b5f1ab0a76ec6."
+  },
+  {
+    "id": "eae720e97558f658",
+    "timestamp": "2026-02-18T09:00:00.000Z",
+    "hash": "0x0d05dcc1c5ba43877aa32a75fc30d7cb",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Nortex Minerals S.A.",
+    "details": "Contract SC-2026-ATW-0101 deployed for UCR-2026-MA-NG-00101. 3 release conditions. Hash: 0x55b4c0abaef1aeca63daf2f2a41d9af4."
+  },
+  {
+    "id": "c2335f7458e3bc14",
+    "timestamp": "2026-02-20T11:30:00.000Z",
+    "hash": "0x4251da6dad986b10a8dd3e9802b3bc75",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Nortex Minerals S.A.",
+    "details": "Contract SC-2026-ATW-0102 deployed for UCR-2026-MA-NG-00102. 2 release conditions. Hash: 0xf19e70f911bb8ea54a8a181b6bc11eff."
+  },
+  {
+    "id": "016992d79351c387",
+    "timestamp": "2026-02-10T09:30:00.000Z",
+    "hash": "0xfb459fe42cd0b8b8d4d2eba820fdb47b",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Meridian Bank Trade Finance",
+    "details": "Contract SC-2026-STB-01002 deployed for UCR-2026-NG-KE-01002. 3 release conditions. Hash: 0xf32367606e7f82ded6e621f2a2ec278c."
+  },
+  {
+    "id": "e9fa7929891aa4cd",
+    "timestamp": "2026-02-18T09:00:00.000Z",
+    "hash": "0x2102a2d28f98ed9227d2c9495a45bf1b",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Nortex Minerals S.A.",
+    "details": "Contract SC-2026-ATW-0101 deployed for UCR-2026-MA-NG-00101. 3 release conditions. Hash: 0xf6eaa76f2473a016d04ecf535c353d75."
+  },
+  {
+    "id": "6da9c01458089b03",
+    "timestamp": "2026-02-20T11:30:00.000Z",
+    "hash": "0x2367bea2b338f0aebc4b1c0eb7808c61",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Nortex Minerals S.A.",
+    "details": "Contract SC-2026-ATW-0102 deployed for UCR-2026-MA-NG-00102. 2 release conditions. Hash: 0x84e9ee32b98cf7351dfb53c9688975cd."
+  },
+  {
+    "id": "0d09a9534d20053c",
+    "timestamp": "2026-02-10T09:30:00.000Z",
+    "hash": "0x60e1197e7ba50aeee1888ef944de6bff",
+    "type": "finance",
+    "action": "Smart Contract Deployed",
+    "actor": "Meridian Bank Trade Finance",
+    "details": "Contract SC-2026-STB-01002 deployed for UCR-2026-NG-KE-01002. 3 release conditions. Hash: 0xf185e65f5a32339b4c133c19096ce767."
   }
 ]

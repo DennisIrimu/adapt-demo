@@ -326,5 +326,312 @@
     "details": "DID created for TradeLink International Ltd (RC-2017-NG-142567). Attested by Corporate Affairs Commission (CAC), Nigeria. Anchored on the ledger.",
     "did": "did:iota:adapt:6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c",
     "attestedBy": "Corporate Affairs Commission (CAC), Nigeria"
+  },
+  {
+    "id": "485fc3ebc9b00701",
+    "timestamp": "2026-02-25T08:00:00.000Z",
+    "hash": "0x41a63bd9246ab29dd3a92c16b6f03bcd",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "AgriInput Supplies Ltd",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-NG-MA-00201. Issued by AgriInput Supplies Ltd."
+  },
+  {
+    "id": "2513c23a1866448f",
+    "timestamp": "2026-02-25T08:00:00.000Z",
+    "hash": "0xd17bc9109ece8f8cff91efec6104720c",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "AgriInput Supplies Ltd",
+    "details": "\"Packing List\" anchored to UCR-2026-NG-MA-00201. Issued by AgriInput Supplies Ltd."
+  },
+  {
+    "id": "fcd371ad8aaff8ab",
+    "timestamp": "2026-03-04T08:00:00.000Z",
+    "hash": "0xee987d6135081507b7f84d895b3c742d",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "HorizonTrade International",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-NG-MA-00202. Issued by HorizonTrade International."
+  },
+  {
+    "id": "2d250e8e19c7f6cb",
+    "timestamp": "2026-03-04T08:00:00.000Z",
+    "hash": "0x203db5225eedc967add9566178a5a64c",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "HorizonTrade International",
+    "details": "\"Packing List\" anchored to UCR-2026-NG-MA-00202. Issued by HorizonTrade International."
+  },
+  {
+    "id": "0dbeccef404e4d2c",
+    "timestamp": "2026-03-10T08:00:00.000Z",
+    "hash": "0xf8f21746a7c6deebd7905b58c03d2a26",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "AgriInput Supplies Ltd",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-NG-MA-00203. Issued by AgriInput Supplies Ltd."
+  },
+  {
+    "id": "46ae87501f48e25c",
+    "timestamp": "2026-03-10T08:00:00.000Z",
+    "hash": "0x7e8f2336357bbef9a5a9023f324a6016",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "AgriInput Supplies Ltd",
+    "details": "\"Packing List\" anchored to UCR-2026-NG-MA-00203. Issued by AgriInput Supplies Ltd."
+  },
+  {
+    "id": "45161912408064d9",
+    "timestamp": "2026-03-17T08:00:00.000Z",
+    "hash": "0x7d933f09387ae80cb96ba60122887596",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "HorizonTrade International",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-NG-MA-00204. Issued by HorizonTrade International."
+  },
+  {
+    "id": "4dc14509cd337d64",
+    "timestamp": "2026-03-17T08:00:00.000Z",
+    "hash": "0x96125ae90019cc0c1d9db1647c145b74",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "HorizonTrade International",
+    "details": "\"Packing List\" anchored to UCR-2026-NG-MA-00204. Issued by HorizonTrade International."
+  },
+  {
+    "id": "7bb5a8637bf9fbb9",
+    "timestamp": "2026-02-12T08:00:00.000Z",
+    "hash": "0x9680670d4ab542115899fcb1c284f162",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "AgriInput Supplies Ltd",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-NG-MA-E002. Issued by AgriInput Supplies Ltd."
+  },
+  {
+    "id": "10d1bd4c720fd5ae",
+    "timestamp": "2026-02-12T08:00:00.000Z",
+    "hash": "0x54dffeb2e749ee6af188c2148615a40f",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "AgriInput Supplies Ltd",
+    "details": "\"Packing List\" anchored to UCR-2026-NG-MA-E002. Issued by AgriInput Supplies Ltd."
+  },
+  {
+    "id": "070c47b6ef628771",
+    "timestamp": "2026-02-14T08:00:00.000Z",
+    "hash": "0x87f35aa6ead96793ea5a35a23ff17948",
+    "type": "document",
+    "action": "Consignment Anchored",
+    "actor": "Cape Town Consumer Brands Ltd",
+    "details": "Digital twin created: UCR-2026-ZA-KE-05001 — Household Cleaning Products (Bulk FMCG). Anchored on the ledger."
+  },
+  {
+    "id": "2109911e0d84b401",
+    "timestamp": "2026-02-14T08:00:00.000Z",
+    "hash": "0xf0a8054fc6bf319a9eae36f81e361234",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Cape Town Consumer Brands Ltd",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-ZA-KE-05001. Issued by Metro Consumer Goods Ltd."
+  },
+  {
+    "id": "a2636cb73cbc79e9",
+    "timestamp": "2026-02-14T08:00:00.000Z",
+    "hash": "0x1d3f002679b0e6d0f0707d725b1d3989",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Cape Town Consumer Brands Ltd",
+    "details": "\"Packing List\" anchored to UCR-2026-ZA-KE-05001. Issued by Metro Consumer Goods Ltd."
+  },
+  {
+    "id": "6313e65bc433f095",
+    "timestamp": "2026-02-14T08:00:00.000Z",
+    "hash": "0x5aa082403dbc543a4d07da2bd4bbaeea",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Cape Town Consumer Brands Ltd",
+    "details": "\"Bill of Lading\" anchored to UCR-2026-ZA-KE-05001. Issued by NordShip Line S.A.."
+  },
+  {
+    "id": "48b2182cd96dafa2",
+    "timestamp": "2026-02-14T08:00:00.000Z",
+    "hash": "0xcc3da2d00143103e540f7d7ddbc1f5c6",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Cape Town Consumer Brands Ltd",
+    "details": "\"Certificate of Origin\" anchored to UCR-2026-ZA-KE-05001. Issued by International Trade Administration Commission (ITAC)."
+  },
+  {
+    "id": "6f96f3eb2bfc2741",
+    "timestamp": "2026-02-14T08:00:00.000Z",
+    "hash": "0xc9893e1a61236c3515e603481dc937ee",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Cape Town Consumer Brands Ltd",
+    "details": "\"Export Declaration\" anchored to UCR-2026-ZA-KE-05001. Issued by South African Revenue Service (SARS)."
+  },
+  {
+    "id": "a828fe5bc26ea06e",
+    "timestamp": "2026-03-01T08:00:00.000Z",
+    "hash": "0x7c26745b89bf7e7c0317149f6898330b",
+    "type": "document",
+    "action": "Consignment Anchored",
+    "actor": "Cairo Food Exporters S.A.E.",
+    "details": "Digital twin created: UCR-2026-EG-KE-05002 — Processed Food — Canned Tomatoes (Mixed Case). Anchored on the ledger."
+  },
+  {
+    "id": "9a37ebbf836fd0ff",
+    "timestamp": "2026-03-01T08:00:00.000Z",
+    "hash": "0x9e76334467ffd2f31ce950122e3ce623",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Cairo Food Exporters S.A.E.",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-EG-KE-05002. Issued by Metro Consumer Goods Ltd."
+  },
+  {
+    "id": "ae4b564b28881b00",
+    "timestamp": "2026-03-01T08:00:00.000Z",
+    "hash": "0x54df34cd462b84313b1fa21d2c533dd3",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Cairo Food Exporters S.A.E.",
+    "details": "\"Packing List\" anchored to UCR-2026-EG-KE-05002. Issued by Metro Consumer Goods Ltd."
+  },
+  {
+    "id": "10dfda9495e6082b",
+    "timestamp": "2026-03-01T08:00:00.000Z",
+    "hash": "0xb55237423892bf894ed010fde30050d4",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Cairo Food Exporters S.A.E.",
+    "details": "\"Bill of Lading\" anchored to UCR-2026-EG-KE-05002. Issued by NordShip Line S.A.."
+  },
+  {
+    "id": "156f1a2cf9bb5a1e",
+    "timestamp": "2026-03-01T08:00:00.000Z",
+    "hash": "0xa32fa0d4644edcde2f954ccb81413377",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Cairo Food Exporters S.A.E.",
+    "details": "\"Certificate of Origin\" anchored to UCR-2026-EG-KE-05002. Issued by Egyptian Export Promotion Center (EEPC)."
+  },
+  {
+    "id": "24982ec4055bf93a",
+    "timestamp": "2026-03-01T08:00:00.000Z",
+    "hash": "0xfe6be45af4b98018ffa63fdf55aeb232",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Cairo Food Exporters S.A.E.",
+    "details": "\"Export Declaration\" anchored to UCR-2026-EG-KE-05002. Issued by Egyptian Customs Authority."
+  },
+  {
+    "id": "e7181a06f9a7994c",
+    "timestamp": "2026-03-20T08:00:00.000Z",
+    "hash": "0x9c654c20f7bf2231cd8935016472a5c7",
+    "type": "document",
+    "action": "Consignment Anchored",
+    "actor": "Lagos Beauty Exports Ltd",
+    "details": "Digital twin created: UCR-2026-NG-KE-05003 — Personal Care Products — Shea Butter Cosmetics. Anchored on the ledger."
+  },
+  {
+    "id": "12fe0f1737498b60",
+    "timestamp": "2026-03-20T08:00:00.000Z",
+    "hash": "0xce2891fe5c586e39c6f378f435744527",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Lagos Beauty Exports Ltd",
+    "details": "\"Commercial Invoice\" anchored to UCR-2026-NG-KE-05003. Issued by Metro Consumer Goods Ltd."
+  },
+  {
+    "id": "136511e759cf0e4d",
+    "timestamp": "2026-03-20T08:00:00.000Z",
+    "hash": "0x607de076a4d1e84bc0ffbe608ce997b0",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Lagos Beauty Exports Ltd",
+    "details": "\"Packing List\" anchored to UCR-2026-NG-KE-05003. Issued by Metro Consumer Goods Ltd."
+  },
+  {
+    "id": "6895ae5f6d3b4a81",
+    "timestamp": "2026-03-20T08:00:00.000Z",
+    "hash": "0xd3a7c0066ebcd5b61d19c7989a12ca9d",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Lagos Beauty Exports Ltd",
+    "details": "\"Bill of Lading\" anchored to UCR-2026-NG-KE-05003. Issued by NordShip Line S.A.."
+  },
+  {
+    "id": "ff28d3cc7566e192",
+    "timestamp": "2026-03-20T08:00:00.000Z",
+    "hash": "0xf594aaf689b0f1733f72534e7fe07de3",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Lagos Beauty Exports Ltd",
+    "details": "\"Certificate of Origin\" anchored to UCR-2026-NG-KE-05003. Issued by NEPC — Nigeria Export Promotion Council."
+  },
+  {
+    "id": "7d99fc3d5aef61f3",
+    "timestamp": "2026-03-20T08:00:00.000Z",
+    "hash": "0x59eb661d3506566dad172fb5eeea63aa",
+    "type": "document",
+    "action": "Document Anchored",
+    "actor": "Lagos Beauty Exports Ltd",
+    "details": "\"Export Declaration\" anchored to UCR-2026-NG-KE-05003. Issued by Nigeria Customs."
+  },
+  {
+    "id": "32e7db8c6dc37803",
+    "timestamp": "2026-02-28T15:22:00.404Z",
+    "hash": "0x126d5289a45bbac32e91ed67253bf139",
+    "type": "identity",
+    "action": "DID Issued",
+    "actor": "AgriInput Supplies Ltd",
+    "details": "DID created for AgriInput Supplies Ltd (RC-2021-NG-061293). Attested by Corporate Affairs Commission (CAC), Nigeria. Anchored on the ledger.",
+    "did": "did:iota:adapt:5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b",
+    "attestedBy": "Corporate Affairs Commission (CAC), Nigeria"
+  },
+  {
+    "id": "b9541c9373a5ac37",
+    "timestamp": "2026-04-15T15:22:00.404Z",
+    "hash": "0x0a9fd96852c905e9ff46f1887552b58c",
+    "type": "identity",
+    "action": "DID Issued",
+    "actor": "HorizonTrade International",
+    "details": "DID created for HorizonTrade International (RC-2017-NG-142567). Attested by Corporate Affairs Commission (CAC), Nigeria. Anchored on the ledger.",
+    "did": "did:iota:adapt:6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c",
+    "attestedBy": "Corporate Affairs Commission (CAC), Nigeria"
+  },
+  {
+    "id": "7cefa215127eea2d",
+    "timestamp": "2026-03-20T15:22:00.404Z",
+    "hash": "0x5a5449bd1aa2745af06129f9c54af77a",
+    "type": "identity",
+    "action": "DID Issued",
+    "actor": "Metro Consumer Goods Ltd",
+    "details": "DID created for Metro Consumer Goods Ltd (CPR-2018-KE-094831). Attested by Registrar of Companies, Kenya. Anchored on the ledger.",
+    "did": "did:iota:adapt:a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2",
+    "attestedBy": "Registrar of Companies, Kenya"
+  },
+  {
+    "id": "48d24b065b8d971c",
+    "timestamp": "2026-04-01T12:18:05.344Z",
+    "hash": "0x66f1173cf9c6b633ea737801016f6957",
+    "type": "identity",
+    "action": "DID Issued",
+    "actor": "AgriInput Supplies Ltd",
+    "details": "DID created for AgriInput Supplies Ltd (RC-2021-NG-061293). Attested by Nigeria National Registry. Anchored on the ledger.",
+    "did": "did:iota:adapt:5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b",
+    "attestedBy": "Nigeria National Registry"
+  },
+  {
+    "id": "fae66ad522f26376",
+    "timestamp": "2026-04-30T12:18:05.344Z",
+    "hash": "0x9ffbb88edf7aed529ed11e7cf9dd96fb",
+    "type": "identity",
+    "action": "DID Issued",
+    "actor": "HorizonTrade International",
+    "details": "DID created for HorizonTrade International (RC-2017-NG-142567). Attested by Nigeria National Registry. Anchored on the ledger.",
+    "did": "did:iota:adapt:6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c",
+    "attestedBy": "Nigeria National Registry"
   }
 ]
